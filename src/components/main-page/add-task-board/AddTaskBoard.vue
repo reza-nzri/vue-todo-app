@@ -20,7 +20,9 @@
 
 <style scoped>
 .add-task-board {
-    padding: 3px;
+    margin-top: 25px;
+    min-height: 38px;
+    max-height: 38px;
     background-color: white !important;
     font-size: 13px;
     color: var(--font-color-gray);
@@ -39,6 +41,7 @@
 .left-section:hover,
 .right-section:hover {
     animation: textAnim 5s 0 normal ease;
+    transition: 0.16s;
     transform: scale(104%);
 }
 
@@ -61,8 +64,9 @@
     color: white;
     border: none;
     border-radius: 50%;
-    width: 52px;
-    height: 52px;
+    width: 44px;
+    height: 44px;
+    transform: translateY(18px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,7 +80,8 @@
 .add-button:hover {
     background-color: var(--dark-congress-blue);
     animation: buttonAnim 1s 0 normal ease;
-    transform: scale(105%);
+    transform: scale(105%) translateY(18px);
+    transition: 0.2s;
 }
 
 @keyframes myAnim {

@@ -5,7 +5,7 @@ This is my to-do list application in Vue.
 ## 🎯 Description
 
 The `vue-todolist` repository is a **task management application**, a productivity tool created to practice and learn the `Vue` Framework.
-
+\
 An application that allows you to list your pending tasks, both on a personal level for "shopping" or "reminders" and on a professional level to manage your projects.
 
 ## 🏗️ Developed with
@@ -17,13 +17,15 @@ An application that allows you to list your pending tasks, both on a personal le
 
 **Sorted by:** latest version on top
 
-### [v0.2.0] - 2024-06-21
+### [v0.2.0] - 2024-06-00
 
 #### Added
 
 Uses..
 
-### v0.1.0
+### [v0.1.0] - 2024-06-20
+
+#### Added
 
 Uses Initial Vue Project Creation
 
@@ -62,18 +64,19 @@ echo 0.1.0 > .pvnr
 
    1. ToDosView
 
-      1. Checkbox
-      2. TaskSubject
-      3. TimestampDisplay
-      4. PriorityIndicator
+      1. TodoList
 
    2. DoneListView
-      1. Checkbox
-      2. TaskSubject
-      3. TimestampDisplay
-      4. PriorityIndicator
+      1. TodoList
 
-3. TaskDetailsBoard
+3. TodoList
+
+   1. Checkbox
+   2. TaskSubject
+   3. TimestampDisplay
+   4. PriorityIndicator
+
+4. TaskDetailsBoard
    1. TimestampDisplay
    2. PriorityDropdown
    3. TaskSubject

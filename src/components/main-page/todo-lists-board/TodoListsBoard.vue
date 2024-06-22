@@ -7,13 +7,13 @@ import ToDosView from '@/components/main-page/todo-lists-board/to-dos-view/ToDos
     <div class="todo-list-board">
         <div class="list-board">
             <ToDosView />
-            <DoneListView />
+            <DoneListView class="done-list-view" />
         </div>
     </div>
 </template>
 
 <style scoped>
 .list-board {
-    margin: 0px 0px 20px 20px;
+    margin: 0;
 }
 </style>

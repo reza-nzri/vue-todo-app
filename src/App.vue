@@ -22,7 +22,7 @@ import { RouterView } from 'vue-router'
           <h1>{{ appNameEnv }} v{{ appVersion }}</h1>
         </div> -->
 
-        <hr />
+        <!-- <hr /> -->
       </RouterLink>
 
       <RouterView />
@@ -32,9 +32,9 @@ import { RouterView } from 'vue-router'
 
 <style scoped>
 .todo-page {
-  -webkit-border-radius: var(--border-radius-size);
-  -moz-border-radius: var(--border-radius-size);
-  border-radius: var(--border-radius-size);
+  -webkit-border-radius: var(--general-radius-size);
+  -moz-border-radius: var(--general-radius-size);
+  border-radius: var(--general-radius-size);
 }
 
 .router-link {
@@ -47,8 +47,8 @@ import { RouterView } from 'vue-router'
 }
 
 .todo-list-logo {
-  height: auto;
-  width: 60px;
+  height: 52px;
+  width: 52px;
   -webkit-filter: drop-shadow(var(--simple-drop-shadow));
   filter: drop-shadow(var(--simple-drop-shadow));
   margin: 0px 0px 0px 18px;
@@ -65,7 +65,7 @@ import { RouterView } from 'vue-router'
 }
 
 .app-title {
-  margin: 8px 0px 0px 20px;
+  margin: 7px 0px 0px 20px;
   font-size: 2.3em;
   color: white;
   text-shadow: 1px 3px 9px rgba(0, 0, 0, 0.46);

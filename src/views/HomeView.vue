@@ -15,19 +15,17 @@ import TaskDetailsBoard from '@/components/main-page/task-details-board/TaskDeta
 <style scoped>
 main {
   display: grid;
-  margin: 25px;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr 5fr 2fr;
-  grid-column-gap: 25px;
+  margin: 0px 25px 0px 25px;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 10fr;
+  grid-column-gap: 40px;
   grid-row-gap: 15px;
-  height: 66vh;
-  max-height: 66vh;
 }
 
 .add-task-board,
 .todo-list-board,
 .task-details-board {
-  border-radius: 6px;
+  border-radius: var(--box-radius-size);
   background-color: rgba(207, 22, 22, 0.315);
 }
 
@@ -36,12 +34,14 @@ main {
 }
 
 .todo-list-board {
-  grid-area: 2 / 1 / 4 / 2;
-  margin-bottom: 25px;
+  grid-area: 2 / 1 / 3 / 2;
+  margin-bottom: 45px;
+  margin-top: 15px;
 }
 
 .task-details-board {
-  grid-area: 2 / 2 / 4 / 3;
-  margin-bottom: 25px;
+  grid-area: 2 / 2 / 3 / 3;
+  margin-bottom: 45px;
+  margin-top: 15px;
 }
 </style>

@@ -12,7 +12,8 @@
   --marigold: #b98826;
   --well-read: #b73535;
   --teal-checkbox: #018786;
-  --border-radius-size: 12px;
+  --general-radius-size: 12px;
+  --box-radius-size: 6px;
 
   /* Dark Mode */
 }
@@ -27,18 +28,19 @@
 body {
   font-family: 'Gill Sans', sans-serif;
   color: var(--font-color-gray);
-  color: black;
 }
 
 #app {
   justify-content: center;
   align-items: center;
   margin: 70px;
-  height: 80vh;
+  height: 84vh;
+  max-height: 84vh;
+  min-height: fit-content;
   background-color: #ffffff73;
-  -webkit-border-radius: var(--border-radius-size);
-  -moz-border-radius: var(--border-radius-size);
-  border-radius: var(--border-radius-size);
+  -webkit-border-radius: var(--general-radius-size);
+  -moz-border-radius: var(--general-radius-size);
+  border-radius: var(--general-radius-size);
 }
 
 /* Background Gradient Animation */

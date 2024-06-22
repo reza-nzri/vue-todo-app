@@ -43,21 +43,27 @@ const toggleCheckbox = (event: Event) => {
     position: absolute;
     top: 0;
     left: 0;
-    height: 25px;
-    width: 25px;
+    height: 14px;
+    width: 14px;
     background-color: #00000000;
-    border: 4px solid var(--font-color-gray);
+    border: 3px solid var(--font-color-gray);
+    transition: 0.16s ease;
     border-radius: 5px;
 }
 
 .checkbox-container input:checked~.checkmark {
-    background-color: rgb(47, 204, 26);
+    background-color: var(--teal-checkbox);
+    border: 0px;
+    height: 19px;
+    width: 19px;
+    margin: 0;
 }
 
 .checkmark:after {
     content: "";
     position: absolute;
     display: none;
+    margin: -2px 0px 0px -3px;
 }
 
 .checkbox-container input:checked~.checkmark:after {
@@ -67,8 +73,8 @@ const toggleCheckbox = (event: Event) => {
 .checkbox-container .checkmark:after {
     left: 9px;
     top: 5px;
-    width: 5px;
-    height: 10px;
+    width: 4px;
+    height: 8px;
     border: solid white;
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
