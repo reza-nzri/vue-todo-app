@@ -1,0 +1,26 @@
+export const todos = [
+  {
+    id: 1,
+    name: 'Task 1',
+    description: 'Description for Task 1',
+    dueDateTime: '2024-06-23T12:00',
+    priority: 'low',
+    completed: false
+  },
+  {
+    id: 2,
+    name: 'Task 2',
+    description: 'Description for Task 2',
+    dueDateTime: '2024-06-24T10:00',
+    priority: 'medium',
+    completed: false
+  },
+  {
+    id: 3,
+    name: 'Task 3',
+    description: 'Description for Task 3',
+    dueDateTime: '2024-06-25T08:00',
+    priority: 'high',
+    completed: true
+  }
+]

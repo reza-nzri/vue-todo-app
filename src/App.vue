@@ -1,85 +1,84 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterView } from 'vue-router'
+
+// Define props and access environment variable
+// const appName = 'Vue Todo App';
+// const appNameEnv = import.meta.env.VUE_APP_NAME as string;
+// const appVersion = import.meta.env.VUE_APP_VERSION as string;
+// console.log(`App version: ${appVersion}`);
+// console.log(`App Version: ${appVersion}`);
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <div class="todo-page">
+    <nav>
+      <RouterLink to="/" class="router-link">
+        <div class="info-box">
+          <img alt="ToDo List logo" class="todo-list-logo" src="@/assets/images/logos/logo.ico" />
+          <h1 class="app-title">My ToDo's</h1>
+        </div>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+        <!-- <div class="app-meta-infos">
+          <h1>{{ appNameEnv }} v{{ appVersion }}</h1>
+        </div> -->
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
+        <hr />
+      </RouterLink>
 
-  <RouterView />
+      <RouterView />
+    </nav>
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+.todo-page {
+  -webkit-border-radius: var(--border-radius-size);
+  -moz-border-radius: var(--border-radius-size);
+  border-radius: var(--border-radius-size);
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.router-link {
+  text-decoration: none;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+.info-box {
+  display: flex;
+  padding: 5px 0px;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.todo-list-logo {
+  height: auto;
+  width: 60px;
+  -webkit-filter: drop-shadow(var(--simple-drop-shadow));
+  filter: drop-shadow(var(--simple-drop-shadow));
+  margin: 0px 0px 0px 18px;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.todo-list-logo:hover {
+  scale: 102%;
+  filter: drop-shadow(var(--hover-drop-shadow));
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+.app-title:hover {
+  scale: 101.4%;
+  filter: drop-shadow(var(--hover-drop-shadow));
 }
 
-nav a:first-of-type {
-  border: 0;
+.app-title {
+  margin: 8px 0px 0px 20px;
+  font-size: 2.3em;
+  color: white;
+  text-shadow: 1px 3px 9px rgba(0, 0, 0, 0.46);
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+hr {
+  margin: 0px 40px 5px 40px;
 }
+
+/* .app-meta-infos {
+  color: red;
+  font-size: 16px;
+  background-color: rgb(240, 255, 25);
+  padding: 2px;
+} */
 </style>

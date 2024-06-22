@@ -1,0 +1,98 @@
+:root {
+  /* Light Mode */
+  --background-white: #f8f4f4;
+  --background-black-rock: #03012c;
+  --background-drover: #fceea1;
+  --simple-drop-shadow: -2px 5px 7px #0000003d;
+  --hover-drop-shadow: -2px 9px 8px #0000003d;
+  --font-color-gray: #707070;
+  --font-faded-color: #ccc;
+  --congress-blue: #033d94;
+  --dark-congress-blue: #185abd;
+  --marigold: #b98826;
+  --well-read: #b73535;
+  --teal-checkbox: #018786;
+  --border-radius-size: 12px;
+
+  /* Dark Mode */
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Gill Sans', sans-serif;
+  color: var(--font-color-gray);
+  color: black;
+}
+
+#app {
+  justify-content: center;
+  align-items: center;
+  margin: 70px;
+  height: 80vh;
+  background-color: #ffffff73;
+  -webkit-border-radius: var(--border-radius-size);
+  -moz-border-radius: var(--border-radius-size);
+  border-radius: var(--border-radius-size);
+}
+
+/* Background Gradient Animation */
+body {
+  background: linear-gradient(352deg, #663024, #c025ee, #c30000, #ffe405);
+  background-size: 800% 800%;
+
+  -webkit-animation: bg-gradient-animation 31s ease infinite;
+  -moz-animation: bg-gradient-animation 31s ease infinite;
+  -o-animation: bg-gradient-animation 31s ease infinite;
+  animation: bg-gradient-animation 31s ease infinite;
+}
+
+@-webkit-keyframes bg-gradient-animation {
+  0% {
+    background-position: 76% 0%;
+  }
+  50% {
+    background-position: 25% 100%;
+  }
+  100% {
+    background-position: 76% 0%;
+  }
+}
+@-moz-keyframes bg-gradient-animation {
+  0% {
+    background-position: 76% 0%;
+  }
+  50% {
+    background-position: 25% 100%;
+  }
+  100% {
+    background-position: 76% 0%;
+  }
+}
+@-o-keyframes bg-gradient-animation {
+  0% {
+    background-position: 76% 0%;
+  }
+  50% {
+    background-position: 25% 100%;
+  }
+  100% {
+    background-position: 76% 0%;
+  }
+}
+@keyframes bg-gradient-animation {
+  0% {
+    background-position: 76% 0%;
+  }
+  50% {
+    background-position: 25% 100%;
+  }
+  100% {
+    background-position: 76% 0%;
+  }
+}
