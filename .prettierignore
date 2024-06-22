@@ -1,0 +1,4 @@
+# Ignore all Markdown files
+**/*.md
+.md
+**README.md

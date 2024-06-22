@@ -4,16 +4,22 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "dev": "node getVersion.js && vite",
+    "build": "run-p type-check \"build-only {@}\" -- && vue-cli-service build",
+    "prebuild": "node getVersion.js",
+    "prestart": "node getVersion.js",
     "preview": "vite preview",
     "test:unit": "vitest",
     "build-only": "vite build",
+    "start": "vue-cli-service serve",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
@@ -28,6 +34,7 @@
     "@vue/eslint-config-typescript": "^13.0.0",
     "@vue/test-utils": "^2.4.5",
     "@vue/tsconfig": "^0.5.1",
+    "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.23.0",
     "jsdom": "^24.0.0",
