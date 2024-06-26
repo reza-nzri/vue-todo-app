@@ -87,6 +87,17 @@ echo 0.1.0 > .pvnr
 Updated: 21.06.2024 13:47
 
 ```bash
+tree /F /A > folder-structure.md
+tree --gitignore > folder-structure.txt
+
+# Run the tree command and exclude the directories manually
+tree /F | Out-File -FilePath folder-structure.md
+
+# Run the tree command excluding specific directories (using `findstr` to filter out lines)
+tree /F | findstr /V /C:".idea" /C:"venv" /C:\Users\reza.nazari\Desktop\WorkDesk\GitLab\develop\python-image-comparison\lfw" > folder-structure.md
+```
+
+```bash
 vue-todo-app
 ├── README.md
 ├── env.d.ts
@@ -154,6 +165,7 @@ vue-todo-app
 
 ## ❓🤔 Questions
 
-1. Why are environment variables not defined in VUE 3? in consol.log() app.vue
+1. Verwendung von Classes and Modules
+2. wird `<script>` unten oder oben von code benutz?
 
 ![Giphy Todolist](https://media.giphy.com/media/B7o99rIuystY4/giphy.gif)
