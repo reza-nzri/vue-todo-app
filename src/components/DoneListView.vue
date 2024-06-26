@@ -1,9 +1,52 @@
-done-list-comp
 <script setup lang="ts">
 import { ref } from 'vue';
-import TodoList from '@/components/TodoListElement.vue'
+import TodoListElement from '@/components/TodoListElement.vue';
+import TaskDescription from './TaskDescription.vue';
 
 const isChecked = ref(false);
+
+interface Task {
+    id: number;
+    subject: string;
+    description: string;
+    dueDateTime: string;
+    priority: 'low' | 'medium' | 'high';
+    completed: boolean;
+}
+
+const tasks = ref<Task[]>([
+    {
+        id: 1,
+        subject: 'Task 1',
+        description: 'Description 1',
+        dueDateTime: '2022-12-31T23:59',
+        priority: 'high',
+        completed: false
+    },
+    {
+        id: 2,
+        subject: 'Task 2',
+        description: 'Description 2',
+        dueDateTime: '2022-12-31T23:59',
+        priority: 'medium',
+        completed: false
+    }
+]);
+
+function addTask(task: Task) {
+    tasks.value.push(task);
+}
+
+function updateTask(id: number, updatedTask: Partial<Task>) {
+    const task = tasks.value.find(task => task.id === id);
+    if (task) {
+        Object.assign(task, updatedTask);
+    }
+}
+
+function deleteTask(id: number) {
+    tasks.value = tasks.value.filter(task => task.id !== id);
+}
 </script>
 
 <template>
@@ -15,10 +58,7 @@ const isChecked = ref(false);
 
         <hr class="hr-topic">
 
-        <TodoList v-model="isChecked" class="list" />
-        <TodoList v-model="isChecked" class="list" />
-        <TodoList v-model="isChecked" class="list" />
-        <TodoList v-model="isChecked" class="list" />
+        <TodoListElement v-for="task in tasks" :key="task.id" :task="task" v-model="isChecked" class="list" />
     </div>
 </template>
 

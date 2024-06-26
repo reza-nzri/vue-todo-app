@@ -6,6 +6,15 @@ import TimestampDisplay from '@/components/TimestampDisplay.vue';
 import PriorityIndicator from '@/components/PriorityIndicator.vue';
 
 const isChecked = ref(false);
+
+const props = defineProps({
+    task: {
+        type: Object,
+        required: true
+    }
+});
+
+console.log("in TodoListElement:", props.task);
 </script>
 
 <template>
@@ -15,7 +24,8 @@ const isChecked = ref(false);
                 <CheckBoxComp v-model="isChecked" class="check-box-comp" />
                 <!-- <p class="checkbox-checker-text">Checkbox is {{ isChecked ? 'checked' : 'unchecked' }}</p> -->
 
-                <TaskSubject class="task-subject" />
+                <!-- <TaskSubject class="task-subject" /> -->
+                <TaskSubject class="task-subject" :subject="props.task.subject" />
                 <TimestampDisplay class="timestamp-display" />
                 <PriorityIndicator class="priority-indicator" />
             </div>
