@@ -19,8 +19,8 @@ const currentEnvContent = fs.readFileSync(envFilePath, 'utf8')
 const version = fs.readFileSync(versionFilePath, 'utf8').trim()
 
 // Erstelle den neuen Inhalt für die .env-Datei
-const regex = /^VUE_APP_VERSION=.*/gm
-const newEnvContent = currentEnvContent.replace(regex, `VUE_APP_VERSION=${version}`)
+const regex = /^VITE_APP_VERSION=.*/gm
+const newEnvContent = currentEnvContent.replace(regex, `VITE_APP_VERSION=${version}`)
 
 // Schreibe den neuen Inhalt in die .env-Datei
 fs.writeFileSync(envFilePath, newEnvContent)
