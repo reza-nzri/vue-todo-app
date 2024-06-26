@@ -3,10 +3,8 @@ import { RouterView } from 'vue-router'
 
 // Define props and access environment variable
 // const appName = 'Vue Todo App';
-// const appNameEnv = import.meta.env.VUE_APP_NAME as string;
-// const appVersion = import.meta.env.VUE_APP_VERSION as string;
-// console.log(`App version: ${appVersion}`);
-// console.log(`App Version: ${appVersion}`);
+const appNameEnv = import.meta.env.VITE_APP_NAME as string;
+const appVersion = import.meta.env.VITE_APP_VERSION as string;
 </script>
 
 <template>
@@ -18,9 +16,9 @@ import { RouterView } from 'vue-router'
           <h1 class="app-title">My ToDo's</h1>
         </div>
 
-        <!-- <div class="app-meta-infos">
+        <div class="app-meta-infos">
           <h1>{{ appNameEnv }} v{{ appVersion }}</h1>
-        </div> -->
+        </div>
 
         <!-- <hr /> -->
       </RouterLink>
@@ -75,10 +73,10 @@ hr {
   margin: 0px 40px 5px 40px;
 }
 
-/* .app-meta-infos {
-  color: red;
-  font-size: 16px;
-  background-color: rgb(240, 255, 25);
-  padding: 2px;
-} */
+.app-meta-infos {
+  color: white;
+  font-size: 7px;
+  margin: 0px 0px 0px 93px;
+  filter: drop-shadow(var(--hover-drop-shadow));
+}
 </style>

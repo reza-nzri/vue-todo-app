@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import TimestampDisplay from '@/components/main-page/TimestampDisplay.vue';
-import PriorityDropdown from '@/components/main-page/task-details-board/PriorityDropdown.vue';
-import TaskSubject from '@/components/main-page/TaskSubject.vue';
-import TaskDescription from '@/components/main-page/task-details-board/TaskDescription.vue';
+import TimestampDisplay from '@/components/TimestampDisplay.vue';
+import PriorityDropdown from '@/components/PriorityDropdown.vue';
+import TaskSubject from '@/components/TaskSubject.vue';
+import TaskDescription from '@/components/TaskDescription.vue';
+// import RichTextEditorPlugin from '@/plugins/RichTextEditorPlugin.vue';
 </script>
 
 <template>
@@ -18,6 +19,8 @@ import TaskDescription from '@/components/main-page/task-details-board/TaskDescr
                 <TaskDescription class="task-description-comp" />
             </div>
         </div>
+
+        <!-- <RichTextEditorPlugin /> -->
     </div>
 </template>
 

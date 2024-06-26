@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import AddTaskBoard from '@/components/main-page/add-task-board/AddTaskBoard.vue';
-import TodoListsBoard from '@/components/main-page/todo-lists-board/TodoListsBoard.vue';
-import TaskDetailsBoard from '@/components/main-page/task-details-board/TaskDetailsBoard.vue';
+import AddTaskBoard from '@/components/AddTaskBoard.vue';
+import TodoListsBoard from '@/components/TodoListsBoard.vue';
+import TaskDetailsBoard from '@/components/TaskDetailsBoard.vue';
 </script>
 
 <template>

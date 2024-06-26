@@ -55,6 +55,7 @@ const updatePriority = (event: Event) => {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 651px;
 }
 
 .combobox {
@@ -62,8 +63,9 @@ const updatePriority = (event: Event) => {
     background-color: var(--well-read);
     height: 40px;
     align-items: center;
-    width: 160px;
+    width: 100px;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .combo-arrow {
@@ -71,7 +73,7 @@ const updatePriority = (event: Event) => {
     font-weight: 700;
     transform: rotate(90deg);
     color: white;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .priority-select {
@@ -85,6 +87,6 @@ const updatePriority = (event: Event) => {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    padding-left: 10px;
+    cursor: pointer;
 }
 </style>

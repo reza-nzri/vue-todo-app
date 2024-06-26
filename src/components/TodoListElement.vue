@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import CheckBoxComp from '@/components/main-page/CheckboxComp.vue'
-import TaskSubject from '@/components/main-page/TaskSubject.vue';
-import TimestampDisplay from '@/components/main-page/TimestampDisplay.vue';
-import PriorityIndicator from '@/components/main-page/PriorityIndicator.vue';
+import CheckBoxComp from '@/components/CheckboxComp.vue'
+import TaskSubject from '@/components/TaskSubject.vue';
+import TimestampDisplay from '@/components/TimestampDisplay.vue';
+import PriorityIndicator from '@/components/PriorityIndicator.vue';
 
 const isChecked = ref(false);
 </script>
@@ -44,6 +44,7 @@ const isChecked = ref(false);
 
 .task-subject {
     margin: 0;
+    margin: -3px 0px 0px 38px;
     flex-grow: 2;
 }
 
@@ -57,10 +58,6 @@ const isChecked = ref(false);
 
 .checkbox-checker-text {
     margin: -5px 0px 0px 37px;
-}
-
-.task-subject {
-    margin: -3px 0px 0px 38px;
 }
 
 .drop-shadow {

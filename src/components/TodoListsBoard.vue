@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import DoneListView from '@/components/main-page/todo-lists-board/done-list-view/DoneListView.vue'
-import ToDosView from '@/components/main-page/todo-lists-board/to-dos-view/ToDosView.vue'
+import DoneListView from '@/components/DoneListView.vue'
+import ToDosView from '@/components/ToDosView.vue'
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 done-list-comp
 <script setup lang="ts">
 import { ref } from 'vue';
-import TodoList from '@/components/main-page/TodoList.vue'
+import TodoList from '@/components/TodoListElement.vue'
 
 const isChecked = ref(false);
 </script>
@@ -14,6 +14,7 @@ const isChecked = ref(false);
         </div>
 
         <hr class="hr-topic">
+
         <TodoList v-model="isChecked" class="list" />
         <TodoList v-model="isChecked" class="list" />
         <TodoList v-model="isChecked" class="list" />
