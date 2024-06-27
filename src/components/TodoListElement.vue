@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import CheckBoxComp from '@/components/CheckboxComp.vue'
 import TaskSubject from '@/components/TaskSubject.vue';
 import TimestampDisplay from '@/components/TimestampDisplay.vue';
@@ -14,7 +14,9 @@ const props = defineProps({
     }
 });
 
-console.log("in TodoListElement:", props.task);
+onMounted(() => {
+    console.log("in TodoListElement:", props.task);
+})
 </script>
 
 <template>
@@ -25,7 +27,7 @@ console.log("in TodoListElement:", props.task);
                 <!-- <p class="checkbox-checker-text">Checkbox is {{ isChecked ? 'checked' : 'unchecked' }}</p> -->
 
                 <!-- <TaskSubject class="task-subject" /> -->
-                <TaskSubject class="task-subject" :subject="props.task.subject" />
+                <TaskSubject class="task-subject" :subject="props.task.subject" />  
                 <TimestampDisplay class="timestamp-display" />
                 <PriorityIndicator class="priority-indicator" />
             </div>
