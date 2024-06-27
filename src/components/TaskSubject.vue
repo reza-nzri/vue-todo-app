@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
+import { defineProps, onMounted } from 'vue';
 
 const props = defineProps({
     subject: {
@@ -8,7 +8,9 @@ const props = defineProps({
     }
 });
 
-console.log("in TaskSubject: " + props.subject);
+onMounted(() => {
+    console.log("in TaskSubject: " + props.subject);
+})
 </script>
 
 <template>
