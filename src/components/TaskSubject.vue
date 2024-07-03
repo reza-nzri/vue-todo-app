@@ -6,10 +6,14 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { defineProps } from "vue";
 
-const props = defineProps(["subject"]);
+interface Props {
+  subject: string;
+}
+
+const props = defineProps<Props>();
 </script>
 
 <style scoped>

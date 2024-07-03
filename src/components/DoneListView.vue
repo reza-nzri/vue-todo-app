@@ -8,10 +8,10 @@
     <hr class="hr-topic" />
 
     <TodoListElement
+      class="list"
       v-for="task in tasks"
       :key="task.id"
       :task="task"
-      class="list"
       v-model="isChecked"
     />
   </div>
@@ -19,11 +19,22 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import type { Ref } from "vue";
 import TodoListElement from "@/components/TodoListElement.vue";
 
 const isChecked = ref(false);
 
-const tasks = ref([
+interface Task {
+  id: string;
+  subject: string;
+  description: string;
+  dueDateTime: string;
+  priority: "high" | "medium" | "low";
+  completed: boolean;
+  opened: boolean;
+}
+
+const tasks: Ref<Task[]> = ref([
   {
     id: "1",
     subject: "Buy groceries",

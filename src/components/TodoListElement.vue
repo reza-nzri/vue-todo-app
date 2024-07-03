@@ -3,8 +3,6 @@
     <div class="todo-list">
       <div class="done-list-view drop-shadow">
         <CheckBoxComp v-model="isChecked" class="check-box-comp" />
-        <!-- <p class="checkbox-checker-text">Checkbox is {{ isChecked ? 'checked' : 'unchecked' }}</p> -->
-
         <TaskSubject
           class="task-subject"
           v-if="props.task"
@@ -17,17 +15,36 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, defineProps, watch } from "vue";
+import type { Ref } from "vue";
 import CheckBoxComp from "@/components/CheckboxComp.vue";
 import TaskSubject from "@/components/TaskSubject.vue";
 import TimestampDisplay from "@/components/TimestampDisplay.vue";
 import PriorityIndicator from "@/components/PriorityIndicator.vue";
 
-const isChecked = ref(false);
+interface Task {
+  id: string;
+  subject: string;
+  description: string;
+  dueDateTime: string;
+  priority: "high" | "medium" | "low";
+  completed: boolean;
+  opened: boolean;
+}
 
-const props = defineProps(["task"]);
+// Define the type for props
+const props = defineProps({
+  task: {
+    type: Object as () => Task,
+    required: true,
+  },
+});
 
+// Define isChecked as a reactive boolean reference
+const isChecked: Ref<boolean> = ref(false);
+
+// Watch for changes in isChecked
 watch(isChecked, (newVal) => {
   console.log(`Checkbox is ${newVal ? "checked" : "unchecked"}`);
 });
