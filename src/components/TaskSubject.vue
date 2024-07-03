@@ -1,12 +1,16 @@
-<script setup lang="ts"></script>
-
 <template>
   <div>
     <div class="task-subject">
-      <p class="subject-text">Subject of this ToDo</p>
+      <p class="subject-text">{{ subject }}</p>
     </div>
   </div>
 </template>
+
+<script setup>
+import { defineProps } from "vue";
+
+const props = defineProps(["subject"]);
+</script>
 
 <style scoped>
 .subject-text {

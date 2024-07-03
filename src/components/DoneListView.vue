@@ -1,10 +1,3 @@
-<script setup lang="ts">
-import { ref } from "vue";
-import TodoListElement from "@/components/TodoListElement.vue";
-
-const isChecked = ref(false);
-</script>
-
 <template>
   <div class="done-list-comp">
     <div class="done-topic">
@@ -14,9 +7,55 @@ const isChecked = ref(false);
 
     <hr class="hr-topic" />
 
-    <TodoListElement class="list" v-model="isChecked" />
+    <TodoListElement
+      v-for="task in tasks"
+      :key="task.id"
+      :task="task"
+      class="list"
+      v-model="isChecked"
+    />
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import TodoListElement from "@/components/TodoListElement.vue";
+
+const isChecked = ref(false);
+
+const tasks = ref([
+  {
+    id: "1",
+    subject: "Buy groceries",
+    description:
+      "Today, we need to buy groceries from the supermarket for the week. Items needed include milk, eggs, bread, fruits, and vegetables.",
+    dueDateTime: "2023-07-03T12:00:00",
+    priority: "high",
+    completed: false,
+    opened: true,
+  },
+  {
+    id: "2",
+    subject: "Prepare presentation",
+    description:
+      "Prepare a PowerPoint presentation for the team meeting scheduled tomorrow. The presentation should cover project updates, milestones, and future plans.",
+    dueDateTime: "2023-07-03T12:00:00",
+    priority: "medium",
+    completed: false,
+    opened: false,
+  },
+  {
+    id: "3",
+    subject: "Birthday party planning",
+    description:
+      "Organize and plan for John's birthday party this weekend. Tasks include inviting guests, ordering cake and decorations, and finalizing the venue.",
+    dueDateTime: "2023-07-03T12:00:00",
+    priority: "low",
+    completed: true,
+    opened: false,
+  },
+]);
+</script>
 
 <style scoped>
 .done-list-comp {

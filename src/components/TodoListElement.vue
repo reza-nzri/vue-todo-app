@@ -1,13 +1,3 @@
-<script setup lang="ts">
-import { ref } from "vue";
-import CheckBoxComp from "@/components/CheckboxComp.vue";
-import TaskSubject from "@/components/TaskSubject.vue";
-import TimestampDisplay from "@/components/TimestampDisplay.vue";
-import PriorityIndicator from "@/components/PriorityIndicator.vue";
-
-const isChecked = ref(false);
-</script>
-
 <template>
   <div>
     <div class="todo-list">
@@ -15,13 +5,33 @@ const isChecked = ref(false);
         <CheckBoxComp v-model="isChecked" class="check-box-comp" />
         <!-- <p class="checkbox-checker-text">Checkbox is {{ isChecked ? 'checked' : 'unchecked' }}</p> -->
 
-        <TaskSubject class="task-subject" />
+        <TaskSubject
+          class="task-subject"
+          v-if="props.task"
+          :subject="props.task.subject"
+        />
         <TimestampDisplay class="timestamp-display" />
         <PriorityIndicator class="priority-indicator" />
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref, defineProps, watch } from "vue";
+import CheckBoxComp from "@/components/CheckboxComp.vue";
+import TaskSubject from "@/components/TaskSubject.vue";
+import TimestampDisplay from "@/components/TimestampDisplay.vue";
+import PriorityIndicator from "@/components/PriorityIndicator.vue";
+
+const isChecked = ref(false);
+
+const props = defineProps(["task"]);
+
+watch(isChecked, (newVal) => {
+  console.log(`Checkbox is ${newVal ? "checked" : "unchecked"}`);
+});
+</script>
 
 <style scoped>
 .todo-list {
