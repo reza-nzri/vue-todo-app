@@ -1,87 +1,75 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import CheckBoxComp from '@/components/CheckboxComp.vue'
-import TaskSubject from '@/components/TaskSubject.vue';
-import TimestampDisplay from '@/components/TimestampDisplay.vue';
-import PriorityIndicator from '@/components/PriorityIndicator.vue';
+import { ref } from "vue";
+import CheckBoxComp from "@/components/CheckboxComp.vue";
+import TaskSubject from "@/components/TaskSubject.vue";
+import TimestampDisplay from "@/components/TimestampDisplay.vue";
+import PriorityIndicator from "@/components/PriorityIndicator.vue";
 
 const isChecked = ref(false);
-
-const props = defineProps({
-    task: {
-        type: Object,
-        required: true
-    }
-});
-
-onMounted(() => {
-    console.log("in TodoListElement:", props.task);
-})
 </script>
 
 <template>
-    <div>
-        <div class="todo-list">
-            <div class="done-list-view drop-shadow">
-                <CheckBoxComp v-model="isChecked" class="check-box-comp" />
-                <!-- <p class="checkbox-checker-text">Checkbox is {{ isChecked ? 'checked' : 'unchecked' }}</p> -->
+  <div>
+    <div class="todo-list">
+      <div class="done-list-view drop-shadow">
+        <CheckBoxComp v-model="isChecked" class="check-box-comp" />
+        <!-- <p class="checkbox-checker-text">Checkbox is {{ isChecked ? 'checked' : 'unchecked' }}</p> -->
 
-                <!-- <TaskSubject class="task-subject" /> -->
-                <TaskSubject class="task-subject" :subject="props.task.subject" />  
-                <TimestampDisplay class="timestamp-display" />
-                <PriorityIndicator class="priority-indicator" />
-            </div>
-        </div>
+        <TaskSubject class="task-subject" />
+        <TimestampDisplay class="timestamp-display" />
+        <PriorityIndicator class="priority-indicator" />
+      </div>
     </div>
+  </div>
 </template>
 
 <style scoped>
 .todo-list {
-    margin: 0;
+  margin: 0;
 }
 
 .done-list-view {
-    display: flex;
-    background-color: white;
-    border: 3px solid var(--well-read);
-    /* none */
-    border-radius: var(--box-radius-size);
-    margin: 5px 0px 0px 0px;
-    height: 40px;
+  display: flex;
+  background-color: white;
+  border: 3px solid var(--well-read);
+  /* none */
+  border-radius: var(--box-radius-size);
+  margin: 5px 0px 0px 0px;
+  height: 40px;
 }
 
 .check-box-comp {
-    margin: -5px 0px 0px 10px;
+  margin: -5px 0px 0px 10px;
 }
 
 .task-subject {
-    margin: 0;
-    margin: -3px 0px 0px 38px;
-    flex-grow: 2;
+  margin: 0;
+  margin: -3px 0px 0px 38px;
+  flex-grow: 2;
 }
 
 .timestamp-display {
-    margin: 13px 10px 0px 0px;
+  margin: 13px 10px 0px 0px;
 }
 
 .priority-indicator {
-    margin: 0;
+  margin: 0;
 }
 
 .checkbox-checker-text {
-    margin: -5px 0px 0px 37px;
+  margin: -5px 0px 0px 37px;
 }
 
 .drop-shadow {
-    -webkit-filter: drop-shadow(-2px 5px 7px #000000b3);
-    filter: drop-shadow(-2px 5px 7px #0000003d);
+  -webkit-filter: drop-shadow(-2px 5px 7px #000000b3);
+  filter: drop-shadow(-2px 5px 7px #0000003d);
 }
 
 .drop-shadow:hover {
-    -webkit-filter: drop-shadow(-2px -5pxpx 7px #000000b3);
-    filter: drop-shadow(-2px 5px 10px #00000074);
-    cursor: pointer;
-    transform: scale(100.3%);
-    transition: 0.04s ease;
+  -webkit-filter: drop-shadow(-2px -5pxpx 7px #000000b3);
+  filter: drop-shadow(-2px 5px 10px #00000074);
+  cursor: pointer;
+  transform: scale(100.3%);
+  transition: 0.04s ease;
 }
 </style>
