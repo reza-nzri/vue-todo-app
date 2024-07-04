@@ -84,8 +84,6 @@ echo 0.1.0 > .pvnr
 
 ## 📂 Folder Structure
 
-Updated: 21.06.2024 13:47
-
 ```bash
 tree /F /A > folder-structure.md
 tree --gitignore > folder-structure.txt
@@ -95,72 +93,6 @@ tree /F | Out-File -FilePath folder-structure.md
 
 # Run the tree command excluding specific directories (using `findstr` to filter out lines)
 tree /F | findstr /V /C:".idea" /C:"venv" /C:\Users\reza.nazari\Desktop\WorkDesk\GitLab\develop\python-image-comparison\lfw" > folder-structure.md
-```
-
-```bash
-vue-todo-app
-├── README.md
-├── env.d.ts
-├── getVersion.js
-├── index.html
-├── package-lock.json
-├── package.json
-├── public
-│   ├── favicon.ico
-│   ├── manifest.json
-│   └── user-documents
-│       ├── media
-│       │   ├── gif
-│       │   ├── img
-│       │   └── video
-│       └── pdf
-├── src
-│   ├── App.vue
-│   ├── assets
-│   │   ├── css
-│   │   │   ├── base.css
-│   │   │   └── noscript.css
-│   │   ├── images
-│   │   │   ├── backgrounds
-│   │   │   └── logos
-│   │   │       ├── js-logo.png
-│   │   │       ├── logo.ico
-│   │   │       ├── logo.svg
-│   │   │       └── todolist-logo1.svg
-│   │   └── main.css
-│   ├── components
-│   │   ├── __tests__
-│   │   ├── icons
-│   │   └── main-page
-│   │       ├── Checkbox.vue
-│   │       ├── PriorityIndicator.vue
-│   │       ├── TaskSubject.vue
-│   │       ├── TimestampDisplay.vue
-│   │       ├── add-task-board
-│   │       │   ├── AddTaskBoard.vue
-│   │       │   ├── AddTaskButton.vue
-│   │       │   └── SortDropdown.vue
-│   │       ├── task-details-board
-│   │       │   ├── PriorityDropdown.vue
-│   │       │   ├── TaskDescription.vue
-│   │       │   └── TaskDetailsBoard.vue
-│   │       └── todo-lists-board
-│   │           ├── TodoListsBoard.vue
-│   │           ├── done-list-view
-│   │           │   └── DoneListView.vue
-│   │           └── to-dos-view
-│   │               └── ToDosView.vue
-│   ├── main.ts
-│   ├── router
-│   │   └── index.ts
-│   └── views
-│       └── HomeView.vue
-├── tsconfig.app.json
-├── tsconfig.json
-├── tsconfig.node.json
-├── tsconfig.vitest.json
-├── vite.config.ts
-└── vitest.config.ts
 ```
 
 # Prop Drilling

@@ -1,25 +1,20 @@
 .
-├── README
-│   ├── images
-│   └── videos
 ├── README.md
 ├── env.d.ts
-├── folder-structure.md
+├── folder-structure.txt
 ├── getVersion.js
 ├── index.html
 ├── package-lock.json
 ├── package.json
 ├── public
+│   ├── Vue_Components_Diagram
+│   │   ├── Vue_Components_Diagram.drawio
+│   │   └── Vue_Components_Diagram.svg
 │   ├── favicon.ico
 │   ├── manifest.json
 │   └── user-documents
-│       ├── data
-│       │   └── TodoData.json
-│       ├── media
-│       │   ├── gif
-│       │   ├── img
-│       │   └── video
-│       └── pdf
+│       └── data
+│           └── TodoData.json
 ├── src
 │   ├── App.vue
 │   ├── assets
@@ -27,42 +22,23 @@
 │   │   │   ├── main.css
 │   │   │   └── noscript.css
 │   │   └── images
-│   │       ├── backgrounds
 │   │       └── logos
 │   │           ├── js-logo.png
 │   │           ├── logo.ico
 │   │           ├── logo.svg
 │   │           └── todolist-logo1.svg
 │   ├── components
-│   │   ├── AddTaskBoard.vue
-│   │   ├── AddTaskButton.vue
 │   │   ├── CheckboxComp.vue
-│   │   ├── DoneListView.vue
-│   │   ├── PriorityDropdown.vue
-│   │   ├── PriorityIndicator.vue
 │   │   ├── SortDropdown.vue
-│   │   ├── TaskDescription.vue
-│   │   ├── TaskDetailsBoard.vue
+│   │   ├── TaskDashboard.vue
+│   │   ├── TaskDetails.vue
 │   │   ├── TaskSubject.vue
 │   │   ├── TimestampDisplay.vue
-│   │   ├── ToDosView.vue
-│   │   ├── TodoListsBoard.vue
-│   │   ├── __tests__
-│   │   ├── elements
-│   │   │   └── TodoListElement.vue
-│   │   └── icons
+│   │   ├── TodoListElement.vue
+│   │   └── TopBar.vue
 │   ├── main.ts
-│   ├── models
-│   │   └── TaskModel.ts
-│   ├── plugins
-│   │   ├── RichTextEditorPlugin.vue
-│   │   └── font-awesome.ts
-│   ├── router
-│   │   └── index.ts
-│   ├── stores
-│   │   └── Task.ts
-│   └── views
-│       └── HomeView.vue
+│   └── plugins
+│       └── font-awesome.ts
 ├── tsconfig.app.json
 ├── tsconfig.json
 ├── tsconfig.node.json
@@ -70,4 +46,4 @@
 ├── vite.config.ts
 └── vitest.config.ts
 
-26 directories, 44 files
+11 directories, 35 files
