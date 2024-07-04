@@ -1,0 +1,130 @@
+<mxfile host="app.diagrams.net" modified="2024-07-04T07:49:48.351Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" etag="JDvqJNjG9myLpVfGFJ6K" version="24.6.4" type="device">
+  <diagram name="Page-1" id="UlpY-qtYCJBsvOzZDhWb">
+    <mxGraphModel dx="2085" dy="614" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="_GWiQmlhPD1PHApjWz86-1" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
+          <mxGeometry x="45" y="130" width="760" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-4" value="App.vue" style="text;strokeColor=none;fillColor=none;html=1;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
+          <mxGeometry x="45" y="110" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-6" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;" parent="1" vertex="1">
+          <mxGeometry x="55" y="190" width="355" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-8" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;" parent="1" vertex="1">
+          <mxGeometry x="460" y="240" width="335" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-9" value="TaskDetails.vue" style="text;strokeColor=none;fillColor=none;html=1;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;fontColor=#3333FF;" parent="1" vertex="1">
+          <mxGeometry x="460" y="240" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-10" value="TopBar.vue" style="text;strokeColor=none;fillColor=none;html=1;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;fontColor=#3333FF;" parent="1" vertex="1">
+          <mxGeometry x="59.38" y="195" width="70.62" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-13" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="55" y="240" width="337.5" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-15" value="TaskDashboard.vue" style="text;strokeColor=none;fillColor=none;html=1;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;fontColor=#CC0000;" parent="1" vertex="1">
+          <mxGeometry x="56.25" y="240" width="123.75" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-18" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="62.5" y="265" width="320" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-20" value="TodoListElement.vue" style="text;strokeColor=none;fillColor=none;html=1;fontSize=8;fontStyle=1;verticalAlign=middle;align=center;fontColor=#FF66FF;" parent="1" vertex="1">
+          <mxGeometry x="62.5" y="265" width="90" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-21" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;" parent="1" vertex="1">
+          <mxGeometry x="72.5" y="282.5" width="50" height="17.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-22" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;" parent="1" vertex="1">
+          <mxGeometry x="122.5" y="282.5" width="140" height="17.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-23" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;" parent="1" vertex="1">
+          <mxGeometry x="262.5" y="282.5" width="70" height="17.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-25" value="CheckBox.vue" style="text;strokeColor=none;fillColor=none;html=1;fontSize=6;fontStyle=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
+          <mxGeometry x="79.07" y="301" width="36.87" height="7.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-27" value="TaskSubject.vue" style="text;strokeColor=none;fillColor=none;html=1;fontSize=6;fontStyle=1;verticalAlign=middle;align=center;fontColor=#00CCCC;" parent="1" vertex="1">
+          <mxGeometry x="162.5" y="301" width="36.87" height="7.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-28" value="Timestamp.vue" style="text;strokeColor=none;fillColor=none;html=1;fontSize=6;fontStyle=1;verticalAlign=middle;align=center;fontColor=#CC6600;" parent="1" vertex="1">
+          <mxGeometry x="242.5" y="275" width="66.87" height="7.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-40" value="Vue Components Diagram" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
+          <mxGeometry x="140" y="40" width="355" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-41" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;" parent="1" vertex="1">
+          <mxGeometry x="470" y="260" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-43" value="Timestamp.vue" style="text;strokeColor=none;fillColor=none;html=1;fontSize=8;fontStyle=1;verticalAlign=middle;align=center;fontColor=#CC6600;" parent="1" vertex="1">
+          <mxGeometry x="470" y="270" width="110" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-46" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;" parent="1" vertex="1">
+          <mxGeometry x="470" y="295" width="320" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="_GWiQmlhPD1PHApjWz86-47" value="TaskSubject.vue" style="text;strokeColor=none;fillColor=none;html=1;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;fontColor=#00CCCC;" parent="1" vertex="1">
+          <mxGeometry x="473.75" y="298.75" width="106.25" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="aRjLgMbQ5INrM0eZPgUR-21" value="Components List (sum: 14)" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="-190" y="150" width="180" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="aRjLgMbQ5INrM0eZPgUR-22" value="&lt;span style=&quot;text-align: center; text-wrap: nowrap;&quot;&gt;App.vue&lt;/span&gt;" style="text;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontStyle=0;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="aRjLgMbQ5INrM0eZPgUR-21" vertex="1">
+          <mxGeometry y="30" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aRjLgMbQ5INrM0eZPgUR-23" value="TopBar.vue" style="text;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="aRjLgMbQ5INrM0eZPgUR-21" vertex="1">
+          <mxGeometry y="60" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aRjLgMbQ5INrM0eZPgUR-30" value="TaskDashboard.vue" style="text;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="aRjLgMbQ5INrM0eZPgUR-21" vertex="1">
+          <mxGeometry y="90" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aRjLgMbQ5INrM0eZPgUR-31" value="TodoListElement.vue" style="text;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="aRjLgMbQ5INrM0eZPgUR-21" vertex="1">
+          <mxGeometry y="120" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aRjLgMbQ5INrM0eZPgUR-32" value="CheckBox.vue" style="text;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="aRjLgMbQ5INrM0eZPgUR-21" vertex="1">
+          <mxGeometry y="150" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aRjLgMbQ5INrM0eZPgUR-33" value="TaskSubject.vue" style="text;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="aRjLgMbQ5INrM0eZPgUR-21" vertex="1">
+          <mxGeometry y="180" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aRjLgMbQ5INrM0eZPgUR-34" value="Timestamp.vue" style="text;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="aRjLgMbQ5INrM0eZPgUR-21" vertex="1">
+          <mxGeometry y="210" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aRjLgMbQ5INrM0eZPgUR-36" value="TaskDetails.vue" style="text;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="aRjLgMbQ5INrM0eZPgUR-21" vertex="1">
+          <mxGeometry y="240" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aRjLgMbQ5INrM0eZPgUR-50" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="55" y="410" width="337.5" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="aRjLgMbQ5INrM0eZPgUR-52" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="63.75" y="430" width="320" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="aRjLgMbQ5INrM0eZPgUR-53" value="TodoListElement.vue" style="text;strokeColor=none;fillColor=none;html=1;fontSize=8;fontStyle=1;verticalAlign=middle;align=center;fontColor=#FF66FF;" parent="1" vertex="1">
+          <mxGeometry x="63.75" y="430" width="90" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="aRjLgMbQ5INrM0eZPgUR-54" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;" parent="1" vertex="1">
+          <mxGeometry x="73.75" y="447.5" width="50" height="17.5" as="geometry" />
+        </mxCell>
+        <mxCell id="aRjLgMbQ5INrM0eZPgUR-55" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;" parent="1" vertex="1">
+          <mxGeometry x="123.75" y="447.5" width="140" height="17.5" as="geometry" />
+        </mxCell>
+        <mxCell id="aRjLgMbQ5INrM0eZPgUR-56" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;" parent="1" vertex="1">
+          <mxGeometry x="263.75" y="447.5" width="70" height="17.5" as="geometry" />
+        </mxCell>
+        <mxCell id="aRjLgMbQ5INrM0eZPgUR-57" value="CheckBoxComp.vue" style="text;strokeColor=none;fillColor=none;html=1;fontSize=6;fontStyle=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
+          <mxGeometry x="80.32" y="466" width="36.87" height="7.5" as="geometry" />
+        </mxCell>
+        <mxCell id="aRjLgMbQ5INrM0eZPgUR-58" value="TaskSubject.vue" style="text;strokeColor=none;fillColor=none;html=1;fontSize=6;fontStyle=1;verticalAlign=middle;align=center;fontColor=#00CCCC;" parent="1" vertex="1">
+          <mxGeometry x="163.75" y="466" width="36.87" height="7.5" as="geometry" />
+        </mxCell>
+        <mxCell id="1Am2R5dG1iEVua0u-u5w-1" value="Timestamp.vue" style="text;strokeColor=none;fillColor=none;html=1;fontSize=6;fontStyle=1;verticalAlign=middle;align=center;fontColor=#CC6600;" parent="1" vertex="1">
+          <mxGeometry x="259.69" y="440" width="66.87" height="7.5" as="geometry" />
+        </mxCell>
+        <mxCell id="5K7TZuvO4F2D9BM6BmvX-1" value="TaskDashboard.vue" style="text;strokeColor=none;fillColor=none;html=1;fontSize=12;fontStyle=1;verticalAlign=middle;align=center;fontColor=#CC0000;" vertex="1" parent="1">
+          <mxGeometry x="56.25" y="410" width="123.75" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
