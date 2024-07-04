@@ -29,3 +29,7 @@ coverage
 
 *.tsbuildinfo
 .env
+
+# Ausnahme für Dateien mit der Endung .format.identifier
+!*.format.identifier
+*.Identifier
