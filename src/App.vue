@@ -1,16 +1,13 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed, onMounted } from "vue";
 import type { Ref } from "vue";
 import TopBar from "@/components/TopBar.vue";
-import TaskDashboard from "@/components/TaskDashboard.vue";
+import TodoListElement from "@/components/TodoListElement.vue";
 import TaskDetails from "@/components/TaskDetails.vue";
 
 // Define props and access environment variable
 const appNameEnv = import.meta.env.VITE_APP_NAME as string;
 const appVersion = import.meta.env.VITE_APP_VERSION as string;
-
-// Todos Data
-const isChecked = ref(false);
 
 interface Task {
   id: string;
@@ -19,7 +16,7 @@ interface Task {
   dueDateTime: string;
   priority: "high" | "medium" | "low";
   completed: boolean;
-  opened: boolean;
+  openDisplay: boolean;
 }
 
 const tasks: Ref<Task[]> = ref([
@@ -28,7 +25,7 @@ const tasks: Ref<Task[]> = ref([
     subject: "Buy groceries",
     description:
       "Today, we need to buy groceries from the supermarket for the week. Items needed include milk, eggs, bread, fruits, and vegetables.",
-    dueDateTime: "2023-07-03T12:00:00",
+    dueDateTime: "2023.07.03 - 02:15:00",
     priority: "high",
     completed: false,
     openDisplay: true,
@@ -38,7 +35,7 @@ const tasks: Ref<Task[]> = ref([
     subject: "Prepare presentation",
     description:
       "Prepare a PowerPoint presentation for the team meeting scheduled tomorrow. The presentation should cover project updates, milestones, and future plans.",
-    dueDateTime: "2023-07-03T12:00:00",
+    dueDateTime: "2023.07.23 - 12:02:00",
     priority: "medium",
     completed: false,
     openDisplay: false,
@@ -48,37 +45,133 @@ const tasks: Ref<Task[]> = ref([
     subject: "Birthday party planning",
     description:
       "Organize and plan for John's birthday party this weekend. Tasks include inviting guests, ordering cake and decorations, and finalizing the venue.",
-    dueDateTime: "2023-07-03T12:00:00",
+    dueDateTime: "2023.08.24 - 08:51:30",
     priority: "low",
     completed: true,
     openDisplay: false,
   },
 ]);
+
+// Initialize tasks from localStorage on component mount
+onMounted(() => {
+  const storedTasks = localStorage.getItem("tasks");
+  if (storedTasks) {
+    tasks.value = JSON.parse(storedTasks);
+  }
+});
+
+// Function to generate a unique ID (simple example, improve as needed)
+function generateUniqueId(): string {
+  return (tasks.value.length + 1).toString();
+}
+
+// CRUD operations
+// Function to add a new task
+function handleAddTask() {
+  const newTask: Task = {
+    id: generateUniqueId(),
+    subject: "Enter a new subject...",
+    description: "Enter a new description",
+    dueDateTime: calculateDueDateTime(),
+    priority: "medium",
+    completed: false,
+    openDisplay: true,
+  };
+  tasks.value.push(newTask);
+  saveTasksToLocalStorage();
+}
+
+// Function to delete a task (not fully implemented here, adjust as needed)
+function deleteTask(taskId: string) {
+  tasks.value = tasks.value.filter((task) => task.id !== taskId);
+  saveTasksToLocalStorage();
+}
+
+// Function to update a task (not fully implemented here, adjust as needed)
+function updateTask(updatedTask: Task) {
+  const index = tasks.value.findIndex((task) => task.id === updatedTask.id);
+  if (index !== -1) {
+    tasks.value[index] = updatedTask;
+    saveTasksToLocalStorage();
+  }
+}
+
+function getTaskById(id: string): Task | undefined {
+  return tasks.value.find((task) => task.id === id);
+}
+
+// Methods to handle task completion
+function toggleCompleted(task: Task) {
+  const index = tasks.value.findIndex((t) => t.id === task.id);
+  if (index !== -1) {
+    tasks.value[index].completed = !tasks.value[index].completed;
+  }
+}
+
+// Methods to handle opening task details
+function openTaskDetails(task: Task) {
+  tasks.value.forEach((t) => {
+    if (t.id === task.id) {
+      t.openDisplay = true;
+    } else {
+      t.openDisplay = false;
+    }
+  });
+}
+
+// Function to save tasks to localStorage
+function saveTasksToLocalStorage() {
+  localStorage.setItem("tasks", JSON.stringify(tasks.value));
+}
+
+// Function to calculate due date time (5 minutes later from now)
+function calculateDueDateTime(): string {
+  const now = new Date();
+  now.setMinutes(now.getMinutes() + 5);
+  return now.toISOString();
+}
+
+// Computed properties for filtered tasks
+const openTasks = computed(() => tasks.value.filter((task) => !task.completed));
+const doneTasks = computed(() => tasks.value.filter((task) => task.completed));
+
+// Method to handle date format
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleString("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+}
 </script>
 
 <template>
   <div class="todo-page">
-    <div>
-      <nav class="router-link">
-        <div class="info-box">
-          <img
-            alt="ToDo List logo"
-            class="todo-list-logo"
-            src="@/assets/images/logos/logo.ico"
-          />
-          <h1 class="app-title">My ToDo's</h1>
-        </div>
+    <nav class="navbar">
+      <div class="info-box">
+        <img
+          alt="ToDo List logo"
+          class="todo-list-logo"
+          src="@/assets/images/logos/logo.ico"
+        />
+        <h1 class="app-title">My ToDo's</h1>
+      </div>
 
-        <div class="app-meta-infos">
-          <h1>{{ appNameEnv }} v{{ appVersion }}</h1>
-        </div>
+      <div class="app-meta-infos">
+        <h1>{{ appNameEnv }} v{{ appVersion }}</h1>
+      </div>
 
-        <!-- <hr /> -->
-      </nav>
+      <!-- <hr /> -->
+    </nav>
 
-      <main>
-        <TopBar class="add-task-board" />
+    <main>
+      <TopBar class="add-task-board" @add-task="handleAddTask" />
 
+      <div class="list-board">
         <div class="tasks-dashboard">
           <div class="tasks-topic">
             <font-awesome-icon :icon="['fas', 'tasks']" class="icon" />
@@ -87,7 +180,16 @@ const tasks: Ref<Task[]> = ref([
 
           <hr class="hr-topic" />
 
-          <TaskDashboard class="list-board" />
+          <div class="dashboard">
+            <TodoListElement
+              class="list"
+              v-for="task in tasks"
+              :key="task.id"
+              :task="task"
+              @update-task="updateTask"
+              @delete-task="deleteTask"
+            />
+          </div>
         </div>
 
         <div class="done-dashboard">
@@ -98,12 +200,28 @@ const tasks: Ref<Task[]> = ref([
 
           <hr class="hr-topic" />
 
-          <TaskDashboard class="list-board" />
+          <div class="dashboard">
+            <TodoListElement
+              class="list"
+              v-for="task in tasks"
+              :key="task.id"
+              :task="task"
+              @toggle-completed="toggleCompleted(task)"
+              @open-task-details="openTaskDetails(task)"
+            />
+          </div>
         </div>
+      </div>
 
-        <TaskDetails class="task-details-board" />
-      </main>
-    </div>
+      <TaskDetails
+        class="task-details-board"
+        v-for="task in tasks"
+        :key="task.id"
+        :task="task"
+        :format-date="formatDate"
+        @update-task="updateTask"
+      />
+    </main>
   </div>
 </template>
 
@@ -114,7 +232,7 @@ const tasks: Ref<Task[]> = ref([
   border-radius: var(--general-radius-size);
 }
 
-.router-link {
+.navbar {
   text-decoration: none;
 }
 
@@ -186,6 +304,15 @@ main {
 .tasks-dashboard {
   margin-bottom: 5px;
   display: block !important;
+}
+
+.dashboard {
+  margin: 0;
+  display: block !important;
+}
+
+.list {
+  margin-bottom: 15px;
 }
 
 .tasks-topic {

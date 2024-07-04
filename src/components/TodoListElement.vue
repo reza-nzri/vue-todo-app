@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineProps, watch } from "vue";
+import { ref, defineProps, watch, computed } from "vue";
 import type { Ref } from "vue";
 import CheckBoxComp from "@/components/CheckboxComp.vue";
 import TaskSubject from "@/components/TaskSubject.vue";
@@ -26,25 +26,58 @@ const isChecked: Ref<boolean> = ref(false);
 watch(isChecked, (newVal) => {
   console.log(`Checkbox is ${newVal ? "checked" : "unchecked"}`);
 });
+
+// Computed property for dynamic style
+const backgroundColorPriorityStyle = computed(() => {
+  let backgroundColor = "";
+  if (props.task.priority === "high") {
+    backgroundColor = "var(--well-read)";
+  } else if (props.task.priority === "medium") {
+    backgroundColor = "var(--marigold)";
+  } else if (props.task.priority === "low") {
+    backgroundColor = "var(--congress-blue)";
+  }
+  return { backgroundColor };
+});
+
+const borderColorPriorityStyle = computed(() => {
+  let border = "";
+  if (props.task.priority === "high") {
+    border = "3px solid var(--well-read)";
+  } else if (props.task.priority === "medium") {
+    border = "3px solid var(--marigold)";
+  } else if (props.task.priority === "low") {
+    border = "3px solid var(--congress-blue)";
+  }
+  return { border };
+});
 </script>
 
 <template>
   <div>
     <div class="todo-list">
-      <div class="done-list-view drop-shadow">
+      <div class="done-list-view drop-shadow" :style="borderColorPriorityStyle">
         <CheckBoxComp v-model="isChecked" class="check-box-comp" />
 
         <TaskSubject
           class="task-subject"
           v-if="props.task"
           :subject="props.task.subject"
+          :style="{ fontSize: '14px' }"
         />
 
-        <TimestampDisplay class="timestamp-display" />
+        <TimestampDisplay
+          class="timestamp-display"
+          v-if="props.task"
+          :dueDateTime="props.task.dueDateTime"
+          :style="{ fontSize: '11px', color: 'var(--font-faded-color)' }"
+        />
 
         <div class="priority-indicator">
           <div class="inside-box">
-            <p class="current-priority">high</p>
+            <p class="current-priority" :style="backgroundColorPriorityStyle">
+              {{ props.task.priority }}
+            </p>
           </div>
         </div>
       </div>
@@ -79,10 +112,6 @@ watch(isChecked, (newVal) => {
 
 .timestamp-display {
   margin: 13px 10px 0px 0px;
-}
-
-.priority-indicator {
-  margin: 0;
 }
 
 .checkbox-checker-text {

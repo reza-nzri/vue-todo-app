@@ -1,4 +1,13 @@
-<script setup></script>
+<script setup lang="ts">
+import { defineEmits } from "vue";
+
+// Defining custom events
+const emits = defineEmits(["add-task"]);
+
+function addTask() {
+  emits("add-task");
+}
+</script>
 
 <template>
   <div class="add-task-board">
@@ -7,7 +16,7 @@
       <h3 class="tasks">Tasks</h3>
     </div>
 
-    <button class="add-button">
+    <button class="add-button" @click="addTask">
       <font-awesome-icon :icon="['fas', 'plus']" class="plus-icon" />
     </button>
 
@@ -35,10 +44,8 @@
 .right-section {
   display: flex;
   align-items: center;
-  cursor: pointer;
 }
 
-.left-section:hover,
 .right-section:hover {
   animation: textAnim 5s 0 normal ease;
   transition: 0.16s;
@@ -51,6 +58,7 @@
 
 .right-section {
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .icon {

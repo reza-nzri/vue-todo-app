@@ -2,7 +2,22 @@
 import { ref } from "vue";
 import TimestampDisplay from "@/components/TimestampDisplay.vue";
 import TaskSubject from "@/components/TaskSubject.vue";
+import { faWeight } from "@fortawesome/free-solid-svg-icons";
 // import RichTextEditorPlugin from '@/plugins/RichTextEditorPlugin.vue';
+
+// Define the Task interface
+interface Task {
+  id: string;
+  subject: string;
+  description: string;
+  dueDateTime: string;
+  priority: "high" | "medium" | "low";
+  completed: boolean;
+  openDisplay: boolean;
+}
+
+// Define the type for props
+const props = defineProps<{ task: Task }>();
 
 const currentPriority = ref("high");
 
@@ -17,7 +32,12 @@ const updatePriority = (event: Event) => {
     <div class="white-board">
       <div class="description-container">
         <div class="date-priority">
-          <TimestampDisplay class="timestamp-display-comp" />
+          <TimestampDisplay
+            class="timestamp-display-comp"
+            v-if="props.task"
+            :dueDateTime="props.task.dueDateTime"
+            :style="{ fontSize: '15px', margin: '13px 0px 0px 0px' }"
+          />
 
           <div class="priority-dropdown">
             <div class="inside-box">
@@ -39,32 +59,18 @@ const updatePriority = (event: Event) => {
           </div>
         </div>
 
+        <TaskSubject
+          class="task-subject"
+          v-if="props.task"
+          :subject="props.task.subject"
+          :style="{ fontSize: '28px', fontWeight: '700' }"
+        />
+
         <div class="task-description">
           <div class="index">
-            <div class="todo-index">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis
-              eligendi nam et, aspernatur officia nemo, nulla rem porro tempore
-              autem ut placeat enim incidunt dicta non at? Provident, laudantium
-              ipsam.
-            </div>
-
-            <div class="todo-index">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis
-              eligendi nam et, aspernatur officia nemo, nulla rem porro tempore
-              autem ut placeat enim incidunt dicta non at? Provident, laudantium
-              ipsam.
-            </div>
-
-            <div class="todo-index">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis
-              eligendi nam et, aspernatur officia nemo, nulla rem porro tempore
-              autem ut placeat enim incidunt dicta non at? Provident, laudantium
-              ipsam.
-            </div>
+            <p class="todo-index">{{ props.task.description }}</p>
           </div>
         </div>
-
-        <TaskSubject />
       </div>
     </div>
 
@@ -172,6 +178,6 @@ const updatePriority = (event: Event) => {
 
 .todo-index {
   display: block;
-  margin-top: 8px;
+  margin: 30px 0px 0px 0px;
 }
 </style>
