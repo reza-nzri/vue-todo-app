@@ -30,7 +30,6 @@
 │   ├── components
 │   │   ├── CheckboxComp.vue
 │   │   ├── SortDropdown.vue
-│   │   ├── TaskDashboard.vue
 │   │   ├── TaskDetails.vue
 │   │   ├── TaskSubject.vue
 │   │   ├── TimestampDisplay.vue
@@ -46,4 +45,4 @@
 ├── vite.config.ts
 └── vitest.config.ts
 
-11 directories, 35 files
+11 directories, 34 files
