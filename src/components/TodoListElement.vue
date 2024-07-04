@@ -1,28 +1,11 @@
-<template>
-  <div>
-    <div class="todo-list">
-      <div class="done-list-view drop-shadow">
-        <CheckBoxComp v-model="isChecked" class="check-box-comp" />
-        <TaskSubject
-          class="task-subject"
-          v-if="props.task"
-          :subject="props.task.subject"
-        />
-        <TimestampDisplay class="timestamp-display" />
-        <PriorityIndicator class="priority-indicator" />
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref, defineProps, watch } from "vue";
 import type { Ref } from "vue";
 import CheckBoxComp from "@/components/CheckboxComp.vue";
 import TaskSubject from "@/components/TaskSubject.vue";
 import TimestampDisplay from "@/components/TimestampDisplay.vue";
-import PriorityIndicator from "@/components/PriorityIndicator.vue";
 
+// Define the Task interface
 interface Task {
   id: string;
   subject: string;
@@ -30,16 +13,11 @@ interface Task {
   dueDateTime: string;
   priority: "high" | "medium" | "low";
   completed: boolean;
-  opened: boolean;
+  openDisplay: boolean;
 }
 
 // Define the type for props
-const props = defineProps({
-  task: {
-    type: Object as () => Task,
-    required: true,
-  },
-});
+const props = defineProps<{ task: Task }>();
 
 // Define isChecked as a reactive boolean reference
 const isChecked: Ref<boolean> = ref(false);
@@ -49,6 +27,30 @@ watch(isChecked, (newVal) => {
   console.log(`Checkbox is ${newVal ? "checked" : "unchecked"}`);
 });
 </script>
+
+<template>
+  <div>
+    <div class="todo-list">
+      <div class="done-list-view drop-shadow">
+        <CheckBoxComp v-model="isChecked" class="check-box-comp" />
+
+        <TaskSubject
+          class="task-subject"
+          v-if="props.task"
+          :subject="props.task.subject"
+        />
+
+        <TimestampDisplay class="timestamp-display" />
+
+        <div class="priority-indicator">
+          <div class="inside-box">
+            <p class="current-priority">high</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .todo-list {
@@ -98,5 +100,35 @@ watch(isChecked, (newVal) => {
   cursor: pointer;
   transform: scale(100.3%);
   transition: 0.04s ease;
+}
+
+/* Priority Indicator */
+.priority-indicator {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+}
+
+.inside-box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 40px;
+}
+
+.current-priority {
+  min-width: 80px;
+  background-color: var(--well-read);
+  height: 40px;
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  align-content: center;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
