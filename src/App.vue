@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
-import type { Ref } from "vue";
-import TopBar from "@/components/TopBar.vue";
-import TodoListElement from "@/components/TodoListElement.vue";
-import TaskDetails from "@/components/TaskDetails.vue";
+import { ref, computed, onMounted } from 'vue';
+import type { Ref } from 'vue';
+import TopBar from '@/components/TopBar.vue';
+import TodoListElement from '@/components/TodoListElement.vue';
+import TaskDetails from '@/components/TaskDetails.vue';
 
 // Define props and access environment variable
 const appNameEnv = import.meta.env.VITE_APP_NAME as string;
@@ -14,42 +14,42 @@ interface Task {
   subject: string;
   description: string;
   dueDateTime: string;
-  priority: "high" | "medium" | "low";
+  priority: 'high' | 'medium' | 'low';
   completed: boolean;
   openDisplay: boolean;
 }
 
 const tasks: Ref<Task[]> = ref([
   {
-    id: "1",
-    subject: "Buy groceries",
+    id: '1',
+    subject: 'Buy groceries',
     description:
-      "Today, we need to buy groceries from the supermarket for the week. Items needed include milk, eggs, bread, fruits, and vegetables.",
-    dueDateTime: "2023.07.03 - 02:15:00",
-    priority: "high",
+      'Today, we need to buy groceries from the supermarket for the week. Items needed include milk, eggs, bread, fruits, and vegetables.',
+    dueDateTime: '2023.07.03 - 02:15:00',
+    priority: 'high',
     completed: false,
-    openDisplay: false,
+    openDisplay: false
   },
   {
-    id: "2",
-    subject: "Prepare presentation",
+    id: '2',
+    subject: 'Prepare presentation',
     description:
-      "Prepare a PowerPoint presentation for the team meeting scheduled tomorrow. The presentation should cover project updates, milestones, and future plans.",
-    dueDateTime: "2023.07.23 - 12:02:00",
-    priority: "medium",
+      'Prepare a PowerPoint presentation for the team meeting scheduled tomorrow. The presentation should cover project updates, milestones, and future plans.',
+    dueDateTime: '2023.07.23 - 12:02:00',
+    priority: 'medium',
     completed: false,
-    openDisplay: true,
+    openDisplay: true
   },
   {
-    id: "3",
-    subject: "Birthday party planning",
+    id: '3',
+    subject: 'Birthday party planning',
     description:
       "Organize and plan for John's birthday party this weekend. Tasks include inviting guests, ordering cake and decorations, and finalizing the venue.",
-    dueDateTime: "2023.08.24 - 08:51:30",
-    priority: "low",
+    dueDateTime: '2023.08.24 - 08:51:30',
+    priority: 'low',
     completed: false,
-    openDisplay: false,
-  },
+    openDisplay: false
+  }
 ]);
 
 // Initialize tasks from localStorage on component mount
@@ -70,12 +70,12 @@ function generateUniqueId(): string {
 function handleAddTask() {
   const newTask: Task = {
     id: generateUniqueId(),
-    subject: "Enter a new subject...",
-    description: "Enter a new description",
+    subject: 'Enter a new subject...',
+    description: 'Enter a new description',
     dueDateTime: calculateDueDateTime(),
-    priority: "medium",
+    priority: 'medium',
     completed: false,
-    openDisplay: true,
+    openDisplay: true
   };
   tasks.value.push(newTask);
   saveTasksToLocalStorage();
@@ -120,7 +120,7 @@ function openTaskDetails(task: Task) {
 
 // // Function to save tasks to localStorage
 function saveTasksToLocalStorage() {
-  localStorage.setItem("tasks", JSON.stringify(tasks.value));
+  localStorage.setItem('tasks', JSON.stringify(tasks.value));
 }
 
 // Function to calculate due date time (5 minutes later from now)
@@ -133,20 +133,18 @@ function calculateDueDateTime(): string {
 // Computed properties for filtered tasks
 const openTasks = computed(() => tasks.value.filter((task) => !task.completed));
 const doneTasks = computed(() => tasks.value.filter((task) => task.completed));
-const openDisplayTask = computed(() =>
-  tasks.value.filter((task) => task.openDisplay),
-);
+const openDisplayTask = computed(() => tasks.value.filter((task) => task.openDisplay));
 
 // Method to handle date format
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
-  return date.toLocaleString("en-US", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
+  return date.toLocaleString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
   });
 }
 </script>
@@ -155,11 +153,7 @@ function formatDate(dateString: string): string {
   <div class="todo-page">
     <nav class="navbar">
       <div class="info-box">
-        <img
-          alt="ToDo List logo"
-          class="todo-list-logo"
-          src="@/assets/images/logos/logo.ico"
-        />
+        <img alt="ToDo List logo" class="todo-list-logo" src="@/assets/images/logos/logo.ico" />
         <h1 class="app-title">My ToDo's</h1>
       </div>
 

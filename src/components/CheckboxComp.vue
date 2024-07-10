@@ -1,28 +1,24 @@
 <script setup lang="ts">
-import { defineProps, defineEmits } from "vue";
+import { defineProps } from 'vue';
 
 const props = defineProps<{
   modelValue: boolean;
 }>();
 
 const emit = defineEmits<{
-  (e: "update:modelValue", value: boolean): void;
+  (e: 'update:modelValue', value: boolean): void;
 }>();
 
 const toggleCheckbox = (event: Event) => {
   const target = event.target as HTMLInputElement;
-  emit("update:modelValue", target.checked);
+  emit('update:modelValue', target.checked);
 };
 </script>
 
 <template>
   <div>
     <label class="checkbox-container">
-      <input
-        type="checkbox"
-        :checked="props.modelValue"
-        @change="toggleCheckbox"
-      />
+      <input type="checkbox" :checked="props.modelValue" @change="toggleCheckbox" />
       <span class="checkmark"></span>
     </label>
   </div>
@@ -64,7 +60,7 @@ const toggleCheckbox = (event: Event) => {
 }
 
 .checkmark:after {
-  content: "";
+  content: '';
   position: absolute;
   display: none;
   margin: -2px 0px 0px -3px;
