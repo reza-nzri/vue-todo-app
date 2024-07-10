@@ -36,6 +36,8 @@ Uses Initial Vue Project Creation
 > npm i  
 > npm run dev
 
+### [Solve Possible Problems](src/assets/README/01_solve_possibe_problems.md)
+
 ### Create `.nvmrc` Version File
 
 A configuration file used in Node. js projects to stores the current Node.js version in the `.nvmrc` file (Node Version Manager), which can be used by `nvm` (Node Version Manager) to load the correct Node version for your project.
@@ -52,39 +54,7 @@ Current used project version number
 echo 0.1.0 > .pvnr
 ```
 
-### Automating Version Bumps:
-
-# Components .vue
-
-1. AddTaskBoard
-   1. TaskSubject
-   2. SortDropdown
-   3. AddTaskButton
-2. TodoListsBoard
-
-   1. ToDosView
-
-      1. TodoList
-
-   2. DoneListView
-      1. TodoList
-
-3. TodoList
-
-   1. Checkbox
-   2. TaskSubject
-   3. TimestampDisplay
-   4. PriorityIndicator
-
-4. TaskDetailsBoard
-   1. TimestampDisplay
-   2. PriorityDropdown
-   3. TaskSubject
-   4. TaskDescription
-
-## 📂 Folder Structure
-
-Updated: 21.06.2024 13:47
+## 📂 [Folder Structure](folder-structure.tree)
 
 ```bash
 tree /F /A > folder-structure.md
@@ -97,71 +67,51 @@ tree /F | Out-File -FilePath folder-structure.md
 tree /F | findstr /V /C:".idea" /C:"venv" /C:\Users\reza.nazari\Desktop\WorkDesk\GitLab\develop\python-image-comparison\lfw" > folder-structure.md
 ```
 
+### Use [`structure-codes/cli`](https://github.com/structure-codes/cli) to generate a structure file
+
 ```bash
-vue-todo-app
-├── README.md
-├── env.d.ts
-├── getVersion.js
-├── index.html
-├── package-lock.json
-├── package.json
-├── public
-│   ├── favicon.ico
-│   ├── manifest.json
-│   └── user-documents
-│       ├── media
-│       │   ├── gif
-│       │   ├── img
-│       │   └── video
-│       └── pdf
-├── src
-│   ├── App.vue
-│   ├── assets
-│   │   ├── css
-│   │   │   ├── base.css
-│   │   │   └── noscript.css
-│   │   ├── images
-│   │   │   ├── backgrounds
-│   │   │   └── logos
-│   │   │       ├── js-logo.png
-│   │   │       ├── logo.ico
-│   │   │       ├── logo.svg
-│   │   │       └── todolist-logo1.svg
-│   │   └── main.css
-│   ├── components
-│   │   ├── __tests__
-│   │   ├── icons
-│   │   └── main-page
-│   │       ├── Checkbox.vue
-│   │       ├── PriorityIndicator.vue
-│   │       ├── TaskSubject.vue
-│   │       ├── TimestampDisplay.vue
-│   │       ├── add-task-board
-│   │       │   ├── AddTaskBoard.vue
-│   │       │   ├── AddTaskButton.vue
-│   │       │   └── SortDropdown.vue
-│   │       ├── task-details-board
-│   │       │   ├── PriorityDropdown.vue
-│   │       │   ├── TaskDescription.vue
-│   │       │   └── TaskDetailsBoard.vue
-│   │       └── todo-lists-board
-│   │           ├── TodoListsBoard.vue
-│   │           ├── done-list-view
-│   │           │   └── DoneListView.vue
-│   │           └── to-dos-view
-│   │               └── ToDosView.vue
-│   ├── main.ts
-│   ├── router
-│   │   └── index.ts
-│   └── views
-│       └── HomeView.vue
-├── tsconfig.app.json
-├── tsconfig.json
-├── tsconfig.node.json
-├── tsconfig.vitest.json
-├── vite.config.ts
-└── vitest.config.ts
+struct -i dist -o folder-structure.tree
 ```
+
+#### Use this `Tree: CTC.vscode-tree-extension` VS Code Extension
+
+# My personal .vscode configs
+
+## .vscode/extensions.json
+
+```bash
+{
+  "recommendations": [
+    "Vue.volar",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
+  ]
+}
+```
+
+## .vscode/settings.json
+
+```bash
+{
+    "prettier.configPath": "./.prettierrc.json",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
+```
+
+# My VS Code Extensions
+
+- CSS Tree
+- Auto Rename Tag
+- Auto Rename Tags
+- Material Icon Theme
+- WSL
+- Git Graph
+- Git History
+- Auto Import
+-
+
+# Prop Drilling
 
 ## ❓🤔 Questions
 
@@ -169,3 +119,19 @@ vue-todo-app
 2. wird `<script>` unten oder oben von code benutz?
 
 ![Giphy Todolist](https://media.giphy.com/media/B7o99rIuystY4/giphy.gif)
+
+# Document of the working method
+
+wie kann ich methode oder functions habe damit ich neue task instance object erstellen und alle crude methode such as delete add update get usw haben kann und wo anders sie nutzen kann? z.b. möchte in TopBar wenn man auf auf button add-button clickt dann neue task erstellen kann mit v-model und sollte die prop openDisplay: auf true gesezen werden und deswegen nur die inhalte von diesem task in TaskDetails aufgemacht und angezeigt werden und dabei automatisch die priority: "medium" und neue autoincrement id und subject: immer auf "Enter a new subject..." und description: "Entere a new description " und dueDateTime: immer auf 5 min später als aktuelle datum und completed: auf false setzen.
+
+list-board ist nur für display.
+der user darf jeder zeit eine extestierete task aufmachen (nicht gleichzeitig. nur eine ) und dann nur in TaskDetails die task props (nur dieser props: subject, description, dueDateTime, priority) ändern zu können.
+
+die tasks werden in zwei bereiche angezeigt, öffene tasks in tasks-dashboard und fertige tasks in done-dashboard.
+
+wenn man auf checkbox clickt und isChecked true ist, dann muss completed auf true gesezen werden und gliechzeitig dynamic diser entsprechende task in done-dashboard angezeigt werden.
+alle tasks in done-dashboard bekommen einen filter gray mit opacity als zeichen für fertig und erledigt.
+
+wenn man in TaskDetails> auf icon="fa-solid fa-calendar-days" clickt dann sollte dieser classic kalender date picker angeigt werden und da kann man date yyyy-mm-dd und Uhrzeit hh:mm:ss auswählen und in dueDateTime: "2023.08.24 - 08:51:30", mit genau diesem format die daten speichern.
+
+man kann mit TaskDetails> priority-dropdown gehen und den priority ändern und in priority: "ausgewählte priority aus drop down menue" speichern.

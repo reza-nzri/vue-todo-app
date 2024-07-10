@@ -1,0 +1,58 @@
+├── .env
+├── .env.example
+├── .eslintrc.cjs
+├── .gitignore
+├── .nvmrc
+├── .prettierignore
+├── .prettierrc.json
+├── .pvnr
+├── .vscode
+│  ├── extensions.json
+│  └── settings.json
+├── env.d.ts
+├── folder-structure.tree
+├── getVersion.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── public
+│  ├── favicon.ico
+│  ├── manifest.json
+│  ├── user-documents
+│  │  └── data
+│  │    └── TodoData.json
+│  └── Vue_Components_Diagram
+│    ├── Vue_Components_Diagram.drawio
+│    └── Vue_Components_Diagram.svg
+├── README.md
+├── src
+│  ├── App.vue
+│  ├── assets
+│  │  ├── css
+│  │  │  ├── main.css
+│  │  │  └── noscript.css
+│  │  ├── images
+│  │  │  └── logos
+│  │  │    ├── js-logo.png
+│  │  │    ├── logo.ico
+│  │  │    ├── logo.svg
+│  │  │    └── todolist-logo1.svg
+│  │  └── README
+│  │    └── 01_solve_possibe_problems.md
+│  ├── components
+│  │  ├── CheckboxComp.vue
+│  │  ├── SortDropdown.vue
+│  │  ├── TaskDetails.vue
+│  │  ├── TaskSubject.vue
+│  │  ├── TimestampDisplay.vue
+│  │  ├── TodoListElement.vue
+│  │  └── TopBar.vue
+│  ├── main.ts
+│  └── plugins
+│    └── font-awesome.ts
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+├── tsconfig.vitest.json
+├── vite.config.ts
+└── vitest.config.ts

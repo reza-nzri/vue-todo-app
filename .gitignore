@@ -20,6 +20,9 @@ coverage
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
+.vscode/extensions.json
+.vscode/settings.json
 .idea
 *.suo
 *.ntvs*
@@ -29,3 +32,7 @@ coverage
 
 *.tsbuildinfo
 .env
+
+# Ausnahme für Dateien mit der Endung .format.identifier
+!*.format.identifier
+*.Identifier
