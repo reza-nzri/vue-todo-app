@@ -36,10 +36,7 @@ Uses Initial Vue Project Creation
 > npm i  
 > npm run dev
 
-
 ### [Solve Possible Problems](src/assets/README/01_solve_possibe_problems.md)
-
-
 
 ### Create `.nvmrc` Version File
 
@@ -57,9 +54,7 @@ Current used project version number
 echo 0.1.0 > .pvnr
 ```
 
-
-
-## 📂 Folder Structure
+## 📂 [Folder Structure](folder-structure.tree)
 
 ```bash
 tree /F /A > folder-structure.md
@@ -71,6 +66,50 @@ tree /F | Out-File -FilePath folder-structure.md
 # Run the tree command excluding specific directories (using `findstr` to filter out lines)
 tree /F | findstr /V /C:".idea" /C:"venv" /C:\Users\reza.nazari\Desktop\WorkDesk\GitLab\develop\python-image-comparison\lfw" > folder-structure.md
 ```
+
+### Use [`structure-codes/cli`](https://github.com/structure-codes/cli) to generate a structure file
+
+```bash
+struct -i dist -o folder-structure.tree
+```
+
+#### Use this `Tree: CTC.vscode-tree-extension` VS Code Extension
+
+# My personal .vscode configs
+
+## .vscode/extensions.json
+
+```bash
+{
+  "recommendations": [
+    "Vue.volar",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
+  ]
+}
+```
+
+## .vscode/settings.json
+
+```bash
+{
+    "prettier.configPath": ".vscode/.prettierrc.json",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
+```
+
+# My VS Code Extensions
+
+- CSS Tree
+- Auto Rename Tag
+- Auto Rename Tags
+- Material Icon Theme
+- WSL
+- Git Graph
+- Git History
+- Auto Import
+-
 
 # Prop Drilling
 
