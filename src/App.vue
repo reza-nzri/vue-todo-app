@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import type { Ref } from 'vue';
 import TopBar from '@/components/TopBar.vue';
 import TodoListElement from '@/components/TodoListElement.vue';
