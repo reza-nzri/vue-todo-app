@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref, defineProps, watch, computed } from "vue";
-import type { Ref } from "vue";
+import { ref, defineProps, watch, computed, defineEmits } from "vue";
 import CheckBoxComp from "@/components/CheckboxComp.vue";
 import TaskSubject from "@/components/TaskSubject.vue";
 import TimestampDisplay from "@/components/TimestampDisplay.vue";
@@ -17,14 +16,20 @@ interface Task {
 }
 
 // Define the type for props
-const props = defineProps<{ task: Task }>();
+const props = defineProps<{
+  task: Task;
+}>();
 
-// Define isChecked as a reactive boolean reference
-const isChecked: Ref<boolean> = ref(false);
+const emit = defineEmits<{
+  (e: "update-task", value: Task): void;
+}>();
 
-// Watch for changes in isChecked
+const isChecked = ref(props.task.completed);
+
 watch(isChecked, (newVal) => {
   console.log(`Checkbox is ${newVal ? "checked" : "unchecked"}`);
+  const updatedTask = { ...props.task, completed: newVal };
+  emit("update-task", updatedTask);
 });
 
 // Computed property for dynamic style

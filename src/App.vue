@@ -28,7 +28,7 @@ const tasks: Ref<Task[]> = ref([
     dueDateTime: "2023.07.03 - 02:15:00",
     priority: "high",
     completed: false,
-    openDisplay: true,
+    openDisplay: false,
   },
   {
     id: "2",
@@ -38,7 +38,7 @@ const tasks: Ref<Task[]> = ref([
     dueDateTime: "2023.07.23 - 12:02:00",
     priority: "medium",
     completed: false,
-    openDisplay: false,
+    openDisplay: true,
   },
   {
     id: "3",
@@ -47,26 +47,26 @@ const tasks: Ref<Task[]> = ref([
       "Organize and plan for John's birthday party this weekend. Tasks include inviting guests, ordering cake and decorations, and finalizing the venue.",
     dueDateTime: "2023.08.24 - 08:51:30",
     priority: "low",
-    completed: true,
+    completed: false,
     openDisplay: false,
   },
 ]);
 
 // Initialize tasks from localStorage on component mount
+// Der 'localStorage' speichert Daten nur als Strings, daher muss die Datenstruktur in JSON-Format konvertiert werden
 onMounted(() => {
-  const storedTasks = localStorage.getItem("tasks");
-  if (storedTasks) {
-    tasks.value = JSON.parse(storedTasks);
-  }
+  // const storedTasks = localStorage.getItem("tasks");
+  // if (storedTasks) {
+  //   tasks.value = JSON.parse(storedTasks);
+  // }
 });
 
-// Function to generate a unique ID (simple example, improve as needed)
+// Generate a unique ID
 function generateUniqueId(): string {
   return (tasks.value.length + 1).toString();
 }
 
 // CRUD operations
-// Function to add a new task
 function handleAddTask() {
   const newTask: Task = {
     id: generateUniqueId(),
@@ -81,13 +81,11 @@ function handleAddTask() {
   saveTasksToLocalStorage();
 }
 
-// Function to delete a task (not fully implemented here, adjust as needed)
 function deleteTask(taskId: string) {
   tasks.value = tasks.value.filter((task) => task.id !== taskId);
   saveTasksToLocalStorage();
 }
 
-// Function to update a task (not fully implemented here, adjust as needed)
 function updateTask(updatedTask: Task) {
   const index = tasks.value.findIndex((task) => task.id === updatedTask.id);
   if (index !== -1) {
@@ -96,13 +94,14 @@ function updateTask(updatedTask: Task) {
   }
 }
 
-function getTaskById(id: string): Task | undefined {
-  return tasks.value.find((task) => task.id === id);
-}
+// function getTaskById(id: string): Task | undefined {
+//   return tasks.value.find((task) => task.id === id);
+// }
 
 // Methods to handle task completion
 function toggleCompleted(task: Task) {
   const index = tasks.value.findIndex((t) => t.id === task.id);
+  // überprüft, ob die Aufgabe in der Liste gefunden wurde
   if (index !== -1) {
     tasks.value[index].completed = !tasks.value[index].completed;
   }
@@ -119,7 +118,7 @@ function openTaskDetails(task: Task) {
   });
 }
 
-// Function to save tasks to localStorage
+// // Function to save tasks to localStorage
 function saveTasksToLocalStorage() {
   localStorage.setItem("tasks", JSON.stringify(tasks.value));
 }
@@ -134,6 +133,9 @@ function calculateDueDateTime(): string {
 // Computed properties for filtered tasks
 const openTasks = computed(() => tasks.value.filter((task) => !task.completed));
 const doneTasks = computed(() => tasks.value.filter((task) => task.completed));
+const openDisplayTask = computed(() =>
+  tasks.value.filter((task) => task.openDisplay),
+);
 
 // Method to handle date format
 function formatDate(dateString: string): string {
@@ -183,7 +185,7 @@ function formatDate(dateString: string): string {
           <div class="dashboard">
             <TodoListElement
               class="list"
-              v-for="task in tasks"
+              v-for="task in openTasks"
               :key="task.id"
               :task="task"
               @update-task="updateTask"
@@ -203,9 +205,11 @@ function formatDate(dateString: string): string {
           <div class="dashboard">
             <TodoListElement
               class="list"
-              v-for="task in tasks"
+              v-for="task in doneTasks"
               :key="task.id"
               :task="task"
+              @update-task="updateTask"
+              @delete-task="deleteTask"
               @toggle-completed="toggleCompleted(task)"
               @open-task-details="openTaskDetails(task)"
             />
@@ -215,7 +219,7 @@ function formatDate(dateString: string): string {
 
       <TaskDetails
         class="task-details-board"
-        v-for="task in tasks"
+        v-for="task in openDisplayTask"
         :key="task.id"
         :task="task"
         :format-date="formatDate"
