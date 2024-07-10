@@ -135,3 +135,27 @@ alle tasks in done-dashboard bekommen einen filter gray mit opacity als zeichen 
 wenn man in TaskDetails> auf icon="fa-solid fa-calendar-days" clickt dann sollte dieser classic kalender date picker angeigt werden und da kann man date yyyy-mm-dd und Uhrzeit hh:mm:ss auswählen und in dueDateTime: "2023.08.24 - 08:51:30", mit genau diesem format die daten speichern.
 
 man kann mit TaskDetails> priority-dropdown gehen und den priority ändern und in priority: "ausgewählte priority aus drop down menue" speichern.
+
+# Delete Branch
+
+```bash
+git branch -d <branch-name>  # Use -D if needed
+
+git push origin --delete <branch-name>    # Delete a Branch Remotely (Optional)
+
+# Push Changes to the Remote Repository
+git push origin <branch-name>
+
+## git push origin <another-branch>
+git push origin <another-branch>
+
+```
+
+# Compare Branches
+
+```bash
+git diff branch1..branch2
+
+# Viewing Differences
+git diff branch1..branch2 -- path/to/file
+```
