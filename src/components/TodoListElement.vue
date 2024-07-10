@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, defineProps, watch, computed, defineEmits } from "vue";
-import CheckBoxComp from "@/components/CheckboxComp.vue";
-import TaskSubject from "@/components/TaskSubject.vue";
-import TimestampDisplay from "@/components/TimestampDisplay.vue";
+import { ref, defineProps, watch, computed } from 'vue';
+import CheckBoxComp from '@/components/CheckboxComp.vue';
+import TaskSubject from '@/components/TaskSubject.vue';
+import TimestampDisplay from '@/components/TimestampDisplay.vue';
 
 // Define the Task interface
 interface Task {
@@ -10,7 +10,7 @@ interface Task {
   subject: string;
   description: string;
   dueDateTime: string;
-  priority: "high" | "medium" | "low";
+  priority: 'high' | 'medium' | 'low';
   completed: boolean;
   openDisplay: boolean;
 }
@@ -21,38 +21,38 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (e: "update-task", value: Task): void;
+  (e: 'update-task', value: Task): void;
 }>();
 
 const isChecked = ref(props.task.completed);
 
 watch(isChecked, (newVal) => {
-  console.log(`Checkbox is ${newVal ? "checked" : "unchecked"}`);
+  console.log(`Checkbox is ${newVal ? 'checked' : 'unchecked'}`);
   const updatedTask = { ...props.task, completed: newVal };
-  emit("update-task", updatedTask);
+  emit('update-task', updatedTask);
 });
 
 // Computed property for dynamic style
 const backgroundColorPriorityStyle = computed(() => {
-  let backgroundColor = "";
-  if (props.task.priority === "high") {
-    backgroundColor = "var(--well-read)";
-  } else if (props.task.priority === "medium") {
-    backgroundColor = "var(--marigold)";
-  } else if (props.task.priority === "low") {
-    backgroundColor = "var(--congress-blue)";
+  let backgroundColor = '';
+  if (props.task.priority === 'high') {
+    backgroundColor = 'var(--well-read)';
+  } else if (props.task.priority === 'medium') {
+    backgroundColor = 'var(--marigold)';
+  } else if (props.task.priority === 'low') {
+    backgroundColor = 'var(--congress-blue)';
   }
   return { backgroundColor };
 });
 
 const borderColorPriorityStyle = computed(() => {
-  let border = "";
-  if (props.task.priority === "high") {
-    border = "3px solid var(--well-read)";
-  } else if (props.task.priority === "medium") {
-    border = "3px solid var(--marigold)";
-  } else if (props.task.priority === "low") {
-    border = "3px solid var(--congress-blue)";
+  let border = '';
+  if (props.task.priority === 'high') {
+    border = '3px solid var(--well-read)';
+  } else if (props.task.priority === 'medium') {
+    border = '3px solid var(--marigold)';
+  } else if (props.task.priority === 'low') {
+    border = '3px solid var(--congress-blue)';
   }
   return { border };
 });

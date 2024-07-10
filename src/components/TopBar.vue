@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { defineEmits } from "vue";
-
 // Defining custom events
-const emits = defineEmits(["add-task"]);
+const emits = defineEmits(['add-task']);
 
 function addTask() {
-  emits("add-task");
+  emits('add-task');
 }
 </script>
 
