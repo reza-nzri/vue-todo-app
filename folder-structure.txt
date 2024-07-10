@@ -18,6 +18,8 @@
 ├── src
 │   ├── App.vue
 │   ├── assets
+│   │   ├── README
+│   │   │   └── 01_solve_possibe_problems.md
 │   │   ├── css
 │   │   │   ├── main.css
 │   │   │   └── noscript.css
@@ -45,4 +47,4 @@
 ├── vite.config.ts
 └── vitest.config.ts
 
-11 directories, 34 files
+12 directories, 35 files
