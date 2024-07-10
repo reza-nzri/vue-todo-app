@@ -93,7 +93,7 @@ struct -i dist -o folder-structure.tree
 
 ```bash
 {
-    "prettier.configPath": ".vscode/.prettierrc.json",
+    "prettier.configPath": "./.prettierrc.json",
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
