@@ -28,7 +28,7 @@ const tasks: Ref<Task[]> = ref([
     dueDateTime: '2023.07.03 - 02:15:00',
     priority: 'high',
     completed: false,
-    openDisplay: false
+    openDisplay: false,
   },
   {
     id: '2',
@@ -38,7 +38,7 @@ const tasks: Ref<Task[]> = ref([
     dueDateTime: '2023.07.23 - 12:02:00',
     priority: 'medium',
     completed: false,
-    openDisplay: true
+    openDisplay: true,
   },
   {
     id: '3',
@@ -48,8 +48,8 @@ const tasks: Ref<Task[]> = ref([
     dueDateTime: '2023.08.24 - 08:51:30',
     priority: 'low',
     completed: false,
-    openDisplay: false
-  }
+    openDisplay: false,
+  },
 ]);
 
 // Initialize tasks from localStorage on component mount
@@ -75,7 +75,7 @@ function handleAddTask() {
     dueDateTime: calculateDueDateTime(),
     priority: 'medium',
     completed: false,
-    openDisplay: true
+    openDisplay: true,
   };
   tasks.value.push(newTask);
   saveTasksToLocalStorage();
@@ -144,7 +144,7 @@ function formatDate(dateString: string): string {
     day: '2-digit',
     hour: '2-digit',
     minute: '2-digit',
-    second: '2-digit'
+    second: '2-digit',
   });
 }
 </script>
