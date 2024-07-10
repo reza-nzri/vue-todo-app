@@ -145,10 +145,6 @@ git push origin --delete <branch-name>    # Delete a Branch Remotely (Optional)
 
 # Push Changes to the Remote Repository
 git push origin <branch-name>
-
-## git push origin <another-branch>
-git push origin <another-branch>
-
 ```
 
 # Compare Branches
