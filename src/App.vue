@@ -52,15 +52,6 @@ const tasks: Ref<Task[]> = ref([
   },
 ]);
 
-// Initialize tasks from localStorage on component mount
-// Der 'localStorage' speichert Daten nur als Strings, daher muss die Datenstruktur in JSON-Format konvertiert werden
-onMounted(() => {
-  // const storedTasks = localStorage.getItem("tasks");
-  // if (storedTasks) {
-  //   tasks.value = JSON.parse(storedTasks);
-  // }
-});
-
 // Generate a unique ID
 function generateUniqueId(): string {
   return (tasks.value.length + 1).toString();
@@ -78,19 +69,16 @@ function handleAddTask() {
     openDisplay: true,
   };
   tasks.value.push(newTask);
-  saveTasksToLocalStorage();
 }
 
 function deleteTask(taskId: string) {
   tasks.value = tasks.value.filter((task) => task.id !== taskId);
-  saveTasksToLocalStorage();
 }
 
 function updateTask(updatedTask: Task) {
   const index = tasks.value.findIndex((task) => task.id === updatedTask.id);
   if (index !== -1) {
     tasks.value[index] = updatedTask;
-    saveTasksToLocalStorage();
   }
 }
 
@@ -116,11 +104,6 @@ function openTaskDetails(task: Task) {
       t.openDisplay = false;
     }
   });
-}
-
-// // Function to save tasks to localStorage
-function saveTasksToLocalStorage() {
-  localStorage.setItem('tasks', JSON.stringify(tasks.value));
 }
 
 // Function to calculate due date time (5 minutes later from now)
