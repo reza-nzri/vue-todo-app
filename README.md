@@ -36,6 +36,11 @@ Uses Initial Vue Project Creation
 > npm i  
 > npm run dev
 
+
+### [Solve Possible Problems](src/assets/README/01_solve_possibe_problems.md)
+
+
+
 ### Create `.nvmrc` Version File
 
 A configuration file used in Node. js projects to stores the current Node.js version in the `.nvmrc` file (Node Version Manager), which can be used by `nvm` (Node Version Manager) to load the correct Node version for your project.
@@ -52,35 +57,7 @@ Current used project version number
 echo 0.1.0 > .pvnr
 ```
 
-### Automating Version Bumps:
 
-# Components .vue
-
-1. AddTaskBoard
-   1. TaskSubject
-   2. SortDropdown
-   3. AddTaskButton
-2. TodoListsBoard
-
-   1. ToDosView
-
-      1. TodoList
-
-   2. DoneListView
-      1. TodoList
-
-3. TodoList
-
-   1. Checkbox
-   2. TaskSubject
-   3. TimestampDisplay
-   4. PriorityIndicator
-
-4. TaskDetailsBoard
-   1. TimestampDisplay
-   2. PriorityDropdown
-   3. TaskSubject
-   4. TaskDescription
 
 ## 📂 Folder Structure
 
