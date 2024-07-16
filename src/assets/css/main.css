@@ -5,12 +5,14 @@
   --background-drover: #fceea1;
   --simple-drop-shadow: -2px 5px 7px #0000003d;
   --hover-drop-shadow: -2px 9px 8px #0000003d;
+  --global-font: 'Gill Sans', sans-serif;
   --font-color-gray: #707070;
   --font-faded-color: #ccc;
   --congress-blue: #033d94;
   --dark-congress-blue: #185abd;
   --marigold: #b98826;
   --well-read: #b73535;
+  --darker-well-read: #a32c2c;
   --teal-checkbox: #018786;
   --general-radius-size: 12px;
   --box-radius-size: 6px;
@@ -26,7 +28,7 @@
 }
 
 body {
-  font-family: 'Gill Sans', sans-serif;
+  font-family: var(--global-font);
   color: var(--font-color-gray);
 }
 
@@ -35,12 +37,14 @@ body {
   align-items: center;
   margin: 70px;
   height: 84vh;
-  max-height: 84vh;
+  max-height: fit-content;
   min-height: fit-content;
   background-color: #ffffff73;
   -webkit-border-radius: var(--general-radius-size);
   -moz-border-radius: var(--general-radius-size);
   border-radius: var(--general-radius-size);
+  overflow-y: visible;
+  /* scrollbar-width: none; */
 }
 
 /* Background Gradient Animation */

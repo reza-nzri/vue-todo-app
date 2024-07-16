@@ -23,6 +23,7 @@ export const useTaskStore = defineStore('task', {
   }),
   actions: {
     addTask() {
+      this.setCloseDisplay();
       const newTask: Task = {
         id: this.generateUniqueId(),
         subject: '',
@@ -48,15 +49,6 @@ export const useTaskStore = defineStore('task', {
       if (index !== -1) {
         this.tasks[index].completed = !this.tasks[index].completed;
       }
-    },
-    openTaskDetails(task: Task) {
-      this.tasks.forEach((t) => {
-        if (t.id === task.id) {
-          t.openDisplay = true;
-        } else {
-          t.openDisplay = false;
-        }
-      });
     },
     generateUniqueId(): string {
       return (this.tasks.length + 1).toString();
@@ -91,6 +83,57 @@ export const useTaskStore = defineStore('task', {
       const task = this.tasks.find((task) => task.id === taskId);
       if (task) {
         task.description = newDescription;
+      }
+      this.saveTasksToLocalStorage();
+    },
+    openTaskDetails(id: string) {
+      try {
+        this.setCloseDisplay();
+        this.setOpenDisplay(id);
+        this.saveTasksToLocalStorage();
+      } catch (error) {
+        console.error('Failed to open task details:', error);
+      }
+    },
+    saveTasksToLocalStorage() {
+      try {
+        localStorage.setItem('tasks', JSON.stringify(this.tasks));
+      } catch (error) {
+        console.error('Failed to save tasks to localStorage:', error);
+      }
+    },
+    initializeStore() {
+      try {
+        const storedTasks = localStorage.getItem('tasks');
+        if (storedTasks) {
+          this.tasks = JSON.parse(storedTasks);
+        }
+      } catch (error) {
+        console.error('Failed to initialize store from localStorage:', error);
+      }
+    },
+    setCloseDisplay() {
+      try {
+        const openTasks = this.tasks.filter((task) => task.openDisplay === true);
+
+        if (openTasks.length > 0) {
+          this.tasks.forEach((task) => {
+            if (task.openDisplay === true) {
+              task.openDisplay = false;
+            }
+          });
+        }
+      } catch (error) {
+        console.error('Error resetting openDisplay:', error);
+      }
+    },
+    setOpenDisplay(taskId: string) {
+      try {
+        this.tasks.forEach((task) => {
+          task.openDisplay = task.id === taskId;
+        });
+      } catch (error) {
+        console.error('Error setting task openDisplay:', error);
       }
     },
   },

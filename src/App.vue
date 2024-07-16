@@ -1,135 +1,21 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import type { Ref } from 'vue';
+import { computed } from 'vue';
 import TopBar from '@/components/TopBar.vue';
 import TodoListElement from '@/components/TodoListElement.vue';
 import TaskDetails from '@/components/TaskDetails.vue';
+import { useTaskStore } from '@/store/TaskStore';
 
-// Define props and access environment variable
+const taskStore = useTaskStore();
 const appNameEnv = import.meta.env.VITE_APP_NAME as string;
 const appVersion = import.meta.env.VITE_APP_VERSION as string;
+const openTasks = computed(() => taskStore.openTasks);
+const doneTasks = computed(() => taskStore.doneTasks);
+const openDisplayTask = computed(() => taskStore.openDisplayTask);
 
-interface Task {
-  id: string;
-  subject: string;
-  description: string;
-  dueDateTime: string;
-  priority: 'high' | 'medium' | 'low';
-  completed: boolean;
-  openDisplay: boolean;
-}
-
-const tasks: Ref<Task[]> = ref([
-  {
-    id: '1',
-    subject: 'Buy groceries',
-    description:
-      'Today, we need to buy groceries from the supermarket for the week. Items needed include milk, eggs, bread, fruits, and vegetables.',
-    dueDateTime: '2023.07.03 - 02:15:00',
-    priority: 'high',
-    completed: false,
-    openDisplay: false,
-  },
-  {
-    id: '2',
-    subject: 'Prepare presentation',
-    description:
-      'Prepare a PowerPoint presentation for the team meeting scheduled tomorrow. The presentation should cover project updates, milestones, and future plans.',
-    dueDateTime: '2023.07.23 - 12:02:00',
-    priority: 'medium',
-    completed: false,
-    openDisplay: true,
-  },
-  {
-    id: '3',
-    subject: 'Birthday party planning',
-    description:
-      "Organize and plan for John's birthday party this weekend. Tasks include inviting guests, ordering cake and decorations, and finalizing the venue.",
-    dueDateTime: '2023.08.24 - 08:51:30',
-    priority: 'low',
-    completed: false,
-    openDisplay: false,
-  },
-]);
-
-// Generate a unique ID
-function generateUniqueId(): string {
-  return (tasks.value.length + 1).toString();
-}
-
-// CRUD operations
-function handleAddTask() {
-  const newTask: Task = {
-    id: generateUniqueId(),
-    subject: 'Enter a new subject...',
-    description: 'Enter a new description',
-    dueDateTime: calculateDueDateTime(),
-    priority: 'medium',
-    completed: false,
-    openDisplay: true,
-  };
-  tasks.value.push(newTask);
-}
-
-function deleteTask(taskId: string) {
-  tasks.value = tasks.value.filter((task) => task.id !== taskId);
-}
-
-function updateTask(updatedTask: Task) {
-  const index = tasks.value.findIndex((task) => task.id === updatedTask.id);
-  if (index !== -1) {
-    tasks.value[index] = updatedTask;
-  }
-}
-
-// function getTaskById(id: string): Task | undefined {
-//   return tasks.value.find((task) => task.id === id);
-// }
-
-// Methods to handle task completion
-function toggleCompleted(task: Task) {
-  const index = tasks.value.findIndex((t) => t.id === task.id);
-  // überprüft, ob die Aufgabe in der Liste gefunden wurde
-  if (index !== -1) {
-    tasks.value[index].completed = !tasks.value[index].completed;
-  }
-}
-
-// Methods to handle opening task details
-function openTaskDetails(task: Task) {
-  tasks.value.forEach((t) => {
-    if (t.id === task.id) {
-      t.openDisplay = true;
-    } else {
-      t.openDisplay = false;
-    }
-  });
-}
-
-// Function to calculate due date time (5 minutes later from now)
-function calculateDueDateTime(): string {
-  const now = new Date();
-  now.setMinutes(now.getMinutes() + 5);
-  return now.toISOString();
-}
-
-// Computed properties for filtered tasks
-const openTasks = computed(() => tasks.value.filter((task) => !task.completed));
-const doneTasks = computed(() => tasks.value.filter((task) => task.completed));
-const openDisplayTask = computed(() => tasks.value.filter((task) => task.openDisplay));
-
-// Method to handle date format
-function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  return date.toLocaleString('en-US', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  });
-}
+// Open Task Details
+const handleTaskChange = (task) => {
+  taskStore.openTaskDetails(task.id);
+};
 </script>
 
 <template>
@@ -143,12 +29,10 @@ function formatDate(dateString: string): string {
       <div class="app-meta-infos">
         <h1>{{ appNameEnv }} v{{ appVersion }}</h1>
       </div>
-
-      <!-- <hr /> -->
     </nav>
 
     <main>
-      <TopBar class="add-task-board" @add-task="handleAddTask" />
+      <TopBar class="add-task-board" @add-task="taskStore.addTask" />
 
       <div class="list-board">
         <div class="tasks-dashboard">
@@ -160,13 +44,16 @@ function formatDate(dateString: string): string {
           <hr class="hr-topic" />
 
           <div class="dashboard">
+            <!-- Iterate through open tasks -->
             <TodoListElement
               class="list"
               v-for="task in openTasks"
               :key="task.id"
               :task="task"
-              @update-task="updateTask"
-              @delete-task="deleteTask"
+              @update-task="taskStore.updateTask"
+              @delete-task="taskStore.removeTask"
+              @toggle-completed="taskStore.toggleCompleted"
+              @click="taskStore.openTaskDetails(task.id)"
             />
           </div>
         </div>
@@ -180,15 +67,16 @@ function formatDate(dateString: string): string {
           <hr class="hr-topic" />
 
           <div class="dashboard">
+            <!-- Iterate through close tasks -->
             <TodoListElement
               class="list"
               v-for="task in doneTasks"
               :key="task.id"
               :task="task"
-              @update-task="updateTask"
-              @delete-task="deleteTask"
-              @toggle-completed="toggleCompleted(task)"
-              @open-task-details="openTaskDetails(task)"
+              @update-task="taskStore.updateTask"
+              @delete-task="taskStore.removeTask"
+              @toggle-completed="taskStore.toggleCompleted"
+              @click="taskStore.openTaskDetails(task.id)"
             />
           </div>
         </div>
@@ -196,11 +84,10 @@ function formatDate(dateString: string): string {
 
       <TaskDetails
         class="task-details-board"
-        v-for="task in openDisplayTask"
-        :key="task.id"
-        :task="task"
-        :format-date="formatDate"
-        @update-task="updateTask"
+        v-if="openDisplayTask.length > 0"
+        :key="openDisplayTask[0].id"
+        :task="openDisplayTask[0]"
+        @update-task="taskStore.updateTask"
       />
     </main>
   </div>
@@ -237,10 +124,6 @@ function formatDate(dateString: string): string {
   text-shadow: 1px 3px 9px rgba(0, 0, 0, 0.46);
 }
 
-hr {
-  margin: 0px 40px 5px 40px;
-}
-
 .app-meta-infos {
   color: white;
   font-size: 7px;
@@ -254,7 +137,7 @@ main {
   margin: 0px 25px 0px 25px;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr 10fr;
-  grid-column-gap: 40px;
+  grid-column-gap: 25px;
   grid-row-gap: 15px;
 }
 
@@ -273,6 +156,10 @@ main {
   grid-area: 2 / 1 / 3 / 2;
   margin-bottom: 45px;
   margin-top: 15px;
+  min-height: 50vh;
+  max-height: 64vh;
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 .task-details-board {

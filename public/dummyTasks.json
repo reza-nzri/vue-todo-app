@@ -14,7 +14,7 @@
     "description": "Prepare a PowerPoint presentation for the team meeting scheduled tomorrow. The presentation should cover project updates, milestones, and future plans.",
     "dueDateTime": "2023.07.23 - 12:02",
     "priority": "medium",
-    "completed": false,
+    "completed": true,
     "openDisplay": false
   },
   {

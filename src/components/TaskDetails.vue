@@ -140,7 +140,7 @@ const updateDueDate = (event: Event) => {
           type="text"
           v-if="task"
           id="sebject-txt"
-          placeholder="Enter a new subject..."
+          placeholder="Enter a subject..."
           v-model:="props.task.subject"
           minlength="4"
           maxlength="50"
@@ -163,7 +163,7 @@ const updateDueDate = (event: Event) => {
           class="todo-index textarea-index"
           :value="taskDescription"
           @input="handleDescriptionInput"
-          placeholder="Enter a new description"
+          placeholder="Enter description"
           style="box-sizing: border-box; width: calc(100% - 38px)"
         ></textarea>
       </div>

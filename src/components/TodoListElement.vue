@@ -18,14 +18,10 @@ interface Task {
 
 // TaskSubject
 const updateSubject = (newSubject: string) => {
-  // Update the task subject in localStorage
   localStorage.setItem(`task_${props.task.id}_subject`, newSubject);
-
-  // Update the task subject in the store
   taskStore.updateSubject(props.task.id, newSubject);
 };
 
-// Define the type for props
 const props = defineProps<{
   task: Task;
 }>();
@@ -115,60 +111,57 @@ const updateDueDate = (event: Event) => {
 </script>
 
 <template>
-  <div>
-    <div class="todo-list">
-      <div class="done-list-view drop-shadow" :style="borderColorPriorityStyle">
-        <CheckBoxComp v-model="isChecked" class="check-box-comp" />
+  <div class="done-list-view drop-shadow" :style="borderColorPriorityStyle">
+    <CheckBoxComp v-model="isChecked" class="check-box-comp" />
 
-        <!-- TaskSubject -->
-        <input
-          type="text"
-          v-if="task"
-          id="sebject-txt"
-          placeholder="Enter a new subject..."
-          v-model:="props.task.subject"
-          minlength="4"
-          maxlength="50"
-          required
-          @update:subject="updateSubject"
-          style="
-            border: none;
-            outline: none;
-            font-size: 14px;
-            margin: 9px 0px 0px 38px;
-            flex-grow: 2;
-            height: 20px;
-            color: var(--font-color-gray);
-            font-family: var(--global-font);
-          "
-        />
+    <!-- TaskSubject -->
+    <input
+      type="text"
+      v-if="task"
+      id="sebject-txt"
+      placeholder="Enter subject..."
+      v-model:="props.task.subject"
+      minlength="4"
+      maxlength="50"
+      required
+      @update:subject="updateSubject"
+      style="
+        border: none;
+        outline: none;
+        font-size: 14px;
+        margin: 9px 0px 0px 38px;
+        flex-grow: 2;
+        height: 20px;
+        color: var(--font-color-gray);
+        font-family: var(--global-font);
+      "
+    />
 
-        <input
-          type="datetime-local"
-          class="timestamp-display"
-          id="input-calender"
-          name="input-calender"
-          :min="minDate"
-          :value="formatForInput(props.task.dueDateTime)"
-          @input="updateDueDate"
-          style="
-            font-family: var(--global-font);
-            color: var(--font-faded-color);
-            border: none;
-            outline: none;
-            margin: 10px 5px 0px 0px;
-            height: 16px;
-            font-size: 11px;
-          "
-        />
+    <!-- Timestamp display -->
+    <input
+      type="datetime-local"
+      class="timestamp-display"
+      id="input-calender"
+      name="input-calender"
+      :min="minDate"
+      :value="formatForInput(props.task.dueDateTime)"
+      @input="updateDueDate"
+      style="
+        font-family: var(--global-font);
+        color: var(--font-faded-color);
+        border: none;
+        outline: none;
+        margin: 11px 5px 0px 0px;
+        height: 16px;
+        font-size: 11px;
+      "
+    />
 
-        <div class="priority-indicator">
-          <div class="inside-box">
-            <p class="current-priority" :style="backgroundColorPriorityStyle">
-              {{ props.task.priority }}
-            </p>
-          </div>
-        </div>
+    <div class="priority-indicator">
+      <div class="inside-box">
+        <p class="current-priority" :style="backgroundColorPriorityStyle">
+          {{ props.task.priority }}
+        </p>
       </div>
     </div>
   </div>
