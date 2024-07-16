@@ -2,7 +2,7 @@
 import { ref, defineProps, watch, computed } from 'vue';
 import CheckBoxComp from '@/components/CheckboxComp.vue';
 import TaskSubject from '@/components/TaskSubject.vue';
-import TimestampDisplay from '@/components/TimestampDisplay.vue';
+import { useTaskStore } from '@/store/TaskStore';
 
 // Define the Task interface
 interface Task {
@@ -20,17 +20,26 @@ const props = defineProps<{
   task: Task;
 }>();
 
+const dueDateTime = ref(props.task.dueDateTime);
+const taskStore = useTaskStore();
+const isChecked = ref(props.task.completed);
+
 const emit = defineEmits<{
   (e: 'update-task', value: Task): void;
 }>();
-
-const isChecked = ref(props.task.completed);
 
 watch(isChecked, (newVal) => {
   console.log(`Checkbox is ${newVal ? 'checked' : 'unchecked'}`);
   const updatedTask = { ...props.task, completed: newVal };
   emit('update-task', updatedTask);
 });
+
+watch(
+  () => props.task.dueDateTime,
+  (newVal) => {
+    dueDateTime.value = newVal;
+  }
+);
 
 // Computed property for dynamic style
 const backgroundColorPriorityStyle = computed(() => {
@@ -56,6 +65,44 @@ const borderColorPriorityStyle = computed(() => {
   }
   return { border };
 });
+
+// TimestampDisplay
+const minDate = computed(() => {
+  const now = new Date();
+  return now.toISOString().slice(0, 16);
+});
+
+const formatForInput = (dateString: string): string => {
+  try {
+    if (!dateString) return '';
+
+    const [date, time] = dateString.split(' - ');
+    const [year, month, day] = date.split('.'); // Correct the order to year, month, day
+    const formattedDate = `${year}-${month}-${day}T${time}`;
+    return formattedDate;
+  } catch (error) {
+    console.error('Error formatting date for input:', error);
+    return '';
+  }
+};
+
+const updateDueDate = (event: Event) => {
+  try {
+    const target = event.target as HTMLInputElement;
+    const newDueDate = target?.value;
+
+    if (!newDueDate) return;
+
+    // Format date for display
+    const date = new Date(newDueDate);
+    const formattedDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')} - ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+
+    // Update the task in the store
+    taskStore.updateDueDate(props.task.id, formattedDate);
+  } catch (error) {
+    console.error('Error updating due date:', error);
+  }
+};
 </script>
 
 <template>
@@ -71,11 +118,23 @@ const borderColorPriorityStyle = computed(() => {
           :style="{ fontSize: '14px' }"
         />
 
-        <TimestampDisplay
+        <input
+          type="datetime-local"
           class="timestamp-display"
-          v-if="props.task"
-          :dueDateTime="props.task.dueDateTime"
-          :style="{ fontSize: '11px', color: 'var(--font-faded-color)' }"
+          id="input-calender"
+          name="input-calender"
+          :min="minDate"
+          :value="formatForInput(props.task.dueDateTime)"
+          @input="updateDueDate"
+          style="
+            font-family: var(--global-font);
+            color: var(--font-faded-color);
+            border: none;
+            outline: none;
+            margin: 10px 5px 0px 0px;
+            height: 16px;
+            font-size: 11px;
+          "
         />
 
         <div class="priority-indicator">

@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import TimestampDisplay from "@/components/TimestampDisplay.vue";
-import TaskSubject from "@/components/TaskSubject.vue";
-import { faWeight } from "@fortawesome/free-solid-svg-icons";
-// import RichTextEditorPlugin from '@/plugins/RichTextEditorPlugin.vue';
+import { ref, watch, computed } from 'vue';
+import TaskSubject from '@/components/TaskSubject.vue';
+import { useTaskStore } from '@/store/TaskStore';
 
 // Define the Task interface
 interface Task {
@@ -11,7 +9,7 @@ interface Task {
   subject: string;
   description: string;
   dueDateTime: string;
-  priority: "high" | "medium" | "low";
+  priority: 'high' | 'medium' | 'low';
   completed: boolean;
   openDisplay: boolean;
 }
@@ -19,11 +17,60 @@ interface Task {
 // Define the type for props
 const props = defineProps<{ task: Task }>();
 
-const currentPriority = ref("high");
+const currentPriority = ref('high');
+const dueDateTime = ref(props.task.dueDateTime);
 
 const updatePriority = (event: Event) => {
   const target = event.target as HTMLSelectElement;
   currentPriority.value = target.value;
+};
+
+watch(
+  () => props.task.dueDateTime,
+  (newVal) => {
+    dueDateTime.value = newVal;
+  }
+);
+
+// TimestampDisplay
+const taskStore = useTaskStore();
+const isChecked = ref(props.task.completed);
+
+const minDate = computed(() => {
+  const now = new Date();
+  return now.toISOString().slice(0, 16);
+});
+
+const formatForInput = (dateString: string): string => {
+  try {
+    if (!dateString) return '';
+
+    const [date, time] = dateString.split(' - ');
+    const [year, month, day] = date.split('.'); // Correct the order to year, month, day
+    const formattedDate = `${year}-${month}-${day}T${time}`;
+    return formattedDate;
+  } catch (error) {
+    console.error('Error formatting date for input:', error);
+    return '';
+  }
+};
+
+const updateDueDate = (event: Event) => {
+  try {
+    const target = event.target as HTMLInputElement;
+    const newDueDate = target?.value;
+
+    if (!newDueDate) return;
+
+    // Format date for display
+    const date = new Date(newDueDate);
+    const formattedDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')} - ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+
+    // Update the task in the store
+    taskStore.updateDueDate(props.task.id, formattedDate);
+  } catch (error) {
+    console.error('Error updating due date:', error);
+  }
 };
 </script>
 
@@ -32,11 +79,23 @@ const updatePriority = (event: Event) => {
     <div class="white-board">
       <div class="description-container">
         <div class="date-priority">
-          <TimestampDisplay
-            class="timestamp-display-comp"
-            v-if="props.task"
-            :dueDateTime="props.task.dueDateTime"
-            :style="{ fontSize: '15px', margin: '13px 0px 0px 0px' }"
+          <input
+            type="datetime-local"
+            class="timestamp-display"
+            id="input-calender"
+            name="input-calender"
+            :min="minDate"
+            :value="formatForInput(props.task.dueDateTime)"
+            @input="updateDueDate"
+            style="
+              font-family: var(--global-font);
+              color: var(--font-color-gray);
+              border: none;
+              outline: none;
+              margin: 10px 0px 0px 0px;
+              height: 16px;
+              font-size: 14px;
+            "
           />
 
           <div class="priority-dropdown">
@@ -44,11 +103,7 @@ const updatePriority = (event: Event) => {
               <p class="priority-text">Priority</p>
 
               <div class="combobox">
-                <select
-                  v-model="currentPriority"
-                  @change="updatePriority"
-                  class="priority-select"
-                >
+                <select v-model="currentPriority" @change="updatePriority" class="priority-select">
                   <option value="high">High</option>
                   <option value="medium">Medium</option>
                   <option value="low">Low</option>
@@ -68,7 +123,11 @@ const updatePriority = (event: Event) => {
 
         <div class="task-description">
           <div class="index">
-            <p class="todo-index">{{ props.task.description }}</p>
+            <textarea
+              class="todo-index textarea-index"
+              v-model="props.task.description"
+              placeholder="Enter a new description"
+            ></textarea>
           </div>
         </div>
       </div>
@@ -179,5 +238,18 @@ const updatePriority = (event: Event) => {
 .todo-index {
   display: block;
   margin: 30px 0px 0px 0px;
+}
+
+.textarea-index {
+  min-width: 260px;
+  max-width: 1086px;
+  min-height: 50px;
+  max-height: 50vh;
+  line-height: 1.5;
+  border-radius: 5px;
+  border: 0.3px solid #cccccc2f;
+  box-shadow: 1px 1px 3px #ff00002f;
+  /* border: none; */
+  outline: none;
 }
 </style>
