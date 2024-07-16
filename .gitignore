@@ -32,7 +32,15 @@ coverage
 
 *.tsbuildinfo
 .env
+.env.dev
+.env.prod
+
+# Test Scripts
+TestScript.ts
+TestScript.vue
+
 
 # Ausnahme für Dateien mit der Endung .format.identifier
 !*.format.identifier
 *.Identifier
+
