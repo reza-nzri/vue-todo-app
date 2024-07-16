@@ -6,7 +6,7 @@ interface Task {
   subject: string;
   description: string;
   dueDateTime: string;
-  priority: 'high' | 'medium' | 'low';
+  priority: string;
   completed: boolean;
   openDisplay: boolean;
 }
@@ -134,6 +134,21 @@ export const useTaskStore = defineStore('task', {
         });
       } catch (error) {
         console.error('Error setting task openDisplay:', error);
+      }
+    },
+    async updatePriority(taskId: string, newPriority: string) {
+      try {
+        const task = this.tasks.find((task) => task.id === taskId);
+        if (task) {
+          task.priority = newPriority;
+          await this.$patch((state) => {
+            state.tasks = [...state.tasks];
+          });
+        } else {
+          console.error(`Task with ID ${taskId} not found.`);
+        }
+      } catch (error) {
+        console.error('Error updating priority:', error);
       }
     },
   },

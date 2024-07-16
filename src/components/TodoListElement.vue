@@ -11,7 +11,7 @@ interface Task {
   subject: string;
   description: string;
   dueDateTime: string;
-  priority: 'high' | 'medium' | 'low';
+  priority: string;
   completed: boolean;
   openDisplay: boolean;
 }
@@ -34,7 +34,6 @@ const emit = defineEmits<{
 }>();
 
 watch(isChecked, (newVal) => {
-  console.log(`Checkbox is ${newVal ? 'checked' : 'unchecked'}`);
   const updatedTask = { ...props.task, completed: newVal };
   emit('update-task', updatedTask);
 });

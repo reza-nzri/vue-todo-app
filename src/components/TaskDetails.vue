@@ -10,19 +10,28 @@ interface Task {
   subject: string;
   description: string;
   dueDateTime: string;
-  priority: 'high' | 'medium' | 'low';
+  priority: string;
   completed: boolean;
   openDisplay: boolean;
 }
 
 const props = defineProps<{ task: Task }>();
-const currentPriority = ref('high');
 const dueDateTime = ref(props.task.dueDateTime);
 
-const updatePriority = (event: Event) => {
-  const target = event.target as HTMLSelectElement;
-  currentPriority.value = target.value;
-};
+// Priority DropDown Menue
+const currentPriority = ref<string>(props.task.priority);
+
+const backgroundColorPriorityStyle = computed(() => {
+  let backgroundColor = '';
+  if (props.task.priority === 'high') {
+    backgroundColor = 'var(--well-read)';
+  } else if (props.task.priority === 'medium') {
+    backgroundColor = 'var(--marigold)';
+  } else if (props.task.priority === 'low') {
+    backgroundColor = 'var(--congress-blue)';
+  }
+  return { backgroundColor };
+});
 
 // Task Description
 const customEmit = defineEmits(['updateTaskDescription']);
@@ -54,8 +63,6 @@ const updateSubject = (newSubject: string) => {
 };
 
 // TimestampDisplay
-const isChecked = ref(props.task.completed);
-
 const minDate = computed(() => {
   const now = new Date();
   return now.toISOString().slice(0, 16);
@@ -86,7 +93,6 @@ const updateDueDate = (event: Event) => {
     const date = new Date(newDueDate);
     const formattedDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')} - ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
 
-    // Update the task in the store
     taskStore.updateDueDate(props.task.id, formattedDate);
   } catch (error) {
     console.error('Error updating due date:', error);
@@ -119,18 +125,21 @@ const updateDueDate = (event: Event) => {
             "
           />
 
+          <!-- Priority DropDown Menue -->
           <div class="priority-dropdown">
-            <div class="inside-box">
-              <p class="priority-text">Priority</p>
-
-              <div class="combobox">
-                <select v-model="currentPriority" @change="updatePriority" class="priority-select">
-                  <option value="high">High</option>
-                  <option value="medium">Medium</option>
-                  <option value="low">Low</option>
-                </select>
-                <p class="combo-arrow">></p>
-              </div>
+            <p class="priority-text">Priority</p>
+            <div class="combobox" :style="backgroundColorPriorityStyle">
+              <select
+                class="priority-select"
+                v-model="currentPriority"
+                @change="taskStore.updatePriority(props.task.id, currentPriority)"
+                :style="backgroundColorPriorityStyle"
+              >
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+              <p class="combo-arrow">></p>
             </div>
           </div>
         </div>
@@ -203,20 +212,8 @@ const updateDueDate = (event: Event) => {
 
 /* Priority Dropdown */
 .priority-dropdown {
-  margin: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  justify-content: flex-end;
-  width: 250px;
-}
-
-.inside-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 40px;
-  width: 100%;
+  margin-left: 38.78vw;
 }
 
 .priority-text {
@@ -229,7 +226,7 @@ const updateDueDate = (event: Event) => {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 651px;
+  margin-left: 0px;
 }
 
 .combobox {
@@ -262,6 +259,7 @@ const updateDueDate = (event: Event) => {
   -moz-appearance: none;
   appearance: none;
   cursor: pointer;
+  outline: none;
 }
 
 /* Task Description */

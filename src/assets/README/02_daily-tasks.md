@@ -7,15 +7,14 @@
 2. [x] Dynamic subject display
 3. [x] dynamic description display
 4. [x] Dynamic selected Task & openDisplay
-5. [ ] priority dropdown
+5. [x] priority dropdown
 6. [ ] sort dropdown filter
 7. [ ] responsive design
 8. [ ] dymmyTask Warning an dev, ob da ist oder nicht
 9. [ ] delete function
 10. [ ] sauberkeit des code
-11. [ ] diffrent env & log levels 
-12. [ ] CSS to SASS
-13. [ ] Further feature etc. :)
+11. [ ] CSS to SASS
+12. [ ] Further feature etc. :)
 
 
 
