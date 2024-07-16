@@ -30,13 +30,55 @@ Uses..
 Uses Initial Vue Project Creation
 
 ## 🚀 Commands
+### Development Setup
+### Using `Default Tasks json` in Development Mode
 
-### Run APP
+To help you get started quickly, we have included a set of default tasks that will be used in `development mode`. Follow the steps below to **set up your environment**:
 
-> npm i  
-> npm run dev
+1. **Clone the Repository**:
+```sh
+   git clone https://git2.intentive.de/training-and-internship/internship-reza-nazari/vue-todo-app.git
+   cd vue-todo-app
+```
+ 
+2. **Install Dependencies**:
+```sh
+npm install
+```
+ 
+3. **Set Up Environment Variables**:  
+Create a `.env` file in the root directory of your project. You can use the provided `.env.example` file as a template.
+```sh
+cp .env.example .env
+```
+ 
+4. **Ensure `VITE_APP_ENV` is Set to `development`** :
+Open the `.env` file and make sure the `VITE_APP_ENV` variable is set to `development`.
 
-### [Solve Possible Problems](src/assets/README/01_solve_possibe_problems.md)
+```sh
+VITE_APP_ENV=development
+```
+ 
+5. **Run the Development Server** :
+Start the development server to see the default tasks in action.
+```sh
+npm run dev
+```
+
+### Default Tasks 
+In development mode, the application will load a set of default tasks defined in `public/dummyTasks.json`. These tasks provide a quick way to see how the application behaves with initial data. If you need to modify the default tasks, you can edit the `public/dummyTasks.json` file.
+
+### Additional Notes 
+- Ensure your `.env` file is not committed to the repository by keeping it listed in `.gitignore`.
+- For production, you can remove the `VITE_APP_ENV` variable or set it to `production` to disable loading default tasks.
+
+
+# Markdown Files Contents List
+1. [Solve Possible Problems](src/assets/README/01_solve_possibe_problems.md)
+2. [Daily Tasks](src/assets/README/02_daily-tasks.md)
+3.  
+
+
 
 ### Create `.nvmrc` Version File
 
@@ -146,6 +188,10 @@ git push origin --delete <branch-name>    # Delete a Branch Remotely (Optional)
 # Push Changes to the Remote Repository
 git push origin <branch-name>
 ```
+
+
+
+
 
 # Compare Branches
 
