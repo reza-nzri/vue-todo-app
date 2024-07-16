@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, watch, computed } from 'vue';
-import TaskSubject from '@/components/TaskSubject.vue';
 import { useTaskStore } from '@/store/TaskStore';
 
 // Define the Task interface
@@ -31,6 +30,15 @@ watch(
     dueDateTime.value = newVal;
   }
 );
+
+// TaskSubject
+const updateSubject = (newSubject: string) => {
+  // Update the task subject in localStorage
+  localStorage.setItem(`task_${props.task.id}_subject`, newSubject);
+
+  // Update the task subject in the store
+  taskStore.updateSubject(props.task.id, newSubject);
+};
 
 // TimestampDisplay
 const taskStore = useTaskStore();
@@ -114,11 +122,27 @@ const updateDueDate = (event: Event) => {
           </div>
         </div>
 
-        <TaskSubject
-          class="task-subject"
-          v-if="props.task"
-          :subject="props.task.subject"
-          :style="{ fontSize: '28px', fontWeight: '700' }"
+        <!-- TaskSubject -->
+        <input
+          type="text"
+          v-if="task"
+          id="sebject-txt"
+          placeholder="Enter a new subject..."
+          v-model:="props.task.subject"
+          minlength="4"
+          maxlength="50"
+          required
+          @update:subject="updateSubject"
+          style="
+            border: none;
+            outline: none;
+            margin: 15px 0px 0px 0px;
+            font-size: 22px;
+            color: var(--font-color-gray);
+            width: 20vw;
+            box-sizing: border-box;
+            width: calc(100% - 38px);
+          "
         />
 
         <div class="task-description">
@@ -127,6 +151,7 @@ const updateDueDate = (event: Event) => {
               class="todo-index textarea-index"
               v-model="props.task.description"
               placeholder="Enter a new description"
+              style="box-sizing: border-box; width: calc(100% - 38px)"
             ></textarea>
           </div>
         </div>

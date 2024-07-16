@@ -4,7 +4,7 @@
     - [x] date formatter from yyyy.mm.dd - hh:mm to yyyy-mm-ddThh:mm
     - [x] dynamic date display
     - [x] input anstat TimestampDisplay in src/components/TodoListElement.vue verwenden
-2. [ ] Dynamic subject display
+2. [x] Dynamic subject display
 3. [ ] Dynamic selected Task & openDisplay
 4. [ ] dynamic description display
 5. [ ] dymmyTask Warning an dev, ob da ist oder nicht

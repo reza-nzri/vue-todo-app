@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, defineProps, watch, computed } from 'vue';
+import { ref, defineProps, watch, computed, defineEmits } from 'vue';
 import CheckBoxComp from '@/components/CheckboxComp.vue';
-import TaskSubject from '@/components/TaskSubject.vue';
 import { useTaskStore } from '@/store/TaskStore';
+
+const taskStore = useTaskStore();
 
 // Define the Task interface
 interface Task {
@@ -15,13 +16,21 @@ interface Task {
   openDisplay: boolean;
 }
 
+// TaskSubject
+const updateSubject = (newSubject: string) => {
+  // Update the task subject in localStorage
+  localStorage.setItem(`task_${props.task.id}_subject`, newSubject);
+
+  // Update the task subject in the store
+  taskStore.updateSubject(props.task.id, newSubject);
+};
+
 // Define the type for props
 const props = defineProps<{
   task: Task;
 }>();
 
 const dueDateTime = ref(props.task.dueDateTime);
-const taskStore = useTaskStore();
 const isChecked = ref(props.task.completed);
 
 const emit = defineEmits<{
@@ -111,11 +120,27 @@ const updateDueDate = (event: Event) => {
       <div class="done-list-view drop-shadow" :style="borderColorPriorityStyle">
         <CheckBoxComp v-model="isChecked" class="check-box-comp" />
 
-        <TaskSubject
-          class="task-subject"
-          v-if="props.task"
-          :subject="props.task.subject"
-          :style="{ fontSize: '14px' }"
+        <!-- TaskSubject -->
+        <input
+          type="text"
+          v-if="task"
+          id="sebject-txt"
+          placeholder="Enter a new subject..."
+          v-model:="props.task.subject"
+          minlength="4"
+          maxlength="50"
+          required
+          @update:subject="updateSubject"
+          style="
+            border: none;
+            outline: none;
+            font-size: 14px;
+            margin: 9px 0px 0px 38px;
+            flex-grow: 2;
+            height: 20px;
+            color: var(--font-color-gray);
+            font-family: var(--global-font);
+          "
         />
 
         <input
@@ -166,12 +191,6 @@ const updateDueDate = (event: Event) => {
 
 .check-box-comp {
   margin: -5px 0px 0px 10px;
-}
-
-.task-subject {
-  margin: 0;
-  margin: -3px 0px 0px 38px;
-  flex-grow: 2;
 }
 
 .timestamp-display {
