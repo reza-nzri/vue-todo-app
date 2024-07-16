@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, defineEmits } from 'vue';
 import { useTaskStore } from '@/store/TaskStore';
+
+const taskStore = useTaskStore();
 
 // Define the Task interface
 interface Task {
@@ -13,15 +15,29 @@ interface Task {
   openDisplay: boolean;
 }
 
-// Define the type for props
 const props = defineProps<{ task: Task }>();
-
 const currentPriority = ref('high');
 const dueDateTime = ref(props.task.dueDateTime);
 
 const updatePriority = (event: Event) => {
   const target = event.target as HTMLSelectElement;
   currentPriority.value = target.value;
+};
+
+// Task Description
+const customEmit = defineEmits(['updateTaskDescription']);
+const taskDescription = computed<string>({
+  get: () => props.task.description,
+  set: (value) => {
+    taskStore.updateTaskDescription(props.task.id, value);
+    customEmit('updateTaskDescription', value);
+    localStorage.setItem(`taskDescription_${props.task.id}`, value);
+  },
+});
+
+const handleDescriptionInput = (event: Event) => {
+  const target = event.target as HTMLTextAreaElement;
+  taskDescription.value = target.value;
 };
 
 watch(
@@ -33,15 +49,11 @@ watch(
 
 // TaskSubject
 const updateSubject = (newSubject: string) => {
-  // Update the task subject in localStorage
   localStorage.setItem(`task_${props.task.id}_subject`, newSubject);
-
-  // Update the task subject in the store
   taskStore.updateSubject(props.task.id, newSubject);
 };
 
 // TimestampDisplay
-const taskStore = useTaskStore();
 const isChecked = ref(props.task.completed);
 
 const minDate = computed(() => {
@@ -87,6 +99,7 @@ const updateDueDate = (event: Event) => {
     <div class="white-board">
       <div class="description-container">
         <div class="date-priority">
+          <!-- TimestampDisplay -->
           <input
             type="datetime-local"
             class="timestamp-display"
@@ -145,20 +158,16 @@ const updateDueDate = (event: Event) => {
           "
         />
 
-        <div class="task-description">
-          <div class="index">
-            <textarea
-              class="todo-index textarea-index"
-              v-model="props.task.description"
-              placeholder="Enter a new description"
-              style="box-sizing: border-box; width: calc(100% - 38px)"
-            ></textarea>
-          </div>
-        </div>
+        <!-- Task Description -->
+        <textarea
+          class="todo-index textarea-index"
+          :value="taskDescription"
+          @input="handleDescriptionInput"
+          placeholder="Enter a new description"
+          style="box-sizing: border-box; width: calc(100% - 38px)"
+        ></textarea>
       </div>
     </div>
-
-    <!-- <RichTextEditorPlugin /> -->
   </div>
 </template>
 
@@ -256,17 +265,10 @@ const updateDueDate = (event: Event) => {
 }
 
 /* Task Description */
-.index {
-  display: block;
-}
-
-.todo-index {
-  display: block;
-  margin: 30px 0px 0px 0px;
-}
-
 .textarea-index {
   min-width: 260px;
+  display: block;
+  margin: 30px 0px 0px 0px;
   max-width: 1086px;
   min-height: 50px;
   max-height: 50vh;
@@ -274,7 +276,6 @@ const updateDueDate = (event: Event) => {
   border-radius: 5px;
   border: 0.3px solid #cccccc2f;
   box-shadow: 1px 1px 3px #ff00002f;
-  /* border: none; */
   outline: none;
 }
 </style>

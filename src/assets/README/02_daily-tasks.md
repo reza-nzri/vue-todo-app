@@ -5,13 +5,13 @@
     - [x] dynamic date display
     - [x] input anstat TimestampDisplay in src/components/TodoListElement.vue verwenden
 2. [x] Dynamic subject display
-3. [ ] Dynamic selected Task & openDisplay
-4. [ ] dynamic description display
-5. [ ] dymmyTask Warning an dev, ob da ist oder nicht
-6. [ ] priority dropdown
-7. [ ] sort dropdown filter
-8. [ ] diffrent env & log levels 
-9. [ ] responsive design
+3. [x] dynamic description display
+4. [ ] Dynamic selected Task & openDisplay
+5. [ ] priority dropdown
+6. [ ] sort dropdown filter
+7. [ ] responsive design
+8. [ ] dymmyTask Warning an dev, ob da ist oder nicht
+9. [ ] diffrent env & log levels 
 10. [ ] CSS to SASS
 11. [ ] Further feature etc. :)
 
