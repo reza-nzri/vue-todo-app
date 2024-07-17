@@ -46,10 +46,28 @@ const sortTasks = () => {
     const sortOrder = currentSortOrder.value;
 
     const sortFunc: { [key: string]: (a: any, b: any) => number } = {
-      dueDateTime: (a, b) =>
-        sortOrder === 'asc'
-          ? new Date(a.dueDateTime).getTime() - new Date(b.dueDateTime).getTime()
-          : new Date(b.dueDateTime).getTime() - new Date(a.dueDateTime).getTime(),
+      dueDateTime: (a, b) => {
+        console.log('Sorting by dueDateTime');
+        console.log('Sort order:', sortOrder);
+
+        // Convert dueDateTime strings to Date objects
+        const dateA = new Date(a.dueDateTime).getTime();
+        const dateB = new Date(b.dueDateTime).getTime();
+
+        // Check for NaN values after conversion
+        if (isNaN(dateA) || isNaN(dateB)) {
+          console.warn('Invalid dueDateTime value. Cannot sort:', a.dueDateTime, b.dueDateTime);
+          return 0; // Return 0 or another suitable value when dates are invalid
+        }
+
+        console.log('Date A:', dateA, 'Date B:', dateB);
+
+        if (sortOrder === 'asc') {
+          return dateA - dateB;
+        } else {
+          return dateB - dateA;
+        }
+      },
       priority: (a, b) =>
         sortOrder === 'asc'
           ? priorityOrder(a.priority) - priorityOrder(b.priority)

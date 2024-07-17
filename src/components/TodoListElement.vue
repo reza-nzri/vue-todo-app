@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, defineProps, watch, computed, defineEmits } from 'vue';
-import CheckBoxComp from '@/components/CheckboxComp.vue';
+import CheckBoxComp from '@/components/Checkbox.vue';
+import TimestampDisplay from '@/components/TimestampDisplay.vue';
 import { useTaskStore } from '@/store/TaskStore';
 
 const taskStore = useTaskStore();
@@ -15,16 +16,15 @@ interface Task {
   completed: boolean;
   openDisplay: boolean;
 }
+const props = defineProps<{
+  task: Task;
+}>();
 
 // TaskSubject
 const updateSubject = (newSubject: string) => {
   localStorage.setItem(`task_${props.task.id}_subject`, newSubject);
   taskStore.updateSubject(props.task.id, newSubject);
 };
-
-const props = defineProps<{
-  task: Task;
-}>();
 
 const dueDateTime = ref(props.task.dueDateTime);
 const isChecked = ref(props.task.completed);
@@ -69,44 +69,6 @@ const borderColorPriorityStyle = computed(() => {
   }
   return { border };
 });
-
-// TimestampDisplay
-const minDate = computed(() => {
-  const now = new Date();
-  return now.toISOString().slice(0, 16);
-});
-
-const formatForInput = (dateString: string): string => {
-  try {
-    if (!dateString) return '';
-
-    const [date, time] = dateString.split(' - ');
-    const [year, month, day] = date.split('.'); // Correct the order to year, month, day
-    const formattedDate = `${year}-${month}-${day}T${time}`;
-    return formattedDate;
-  } catch (error) {
-    console.error('Error formatting date for input:', error);
-    return '';
-  }
-};
-
-const updateDueDate = (event: Event) => {
-  try {
-    const target = event.target as HTMLInputElement;
-    const newDueDate = target?.value;
-
-    if (!newDueDate) return;
-
-    // Format date for display
-    const date = new Date(newDueDate);
-    const formattedDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')} - ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
-
-    // Update the task in the store
-    taskStore.updateDueDate(props.task.id, formattedDate);
-  } catch (error) {
-    console.error('Error updating due date:', error);
-  }
-};
 </script>
 
 <template>
@@ -136,25 +98,7 @@ const updateDueDate = (event: Event) => {
       "
     />
 
-    <!-- Timestamp display -->
-    <input
-      type="datetime-local"
-      class="timestamp-display"
-      id="input-calender"
-      name="input-calender"
-      :min="minDate"
-      :value="formatForInput(props.task.dueDateTime)"
-      @input="updateDueDate"
-      style="
-        font-family: var(--global-font);
-        color: var(--font-faded-color);
-        border: none;
-        outline: none;
-        margin: 11px 5px 0px 0px;
-        height: 16px;
-        font-size: 11px;
-      "
-    />
+    <TimestampDisplay :whichStyle="'for-todo-list-element'" :task="task" />
 
     <div class="priority-indicator">
       <div class="inside-box">
@@ -183,10 +127,6 @@ const updateDueDate = (event: Event) => {
 
 .check-box-comp {
   margin: -5px 0px 0px 10px;
-}
-
-.timestamp-display {
-  margin: 13px 10px 0px 0px;
 }
 
 .checkbox-checker-text {

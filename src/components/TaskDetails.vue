@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, watch, computed, defineEmits } from 'vue';
+import TimestampDisplay from '@/components/TimestampDisplay.vue';
 import { useTaskStore } from '@/store/TaskStore';
 
 const taskStore = useTaskStore();
@@ -64,23 +65,8 @@ const updateSubject = (newSubject: string) => {
 
 // TimestampDisplay
 const minDate = computed(() => {
-  const now = new Date();
-  return now.toISOString().slice(0, 16);
+  return new Date().toISOString().slice(0, 16);
 });
-
-const formatForInput = (dateString: string): string => {
-  try {
-    if (!dateString) return '';
-
-    const [date, time] = dateString.split(' - ');
-    const [year, month, day] = date.split('.'); // Correct the order to year, month, day
-    const formattedDate = `${year}-${month}-${day}T${time}`;
-    return formattedDate;
-  } catch (error) {
-    console.error('Error formatting date for input:', error);
-    return '';
-  }
-};
 
 const updateDueDate = (event: Event) => {
   try {
@@ -89,11 +75,7 @@ const updateDueDate = (event: Event) => {
 
     if (!newDueDate) return;
 
-    // Format date for display
-    const date = new Date(newDueDate);
-    const formattedDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')} - ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
-
-    taskStore.updateDueDate(props.task.id, formattedDate);
+    taskStore.updateDueDate(props.task.id, newDueDate);
   } catch (error) {
     console.error('Error updating due date:', error);
   }
@@ -105,25 +87,7 @@ const updateDueDate = (event: Event) => {
     <div class="white-board">
       <div class="description-container">
         <div class="date-priority">
-          <!-- TimestampDisplay -->
-          <input
-            type="datetime-local"
-            class="timestamp-display"
-            id="input-calender"
-            name="input-calender"
-            :min="minDate"
-            :value="formatForInput(props.task.dueDateTime)"
-            @input="updateDueDate"
-            style="
-              font-family: var(--global-font);
-              color: var(--font-color-gray);
-              border: none;
-              outline: none;
-              margin: 10px 0px 0px 0px;
-              height: 16px;
-              font-size: 14px;
-            "
-          />
+          <TimestampDisplay :whichStyle="'for-task-details'" :task="task" />
 
           <!-- Priority DropDown Menue -->
           <div class="priority-dropdown">
@@ -135,11 +99,11 @@ const updateDueDate = (event: Event) => {
                 @change="taskStore.updatePriority(props.task.id, currentPriority)"
                 :style="backgroundColorPriorityStyle"
               >
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option>
+                <option value="high" style="background-color: var(--well-read)">High</option>
+                <option value="medium" style="background-color: var(--marigold)">Medium</option>
+                <option value="low" style="background-color: var(--congress-blue)">Low</option>
               </select>
-              <p class="combo-arrow">></p>
+              <p class="combo-arrow" :style="backgroundColorPriorityStyle">></p>
             </div>
           </div>
         </div>
@@ -169,7 +133,7 @@ const updateDueDate = (event: Event) => {
 
         <!-- Task Description -->
         <textarea
-          class="todo-index textarea-index"
+          class="textarea-index"
           :value="taskDescription"
           @input="handleDescriptionInput"
           placeholder="Enter description"
@@ -200,10 +164,6 @@ const updateDueDate = (event: Event) => {
 
 .date-priority {
   display: flex;
-}
-
-.timestamp-display-comp {
-  justify-content: flex-start;
 }
 
 .subject-text {
@@ -264,10 +224,9 @@ const updateDueDate = (event: Event) => {
 
 /* Task Description */
 .textarea-index {
-  min-width: 260px;
   display: block;
   margin: 30px 0px 0px 0px;
-  max-width: 1086px;
+  min-width: 100%;
   min-height: 50px;
   max-height: 50vh;
   line-height: 1.5;

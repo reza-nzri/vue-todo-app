@@ -8,13 +8,30 @@
 3. [x] dynamic description display
 4. [x] Dynamic selected Task & openDisplay
 5. [x] priority dropdown
-6. [ ] sort dropdown filter
-7. [ ] responsive design
-8. [ ] dymmyTask Warning an dev, ob da ist oder nicht
-9. [ ] delete function
-10. [ ] sauberkeit des code
-11. [ ] CSS to SASS
-12. [ ] Further feature etc. :)
+6. [x] dueDateTime auf current date by default for new AddTaskButton
+7. [x] textarea size responsive to 10px y-width 
+8. [x] sicherzustellen, dass die Aufgabenliste immer aktualisiert und sortiert 
+9. [x] component für TimestampDisplay bauen und boolean variable for css class weiter geben 
+   1.  [x] Created TimestampDisplay.vue component to handle datetime input for tasks.
+   2.  [x] Passed custom styling classes to TimestampDisplay via the whichStyle prop.
+   3.  [x] Updated TodoListElement.vue and TaskDetails.vue to use the new TimestampDisplay component.
+   4.  [x] Ensured the TimestampDisplay component applies the appropriate styles based on the whichStyle prop.
+ 
+10. [ ] Problem solving: src/components/TaskDetails.vue: No TimeStamp dateFormater
+11. [ ] priority dropdown options color change
+12. [ ] sort dropdown filter
+   1. [ ] asc / desc
+13. [ ] current openTask scale(112%) and bgckColor pink
+14. [ ] responsive design
+15. [ ] dymmyTask Warning an dev, ob da ist oder nicht
+16. [ ] delete function
+17. [ ] sauberkeit des code
+18. [ ] check it in all browsers
+19. [ ] CSS to SASS
+20. [ ] More features etc. than if you are bored 😊
+    1.  [ ] doneTask als grau design anzeigen
+    2.  [ ] tasks drop and down for order
+    3.  [ ] edit text design bold usw feature
 
 
 
