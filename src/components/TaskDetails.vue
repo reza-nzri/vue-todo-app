@@ -71,6 +71,13 @@ const updateSubject = (newSubject: string) => {
         <div class="date-priority">
           <TimestampDisplay :whichStyle="'for-task-details'" :task="task" />
 
+          <!-- Delete Task -->
+          <font-awesome-icon
+            icon="fa-solid fa-trash"
+            class="delete-icon"
+            @click="taskStore.removeTask(props.task.id)"
+          />
+
           <!-- Priority DropDown Menue -->
           <div class="priority-dropdown">
             <p class="priority-text">Priority</p>
@@ -148,6 +155,20 @@ const updateSubject = (newSubject: string) => {
   display: flex;
 }
 
+.delete-icon {
+  color: var(--well-read);
+  margin: 10px 20px 0px 36.7vw;
+  height: 20px;
+  cursor: pointer;
+  justify-content: flex-end;
+}
+
+.delete-icon:hover {
+  animation: textAnim 5s 0 normal ease;
+  transition: 0.13s;
+  transform: scale(112%);
+}
+
 .subject-text {
   font-size: 22px;
 }
@@ -155,7 +176,8 @@ const updateSubject = (newSubject: string) => {
 /* Priority Dropdown */
 .priority-dropdown {
   display: flex;
-  margin-left: 38.78vw;
+  margin-left: 0;
+  justify-content: flex-end;
 }
 
 .priority-text {

@@ -1,4 +1,3 @@
-import { onMounted, watchEffect } from 'vue';
 import { defineStore } from 'pinia';
 import { useLocalStorage } from '@vueuse/core';
 
@@ -46,7 +45,10 @@ export const useTaskStore = defineStore('task', {
       this.tasks.push(newTask);
     },
     removeTask(taskId: string) {
-      this.tasks = this.tasks.filter((task) => task.id !== taskId);
+      const index = this.tasks.findIndex((task) => task.id === taskId);
+      if (index !== -1) {
+        this.tasks.splice(index, 1);
+      }
     },
     updateTask(updatedTask: Task) {
       const index = this.tasks.findIndex((task) => task.id === updatedTask.id);
