@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watchEffect } from 'vue';
 import { useTaskStore } from '@/store/TaskStore';
 
 const taskStore = useTaskStore();
@@ -8,7 +8,12 @@ const taskStore = useTaskStore();
 const emits = defineEmits(['add-task']);
 
 function addTask() {
-  emits('add-task');
+  try {
+    emits('add-task');
+    sortTasks();
+  } catch (error) {
+    console.error('Error adding task:', error);
+  }
 }
 
 // # Sort DropDown
@@ -17,49 +22,48 @@ const currentSortOrder = ref<'asc' | 'desc'>('desc');
 
 // ## Default sorting function for initial load
 const defaultSort = () => {
-  taskStore.tasks.sort(
-    // If negative result: (b.dueDateTime is earlier than a.dueDateTime), b will be placed after a in the array.
-    (a, b) => new Date(b.dueDateTime).getTime() - new Date(a.dueDateTime).getTime()
-  );
+  try {
+    sortTasks(); // Initial sort
+  } catch (error) {
+    console.error('Error during default sort:', error);
+  }
 };
 
 // ## Toggle sort order function
-const toggleSortOrder = (event: Event) => {
-  const target = event.target as HTMLSelectElement;
-  const sortField = target.value as 'dueDateTime' | 'priority' | 'subject';
-
-  if (currentSortField.value === sortField) {
-    // Toggle sort order if the same field is selected
+const toggleSortOrder = () => {
+  try {
     currentSortOrder.value = currentSortOrder.value === 'asc' ? 'desc' : 'asc';
-  } else {
-    // Set to descending order by default when a new field is selected
-    currentSortOrder.value = 'desc';
-    currentSortField.value = sortField;
+    sortTasks();
+  } catch (error) {
+    console.error('Error toggling sort order:', error);
   }
-
-  updateSort();
 };
 
 // ## Update sort function
-const updateSort = () => {
-  const sortBy = currentSortField.value;
-  const sortOrder = currentSortOrder.value;
+const sortTasks = () => {
+  try {
+    const sortBy = currentSortField.value;
+    const sortOrder = currentSortOrder.value;
 
-  const sortFunc: { [key: string]: (a: any, b: any) => number } = {
-    dueDateTime: (a, b) =>
-      sortOrder === 'asc'
-        ? new Date(a.dueDateTime).getTime() - new Date(b.dueDateTime).getTime()
-        : new Date(b.dueDateTime).getTime() - new Date(a.dueDateTime).getTime(),
-    priority: (a, b) =>
-      sortOrder === 'asc'
-        ? priorityOrder(a.priority) - priorityOrder(b.priority)
-        : priorityOrder(b.priority) - priorityOrder(a.priority),
+    const sortFunc: { [key: string]: (a: any, b: any) => number } = {
+      dueDateTime: (a, b) =>
+        sortOrder === 'asc'
+          ? new Date(a.dueDateTime).getTime() - new Date(b.dueDateTime).getTime()
+          : new Date(b.dueDateTime).getTime() - new Date(a.dueDateTime).getTime(),
+      priority: (a, b) =>
+        sortOrder === 'asc'
+          ? priorityOrder(a.priority) - priorityOrder(b.priority)
+          : priorityOrder(b.priority) - priorityOrder(a.priority),
+      subject: (a, b) =>
+        sortOrder === 'asc'
+          ? a.subject.localeCompare(b.subject)
+          : b.subject.localeCompare(a.subject),
+    };
 
-    subject: (a, b) =>
-      sortOrder === 'asc' ? a.subject.localeCompare(b.subject) : b.subject.localeCompare(a.subject),
-  };
-
-  taskStore.tasks.sort(sortFunc[sortBy]);
+    taskStore.tasks.sort(sortFunc[sortBy]);
+  } catch (error) {
+    console.error('Error sorting tasks:', error);
+  }
 };
 
 // ## Helper function to determine priority order
@@ -68,9 +72,31 @@ const priorityOrder = (priority: 'high' | 'medium' | 'low') => {
   return order[priority];
 };
 
+// ## Function to change order by asc/desc on icon click
+const changeOrderBy = () => {
+  try {
+    toggleSortOrder();
+  } catch (error) {
+    console.error('Error changing sort order:', error);
+  }
+};
+
+// Watch for changes in taskStore.tasks and sort
+watchEffect(() => {
+  try {
+    sortTasks();
+  } catch (error) {
+    console.error('Error watching taskStore.tasks:', error);
+  }
+});
+
 // ## Apply default sort on component mount
 onMounted(() => {
-  defaultSort();
+  try {
+    defaultSort();
+  } catch (error) {
+    console.error('Error during component mount:', error);
+  }
 });
 </script>
 
