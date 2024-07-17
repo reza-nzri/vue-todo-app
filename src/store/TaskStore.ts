@@ -1,3 +1,4 @@
+import { onMounted, watchEffect } from 'vue';
 import { defineStore } from 'pinia';
 import { useLocalStorage } from '@vueuse/core';
 
@@ -11,10 +12,19 @@ interface Task {
   openDisplay: boolean;
 }
 
+// Dummy Tasks
 let dummyTasks: Task[] = [];
+
 if (import.meta.env.VITE_APP_ENV === 'development') {
-  const taskModule = await import('/public/dummyTasks.json');
-  dummyTasks = taskModule.default as Task[];
+  try {
+    const taskModule = await import('/public/dummyTasks.json');
+    dummyTasks = taskModule.default as Task[];
+    console.debug('Dummy tasks loaded successfully.');
+  } catch (error) {
+    console.info('Failed to load dummy tasks:', error);
+  }
+} else {
+  console.warn('Development mode required to load dummy tasks.');
 }
 
 export const useTaskStore = defineStore('task', {

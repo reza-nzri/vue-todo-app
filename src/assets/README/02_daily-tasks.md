@@ -22,17 +22,17 @@
    1. [x] asc / desc
    2. [x] animation & cursor einzeln einpassen
    3. [x] Problem solving: No Date converter
-   4. [ ] delete unnötigen console.log's
-13. [ ] current openTask scale(112%) and bgckColor pink
-14. [ ] responsive design
-15. [ ] dymmyTask Warning an dev, ob da ist oder nicht
-16. [ ] delete function
-17. [ ] sauberkeit des code
+   4. [x] delete unnötigen console.log's
+13. [x] current openTask scale(112%) and bgckColor pink
+14. [x] dymmyTask Warning an dev, ob da ist oder nicht
+15. [ ] delete function
+16. [ ] sauberkeit des code
+17. [ ] responsive design
 18. [ ] check it in all browsers
 19. [ ] CSS to SASS
 20. [ ] More features etc. than if you are bored 😊
-    1.  [ ] doneTask als grau design anzeigen
-    2.  [ ] tasks drop and down for order
+    1.  [x] doneTask als grau design anzeigen
+    2.  [x] tasks drop and down for order
     3.  [ ] edit text design bold usw feature
 
 
