@@ -11,11 +11,6 @@ const appVersion = import.meta.env.VITE_APP_VERSION as string;
 const openTasks = computed(() => taskStore.openTasks);
 const doneTasks = computed(() => taskStore.doneTasks);
 const openDisplayTask = computed(() => taskStore.openDisplayTask);
-
-// Open Task Details
-const handleTaskChange = (task) => {
-  taskStore.openTaskDetails(task.id);
-};
 </script>
 
 <template>
@@ -32,7 +27,7 @@ const handleTaskChange = (task) => {
     </nav>
 
     <main>
-      <TopBar class="add-task-board" @add-task="taskStore.addTask" />
+      <TopBar class="add-task-board" @add-task="taskStore.addTask()" />
 
       <div class="list-board">
         <div class="tasks-dashboard">

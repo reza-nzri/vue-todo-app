@@ -16,11 +16,13 @@
    2.  [x] Passed custom styling classes to TimestampDisplay via the whichStyle prop.
    3.  [x] Updated TodoListElement.vue and TaskDetails.vue to use the new TimestampDisplay component.
    4.  [x] Ensured the TimestampDisplay component applies the appropriate styles based on the whichStyle prop.
- 
-10. [ ] Problem solving: src/components/TaskDetails.vue: No TimeStamp dateFormater
-11. [ ] priority dropdown options color change
-12. [ ] sort dropdown filter
-   1. [ ] asc / desc
+10. [x] Problem solving: src/components/TaskDetails.vue: No TimeStamp dateFormater
+11. [x] priority dropdown options color change
+12. [x] sort dropdown filter
+   1. [x] asc / desc
+   2. [x] animation & cursor einzeln einpassen
+   3. [x] Problem solving: No Date converter
+   4. [ ] delete unnötigen console.log's
 13. [ ] current openTask scale(112%) and bgckColor pink
 14. [ ] responsive design
 15. [ ] dymmyTask Warning an dev, ob da ist oder nicht

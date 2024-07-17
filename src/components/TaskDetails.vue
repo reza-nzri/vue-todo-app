@@ -62,24 +62,6 @@ const updateSubject = (newSubject: string) => {
   localStorage.setItem(`task_${props.task.id}_subject`, newSubject);
   taskStore.updateSubject(props.task.id, newSubject);
 };
-
-// TimestampDisplay
-const minDate = computed(() => {
-  return new Date().toISOString().slice(0, 16);
-});
-
-const updateDueDate = (event: Event) => {
-  try {
-    const target = event.target as HTMLInputElement;
-    const newDueDate = target?.value;
-
-    if (!newDueDate) return;
-
-    taskStore.updateDueDate(props.task.id, newDueDate);
-  } catch (error) {
-    console.error('Error updating due date:', error);
-  }
-};
 </script>
 
 <template>

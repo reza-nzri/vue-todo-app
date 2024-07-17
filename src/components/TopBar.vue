@@ -5,11 +5,9 @@ import { useTaskStore } from '@/store/TaskStore';
 const taskStore = useTaskStore();
 
 // # Add Task Button
-const emits = defineEmits(['add-task']);
-
 function addTask() {
   try {
-    emits('add-task');
+    taskStore.addTask();
     sortTasks();
   } catch (error) {
     console.error('Error adding task:', error);
@@ -46,28 +44,10 @@ const sortTasks = () => {
     const sortOrder = currentSortOrder.value;
 
     const sortFunc: { [key: string]: (a: any, b: any) => number } = {
-      dueDateTime: (a, b) => {
-        console.log('Sorting by dueDateTime');
-        console.log('Sort order:', sortOrder);
-
-        // Convert dueDateTime strings to Date objects
-        const dateA = new Date(a.dueDateTime).getTime();
-        const dateB = new Date(b.dueDateTime).getTime();
-
-        // Check for NaN values after conversion
-        if (isNaN(dateA) || isNaN(dateB)) {
-          console.warn('Invalid dueDateTime value. Cannot sort:', a.dueDateTime, b.dueDateTime);
-          return 0; // Return 0 or another suitable value when dates are invalid
-        }
-
-        console.log('Date A:', dateA, 'Date B:', dateB);
-
-        if (sortOrder === 'asc') {
-          return dateA - dateB;
-        } else {
-          return dateB - dateA;
-        }
-      },
+      dueDateTime: (a, b) =>
+        sortOrder === 'asc'
+          ? new Date(a.dueDateTime).getTime() - new Date(b.dueDateTime).getTime()
+          : new Date(b.dueDateTime).getTime() - new Date(a.dueDateTime).getTime(),
       priority: (a, b) =>
         sortOrder === 'asc'
           ? priorityOrder(a.priority) - priorityOrder(b.priority)
@@ -130,8 +110,16 @@ onMounted(() => {
     </button>
 
     <div class="right-section">
-      <font-awesome-icon icon="fa-solid fa-sort" class="icon change-sort" @click="changeOrderBy" />
-      <select class="sort-select" v-model="currentSortField" @change="toggleSortOrder">
+      <font-awesome-icon
+        icon="fa-solid fa-sort "
+        class="icon change-sort scale-animation"
+        @click="changeOrderBy"
+      />
+      <select
+        class="sort-select move-animation"
+        v-model="currentSortField"
+        @change="toggleSortOrder"
+      >
         <option value="dueDateTime">📅 Date</option>
         <option value="priority">🎯 Priority</option>
         <option value="subject">🔠 Subject</option>
@@ -159,10 +147,16 @@ onMounted(() => {
   align-items: center;
 }
 
-.right-section:hover {
+.move-animation:hover {
   animation: textAnim 5s 0 normal ease;
   transition: 0.16s;
-  transform: scale(104%);
+  transform: scale(102%);
+}
+
+.scale-animation:hover {
+  animation: textAnim 5s 0 normal ease;
+  transition: 0.16s;
+  transform: scale(117%);
 }
 
 .left-section {

@@ -11,16 +11,6 @@ interface Task {
   openDisplay: boolean;
 }
 
-const getCurrentDateFormatted = (): string => {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  return `${year}.${month}.${day} - ${hours}:${minutes}`;
-};
-
 let dummyTasks: Task[] = [];
 if (import.meta.env.VITE_APP_ENV === 'development') {
   const taskModule = await import('/public/dummyTasks.json');
@@ -38,7 +28,7 @@ export const useTaskStore = defineStore('task', {
         id: this.generateUniqueId(),
         subject: '',
         description: '',
-        dueDateTime: getCurrentDateFormatted(),
+        dueDateTime: new Date().toISOString().slice(0, 16),
         priority: 'medium',
         completed: false,
         openDisplay: true,
