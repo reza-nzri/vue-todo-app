@@ -72,6 +72,7 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
               @delete-task="taskStore.removeTask"
               @toggle-completed="taskStore.toggleCompleted"
               @click="taskStore.openTaskDetails(task.id)"
+              style="text-decoration: line-through; filter: grayscale(100%)"
             />
           </div>
         </div>

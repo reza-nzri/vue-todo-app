@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, defineProps, watch, computed, defineEmits } from 'vue';
-import CheckBoxComp from '@/components/Checkbox.vue';
+import { ref, watch, computed, defineEmits } from 'vue';
+import CheckBoxComp from '@/components/CheckBox.vue';
 import TimestampDisplay from '@/components/TimestampDisplay.vue';
 import { useTaskStore } from '@/store/TaskStore';
 

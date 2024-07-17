@@ -18,7 +18,7 @@ if (import.meta.env.VITE_APP_ENV === 'development') {
   try {
     const taskModule = await import('/public/dummyTasks.json');
     dummyTasks = taskModule.default as Task[];
-    console.debug('Dummy tasks loaded successfully.');
+    console.info('Dummy tasks loaded successfully.');
   } catch (error) {
     console.info('Failed to load dummy tasks:', error);
   }
@@ -65,20 +65,6 @@ export const useTaskStore = defineStore('task', {
     generateUniqueId(): string {
       return (this.tasks.length + 1).toString();
     },
-    calculateDueDateTime(): string {
-      const now = new Date();
-      now.setMinutes(now.getMinutes() + 5);
-      return now
-        .toLocaleString('en-GB', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: false,
-        })
-        .replace(',', ' -');
-    },
     updateDueDate(taskId: string, newDueDate: string) {
       const task = this.tasks.find((task) => task.id === taskId);
       if (task) {
@@ -112,16 +98,6 @@ export const useTaskStore = defineStore('task', {
         localStorage.setItem('tasks', JSON.stringify(this.tasks));
       } catch (error) {
         console.error('Failed to save tasks to localStorage:', error);
-      }
-    },
-    initializeStore() {
-      try {
-        const storedTasks = localStorage.getItem('tasks');
-        if (storedTasks) {
-          this.tasks = JSON.parse(storedTasks);
-        }
-      } catch (error) {
-        console.error('Failed to initialize store from localStorage:', error);
       }
     },
     setCloseDisplay() {

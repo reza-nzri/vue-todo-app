@@ -25,15 +25,14 @@
    4. [x] delete unnötigen console.log's
 13. [x] current openTask scale(112%) and bgckColor pink
 14. [x] dymmyTask Warning an dev, ob da ist oder nicht
-15. [ ] delete function
-16. [ ] sauberkeit des code
+15. [x] delete function
+16. [x] sauberkeit des code
 17. [ ] responsive design
 18. [ ] check it in all browsers
 19. [ ] CSS to SASS
 20. [ ] More features etc. than if you are bored 😊
     1.  [x] doneTask als grau design anzeigen
     2.  [x] tasks drop and down for order
-    3.  [ ] edit text design bold usw feature
 
 
 
