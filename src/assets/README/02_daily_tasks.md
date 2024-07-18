@@ -34,6 +34,7 @@
 20. [ ] More features etc. than if you are bored 😊
     1.  [x] doneTask als grau design anzeigen
     2.  [x] tasks drop and down for order
+    3.  [ ] wie kann man die website mit npm serve in internet hosten?
 
 
 

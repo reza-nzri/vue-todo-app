@@ -45,8 +45,6 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
 
 <style scoped>
 .todo-page {
-  -webkit-border-radius: var(--general-radius-size);
-  -moz-border-radius: var(--general-radius-size);
   border-radius: var(--general-radius-size);
 }
 
@@ -55,6 +53,8 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
 }
 
 .navbar__info-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   padding: 5px 0px;
 }
@@ -78,17 +78,39 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
   color: white;
   font-size: 10px;
   margin: 0px 0px 0px 93px;
+  -webkit-filter: drop-shadow(var(--hover-drop-shadow));
   filter: drop-shadow(var(--hover-drop-shadow));
 }
 
 /* # main */
 main {
+  display: -ms-grid;
   display: grid;
   margin: 0px 25px 0px 25px;
+  -ms-grid-columns: 1fr 25px 2fr;
   grid-template-columns: 1fr 2fr;
+  -ms-grid-rows: 1fr 15px 10fr;
   grid-template-rows: 1fr 10fr;
   grid-column-gap: 25px;
   grid-row-gap: 15px;
+}
+main > *:nth-child(1) {
+  -ms-grid-row: 1;
+  grid-row: 1;
+  -ms-grid-column: 1;
+  grid-column: 1;
+}
+main > *:nth-child(2) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+}
+main > *:nth-child(3) {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+}
+main > *:nth-child(4) {
+  -ms-grid-row: 3;
+  -ms-grid-column: 3;
 }
 
 .add-task-bar,
@@ -103,10 +125,18 @@ main {
 }
 
 .add-task-bar {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
   grid-area: 1 / 1 / 2 / 2;
 }
 
 .task-panel {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
   grid-area: 2 / 1 / 3 / 2;
   margin-bottom: 45px;
   margin-top: 15px;
@@ -117,6 +147,10 @@ main {
 }
 
 .task-details {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
   grid-area: 2 / 2 / 3 / 3;
   margin-bottom: 45px;
   margin-top: 15px;

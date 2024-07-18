@@ -91,6 +91,8 @@ const borderColorPriorityStyle = computed(() => {
         outline: none;
         font-size: 14px;
         margin: 9px 0px 0px 38px;
+        -webkit-box-flex: 2;
+        -ms-flex-positive: 2;
         flex-grow: 2;
         height: 20px;
         color: var(--font-color-gray);
@@ -108,6 +110,8 @@ const borderColorPriorityStyle = computed(() => {
 
 <style scoped>
 .todolist-element {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   background-color: white;
   border: 3px solid var(--well-read);
@@ -134,7 +138,10 @@ const borderColorPriorityStyle = computed(() => {
   -webkit-filter: drop-shadow(-2px -5pxpx 7px #000000b3);
   filter: drop-shadow(-2px 5px 10px #00000074);
   cursor: pointer;
+  -webkit-transform: scale(100.3%);
+  -ms-transform: scale(100.3%);
   transform: scale(100.3%);
+  -webkit-transition: 0.04s ease;
   transition: 0.04s ease;
 }
 
@@ -145,10 +152,17 @@ const borderColorPriorityStyle = computed(() => {
   color: white;
   font-size: 15px;
   text-align: center;
+  -ms-flex-line-pack: center;
   align-content: center;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 </style>

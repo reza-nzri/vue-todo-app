@@ -25,6 +25,9 @@ const toggleCheckbox = (event: Event) => {
   display: inline-block;
   position: relative;
   cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
 }
 
@@ -43,6 +46,7 @@ const toggleCheckbox = (event: Event) => {
   width: 14px;
   background-color: #00000000;
   border: 3px solid var(--font-color-gray);
+  -webkit-transition: 0.16s ease;
   transition: 0.16s ease;
   border-radius: 5px;
 }
@@ -72,6 +76,8 @@ const toggleCheckbox = (event: Event) => {
   height: 8px;
   border: solid white;
   border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 </style>

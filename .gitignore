@@ -44,3 +44,4 @@ TestScript.vue
 !*.format.identifier
 *.Identifier
 
+.browserslistrc
