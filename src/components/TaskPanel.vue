@@ -24,7 +24,7 @@ const taskStore = useTaskStore();
 <template>
   <div :class="`task-panel__${baseClass}--tasks`">
     <div :class="`task-panel__${baseClass}-tasks--topic`">
-      <font-awesome-icon :icon="['fas', 'tasks']" class="icon" />
+      <font-awesome-icon :icon="['fas', 'tasks']" class="task-panel__icon" />
       <h3 class="tasks__drop-shadow--title">{{ props.title }}</h3>
     </div>
 
@@ -58,7 +58,7 @@ const taskStore = useTaskStore();
   border-color: white;
 }
 
-.icon {
+.task-panel__icon {
   width: 17px;
   height: 17px;
   margin-right: 10px;
@@ -82,5 +82,10 @@ const taskStore = useTaskStore();
 
 .task-panel__open-tasks--topic {
   margin-top: 8px;
+}
+
+/* Task Panel Close Tasks */
+.task-panel__close--tasks {
+  margin-top: 10px;
 }
 </style>

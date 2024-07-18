@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed, defineEmits } from 'vue';
+import { ref, watch, computed } from 'vue';
 import TimestampDisplay from '@/components/TimestampDisplay.vue';
 import { useTaskStore } from '@/store/TaskStore';
 
@@ -65,97 +65,97 @@ const updateSubject = (newSubject: string) => {
 </script>
 
 <template>
-  <div class="task-details-board">
-    <div class="white-board">
-      <div class="description-container">
-        <div class="date-priority">
-          <TimestampDisplay :whichStyle="'for-task-details'" :task="task" />
+  <div class="task-details">
+    <div class="task-details__description">
+      <div class="description__date-priority">
+        <TimestampDisplay :whichStyle="'for-task-details'" :task="task" class="timestamp-display" />
 
-          <!-- Delete Task -->
-          <font-awesome-icon
-            icon="fa-solid fa-trash"
-            class="delete-icon"
-            @click="taskStore.removeTask(props.task.id)"
-          />
-
-          <!-- Priority DropDown Menue -->
-          <div class="priority-dropdown">
-            <p class="priority-text">Priority</p>
-            <div class="combobox" :style="backgroundColorPriorityStyle">
-              <select
-                class="priority-select"
-                v-model="currentPriority"
-                @change="taskStore.updatePriority(props.task.id, currentPriority)"
-                :style="backgroundColorPriorityStyle"
-              >
-                <option value="high" style="background-color: var(--well-read)">High</option>
-                <option value="medium" style="background-color: var(--marigold)">Medium</option>
-                <option value="low" style="background-color: var(--congress-blue)">Low</option>
-              </select>
-              <p class="combo-arrow" :style="backgroundColorPriorityStyle">></p>
-            </div>
-          </div>
-        </div>
-
-        <!-- TaskSubject -->
-        <input
-          type="text"
-          v-if="task"
-          id="sebject-txt"
-          placeholder="Enter a subject..."
-          v-model:="props.task.subject"
-          minlength="4"
-          maxlength="50"
-          required
-          @update:subject="updateSubject"
-          style="
-            border: none;
-            outline: none;
-            margin: 15px 0px 0px 0px;
-            font-size: 22px;
-            color: var(--font-color-gray);
-            width: 20vw;
-            box-sizing: border-box;
-            width: calc(100% - 38px);
-          "
+        <!-- Delete Task -->
+        <font-awesome-icon
+          icon="fa-solid fa-trash"
+          class="date-priority__delete-icon"
+          @click="taskStore.removeTask(props.task.id)"
         />
 
-        <!-- Task Description -->
-        <textarea
-          class="textarea-index"
-          :value="taskDescription"
-          @input="handleDescriptionInput"
-          placeholder="Enter description"
-          style="box-sizing: border-box; width: calc(100% - 38px)"
-        ></textarea>
+        <!-- Priority DropDown Menu -->
+        <div class="date-priority__priority-dropdown">
+          <p class="priority-dropdown__text">Priority</p>
+          <div class="priority-dropdown__combobox" :style="backgroundColorPriorityStyle">
+            <select
+              class="combobox__priority-select"
+              v-model="currentPriority"
+              @change="taskStore.updatePriority(props.task.id, currentPriority)"
+              :style="backgroundColorPriorityStyle"
+            >
+              <option value="high" style="background-color: var(--well-read)">High</option>
+              <option value="medium" style="background-color: var(--marigold)">Medium</option>
+              <option value="low" style="background-color: var(--congress-blue)">Low</option>
+            </select>
+            <p class="combobox__arrow" :style="backgroundColorPriorityStyle">></p>
+          </div>
+        </div>
       </div>
+
+      <!-- TaskSubject -->
+      <input
+        type="text"
+        v-if="task"
+        id="sebject-txt"
+        placeholder="Enter a subject..."
+        v-model:="props.task.subject"
+        minlength="4"
+        maxlength="50"
+        required
+        @update:subject="updateSubject"
+        style="
+          border: none;
+          outline: none;
+          margin: 15px 0px 0px 0px;
+          font-size: 22px;
+          color: var(--font-color-gray);
+          width: 20vw;
+          box-sizing: border-box;
+          width: calc(100% - 38px);
+        "
+      />
+
+      <!-- Task Description -->
+      <textarea
+        class="textarea-index"
+        :value="taskDescription"
+        @input="handleDescriptionInput"
+        placeholder="Enter description"
+        style="box-sizing: border-box; width: calc(100% - 38px)"
+      ></textarea>
     </div>
   </div>
 </template>
 
 <style scoped>
-.task-details-board {
-  margin: 0;
-}
-
-.white-board {
+.task-details {
   background-color: white;
   min-height: 64vh;
   max-height: 64vh;
   border-radius: var(--box-radius-size);
 }
 
-.description-container {
+.task-details__description {
   margin: 0px 25px 0px 25px;
   overflow-wrap: break-word;
   hyphens: manual;
+  box-sizing: border-box;
 }
 
-.date-priority {
+.description__date-priority {
   display: flex;
 }
 
-.delete-icon {
+.timestamp-display {
+  width: 100%;
+  float: inline-start;
+}
+
+.date-priority__delete-icon {
   color: var(--well-read);
   margin: 10px 20px 0px 36.7vw;
   height: 20px;
@@ -163,7 +163,7 @@ const updateSubject = (newSubject: string) => {
   justify-content: flex-end;
 }
 
-.delete-icon:hover {
+.date-priority__delete-icon:hover {
   animation: textAnim 5s 0 normal ease;
   transition: 0.13s;
   transform: scale(112%);
@@ -174,13 +174,13 @@ const updateSubject = (newSubject: string) => {
 }
 
 /* Priority Dropdown */
-.priority-dropdown {
+.date-priority__priority-dropdown {
   display: flex;
   margin-left: 0;
   justify-content: flex-end;
 }
 
-.priority-text {
+.priority-dropdown__text {
   min-width: 80px;
   background-color: var(--font-color-gray);
   height: 40px;
@@ -193,9 +193,8 @@ const updateSubject = (newSubject: string) => {
   margin-left: 0px;
 }
 
-.combobox {
+.priority-dropdown__combobox {
   display: flex;
-  background-color: var(--well-read);
   height: 40px;
   align-items: center;
   width: 100px;
@@ -203,7 +202,7 @@ const updateSubject = (newSubject: string) => {
   cursor: pointer;
 }
 
-.combo-arrow {
+.combobox__arrow {
   font-size: 12px;
   font-weight: 700;
   transform: rotate(90deg);
@@ -211,12 +210,11 @@ const updateSubject = (newSubject: string) => {
   margin-right: 20px;
 }
 
-.priority-select {
+.combobox__priority-select {
   min-width: 80px;
   height: 40px;
   color: white;
   font-size: 15px;
-  background-color: var(--well-read);
   border: none;
   text-align: center;
   -webkit-appearance: none;

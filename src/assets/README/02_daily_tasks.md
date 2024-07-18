@@ -28,7 +28,7 @@
 15. [x] delete function
 16. [x] sauberkeit des code
 17. [ ] responsive design
-    1.  [ ] Use BEM convention and convert project to it 
+    1.  [x] Use BEM convention and convert project to it 
 18. [ ] check it in all browsers (chrome, firefox, safari)
 19. [ ] CSS to SASS
 20. [ ] More features etc. than if you are bored 😊

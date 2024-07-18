@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed, defineEmits } from 'vue';
+import { ref, watch, computed } from 'vue';
 import CheckBoxComp from '@/components/CheckBox.vue';
 import TimestampDisplay from '@/components/TimestampDisplay.vue';
 import { useTaskStore } from '@/store/TaskStore';
@@ -72,8 +72,8 @@ const borderColorPriorityStyle = computed(() => {
 </script>
 
 <template>
-  <div class="done-list-view drop-shadow" :style="borderColorPriorityStyle">
-    <CheckBoxComp v-model="isChecked" class="check-box-comp" />
+  <div class="todolist-element drop-shadow" :style="borderColorPriorityStyle">
+    <CheckBoxComp v-model="isChecked" class="checkbox-comp" />
 
     <!-- TaskSubject -->
     <input
@@ -100,22 +100,14 @@ const borderColorPriorityStyle = computed(() => {
 
     <TimestampDisplay :whichStyle="'for-todo-list-element'" :task="task" />
 
-    <div class="priority-indicator">
-      <div class="inside-box">
-        <p class="current-priority" :style="backgroundColorPriorityStyle">
-          {{ props.task.priority }}
-        </p>
-      </div>
-    </div>
+    <p class="current-priority" :style="backgroundColorPriorityStyle">
+      {{ props.task.priority }}
+    </p>
   </div>
 </template>
 
 <style scoped>
-.todo-list {
-  margin: 0;
-}
-
-.done-list-view {
+.todolist-element {
   display: flex;
   background-color: white;
   border: 3px solid var(--well-read);
@@ -125,8 +117,8 @@ const borderColorPriorityStyle = computed(() => {
   height: 40px;
 }
 
-.check-box-comp {
-  margin: -5px 0px 0px 10px;
+.checkbox-comp {
+  margin: 10px 0px 0px 10px;
 }
 
 .checkbox-checker-text {
@@ -144,22 +136,6 @@ const borderColorPriorityStyle = computed(() => {
   cursor: pointer;
   transform: scale(100.3%);
   transition: 0.04s ease;
-}
-
-/* Priority Indicator */
-.priority-indicator {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80px;
-}
-
-.inside-box {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 40px;
 }
 
 .current-priority {

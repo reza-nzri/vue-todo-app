@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import TopBar from '@/components/TopBar.vue';
+import TopBar from '@/components/AddTaskBar.vue';
 import TaskPanel from '@/components/TaskPanel.vue';
 import TaskDetails from '@/components/TaskDetails.vue';
 import { useTaskStore } from '@/store/TaskStore';
@@ -25,7 +25,7 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
     </nav>
 
     <main>
-      <TopBar class="top-bar" @add-task="taskStore.addTask()" />
+      <TopBar class="add-task-bar" @add-task="taskStore.addTask()" />
 
       <div class="task-panel">
         <TaskPanel :tasks="openTasks" title="Tasks" baseClass="open" />
@@ -33,7 +33,7 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
       </div>
 
       <TaskDetails
-        class="task-details-board"
+        class="task-details"
         v-if="openDisplayTask.length > 0"
         :key="openDisplayTask[0].id"
         :task="openDisplayTask[0]"
@@ -91,18 +91,18 @@ main {
   grid-row-gap: 15px;
 }
 
-.top-bar,
+.add-task-bar,
 .task-panel,
-.task-details-board {
+.task-details {
   border-radius: var(--box-radius-size);
 }
 
-.top-bar,
+.add-task-bar,
 .task-panel {
   background-color: rgba(207, 22, 22, 0.315);
 }
 
-.top-bar {
+.add-task-bar {
   grid-area: 1 / 1 / 2 / 2;
 }
 
@@ -116,7 +116,7 @@ main {
   scrollbar-width: none;
 }
 
-.task-details-board {
+.task-details {
   grid-area: 2 / 2 / 3 / 3;
   margin-bottom: 45px;
   margin-top: 15px;

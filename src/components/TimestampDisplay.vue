@@ -54,7 +54,7 @@ const updateDueDate = (event: Event) => {
   font-family: var(--global-font);
   border: none;
   outline: none;
-  margin: 11px 5px 0px 0px;
+  margin: 10px 5px 0px 0px;
   height: 16px;
   font-size: 11px;
 }

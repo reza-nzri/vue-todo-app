@@ -14,30 +14,28 @@ const toggleCheckbox = (event: Event) => {
 </script>
 
 <template>
-  <div>
-    <label class="checkbox-container">
-      <input type="checkbox" :checked="props.modelValue" @change="toggleCheckbox" />
-      <span class="checkmark"></span>
-    </label>
-  </div>
+  <label class="checkbox-comp">
+    <input type="checkbox" :checked="props.modelValue" @change="toggleCheckbox" />
+    <span class="checkmark-icon"></span>
+  </label>
 </template>
 
 <style scoped>
-.checkbox-container {
+.checkbox-comp {
   display: inline-block;
   position: relative;
   cursor: pointer;
   user-select: none;
 }
 
-.checkbox-container input {
+.checkbox-comp input {
   position: absolute;
   opacity: 0;
   height: 0;
   width: 0;
 }
 
-.checkmark {
+.checkmark-icon {
   position: absolute;
   top: 0;
   left: 0;
@@ -49,26 +47,25 @@ const toggleCheckbox = (event: Event) => {
   border-radius: 5px;
 }
 
-.checkbox-container input:checked ~ .checkmark {
+.checkbox-comp input:checked ~ .checkmark-icon {
   background-color: var(--teal-checkbox);
   border: 0px;
   height: 19px;
   width: 19px;
-  margin: 0;
 }
 
-.checkmark:after {
+.checkmark-icon:after {
   content: '';
   position: absolute;
   display: none;
   margin: -2px 0px 0px -3px;
 }
 
-.checkbox-container input:checked ~ .checkmark:after {
+.checkbox-comp input:checked ~ .checkmark-icon:after {
   display: block;
 }
 
-.checkbox-container .checkmark:after {
+.checkbox-comp .checkmark-icon:after {
   left: 9px;
   top: 5px;
   width: 4px;

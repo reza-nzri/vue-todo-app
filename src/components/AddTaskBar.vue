@@ -99,24 +99,24 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="add-task-board">
-    <div class="left-section">
-      <font-awesome-icon :icon="['fas', 'tasks']" class="icon" />
+  <div class="add-task-bar">
+    <div class="add-task-bar__left-section">
+      <font-awesome-icon :icon="['fas', 'tasks']" class="add-task-bar__task-icon" />
       <h3 class="tasks">Tasks</h3>
     </div>
 
-    <button class="add-button" @click="addTask">
-      <font-awesome-icon :icon="['fas', 'plus']" class="plus-icon" />
+    <button class="add-task-bar__add-button" @click="addTask">
+      <font-awesome-icon :icon="['fas', 'plus']" class="add-task-bar__plus-icon" />
     </button>
 
-    <div class="right-section">
+    <div class="add-task-bar__right-section">
       <font-awesome-icon
         icon="fa-solid fa-sort "
-        class="icon change-sort scale-animation"
+        class="right-section__change-sort scale-animation"
         @click="changeOrderBy"
       />
       <select
-        class="sort-select move-animation"
+        class="right-section__sort-select move-animation"
         v-model="currentSortField"
         @change="toggleSortOrder"
       >
@@ -129,20 +129,20 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.add-task-board {
+.add-task-bar {
   margin-top: 25px;
   min-height: 38px;
   max-height: 38px;
-  background-color: white !important;
+  display: flex;
   font-size: 13px;
   color: var(--font-color-gray);
-  display: flex;
+  background-color: white !important;
   align-items: center;
   justify-content: space-between;
 }
 
-.left-section,
-.right-section {
+.add-task-bar__left-section,
+.add-task-bar__right-section {
   display: flex;
   align-items: center;
 }
@@ -159,30 +159,27 @@ onMounted(() => {
   transform: scale(117%);
 }
 
-.left-section {
+.add-task-bar__left-section {
   margin-left: 10px;
 }
 
 /* Sort DropDown */
-.right-section {
+.add-task-bar__right-section {
   margin-right: 10px;
 }
 
-.icon {
+.add-task-bar__task-icon {
   width: 17px;
   height: 17px;
   margin-right: 10px;
 }
 
-.change-sort {
+.right-section__change-sort {
   cursor: pointer;
-}
-
-.sort {
   margin-right: 10px;
 }
 
-.sort-select {
+.right-section__sort-select {
   outline: none;
   border-radius: var(--box-radius-size);
   cursor: pointer;
@@ -190,7 +187,7 @@ onMounted(() => {
   padding: 4px;
 }
 
-.add-button {
+.add-task-bar__add-button {
   background-color: var(--congress-blue);
   color: white;
   border: none;
@@ -204,11 +201,11 @@ onMounted(() => {
   cursor: pointer;
 }
 
-.add-button .plus-icon {
+.add-task-bar__add-button .add-task-bar__plus-icon {
   height: 15px;
 }
 
-.add-button:hover {
+.add-task-bar__add-button:hover {
   background-color: var(--dark-congress-blue);
   animation: buttonAnim 1s 0 normal ease;
   transform: scale(105%) translateY(18px);
@@ -223,9 +220,5 @@ onMounted(() => {
   100% {
     transform: scale(108%);
   }
-}
-
-.tasks {
-  margin: 0;
 }
 </style>
