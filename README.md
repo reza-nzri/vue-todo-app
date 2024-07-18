@@ -75,8 +75,9 @@ In development mode, the application will load a set of default tasks defined in
 
 # Markdown Files Contents List
 1. [Solve Possible Problems](src/assets/README/01_solve_possibe_problems.md)
-2. [Daily Tasks](src/assets/README/02_daily-tasks.md)
-3.  
+2. [Daily Tasks](src/assets/README/02_daily_tasks.md)
+3. [CSS Class Names Conventions](src/assets/README/03_css_class_names_conventions.md)
+4. 
 
 
 
@@ -201,3 +202,17 @@ git diff branch1..branch2
 # Viewing Differences
 git diff branch1..branch2 -- path/to/file
 ```
+
+
+
+# [Breakpoints](https://getbootstrap.com/docs/5.0/layout/breakpoints/)
+ customizable widths that determine how your responsive layout behaves across device or viewport sizes in Bootstrap.
+
+
+
+ # CSS Converntions
+ Vermeide ID-Selektoren; Wähle eine Konvention und halte dich daran und sag mir die name davon, welche du genommen hast;  Verwende Hilfsklassen wie .text-center, .m-0; Meide übermäßige Verschachtelung: Halte CSS-Selektoren so flach wie möglich; nutze SMACSS, OOCSS, BEM muss auf jeden fall benutzt werden
+
+
+
+ 

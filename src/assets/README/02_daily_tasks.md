@@ -28,11 +28,18 @@
 15. [x] delete function
 16. [x] sauberkeit des code
 17. [ ] responsive design
-18. [ ] check it in all browsers
+    1.  [ ] Use BEM convention and convert project to it 
+18. [ ] check it in all browsers (chrome, firefox, safari)
 19. [ ] CSS to SASS
 20. [ ] More features etc. than if you are bored 😊
     1.  [x] doneTask als grau design anzeigen
     2.  [x] tasks drop and down for order
+
+
+
+
+
+
 
 
 
