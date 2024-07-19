@@ -8,6 +8,12 @@
   --darker-well-read: #a32c2c;
   --teal-checkbox: #018786;
 
+  /* ### Background Gradient Animation */
+  --color-palette-1: #663024;
+  --color-palette-2: #c025ee;
+  --color-palette-3: #c30000;
+  --color-palette-4: #ffe405;
+
   /* ### Backgrounds*/
   --background-white: #f8f4f4;
   --background-black-rock: #03012c;
@@ -41,30 +47,16 @@ body {
   color: var(--font-color-gray);
 }
 
-#app {
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin: 70px;
-  height: 84vh;
-  max-height: -webkit-fit-content;
-  max-height: -moz-fit-content;
-  max-height: fit-content;
-  min-height: -webkit-fit-content;
-  min-height: -moz-fit-content;
-  min-height: fit-content;
-  background-color: #ffffff73;
-  border-radius: var(--general-radius-size);
-  overflow-y: visible;
-}
-
 /* Background Gradient Animation */
 body {
-  background: linear-gradient(352deg, #663024, #c025ee, #c30000, #ffe405);
-  background-size: 800% 800%;
+  background: linear-gradient(
+    352deg,
+    var(--color-palette-1),
+    var(--color-palette-2),
+    var(--color-palette-3),
+    var(--color-palette-4)
+  );
+  background-size: 500% 500%;
 
   -webkit-animation: bg-gradient-animation 31s ease infinite;
   animation: bg-gradient-animation 31s ease infinite;
