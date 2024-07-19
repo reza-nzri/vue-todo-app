@@ -14,38 +14,58 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
 </script>
 
 <template>
-  <div class="todo-page">
-    <nav class="navbar">
-      <div class="navbar__info-box">
-        <img alt="ToDo List logo" class="navbar__logo" src="@/assets/images/logos/logo.ico" />
-        <h1 class="navbar__title">My ToDo's</h1>
-      </div>
+  <div class="design-limit">
+    <div class="todo-page">
+      <nav class="navbar">
+        <div class="navbar__info-box">
+          <img alt="ToDo List logo" class="navbar__logo" src="@/assets/images/logos/logo.webp" />
+          <h1 class="navbar__title">My ToDo's</h1>
+        </div>
 
-      <h1 class="navbar__meta-infos">{{ appNameEnv }} v{{ appVersion }}</h1>
-    </nav>
+        <h1 class="navbar__meta-infos">{{ appNameEnv }} v{{ appVersion }}</h1>
+      </nav>
 
-    <main>
-      <TopBar class="add-task-bar" @add-task="taskStore.addTask()" />
+      <main>
+        <TopBar class="add-task-bar" @add-task="taskStore.addTask()" />
 
-      <div class="task-panel">
-        <TaskPanel :tasks="openTasks" title="Tasks" baseClass="open" />
-        <TaskPanel :tasks="doneTasks" title="Done" baseClass="close" />
-      </div>
+        <div class="task-panel">
+          <TaskPanel :tasks="openTasks" title="Tasks" baseClass="open" />
+          <TaskPanel :tasks="doneTasks" title="Done" baseClass="close" />
+        </div>
 
-      <TaskDetails
-        class="task-details"
-        v-if="openDisplayTask.length > 0"
-        :key="openDisplayTask[0].id"
-        :task="openDisplayTask[0]"
-        @update-task="taskStore.updateTask"
-      />
-    </main>
+        <TaskDetails
+          class="task-details"
+          v-if="openDisplayTask.length > 0"
+          :key="openDisplayTask[0].id"
+          :task="openDisplayTask[0]"
+          @update-task="taskStore.updateTask"
+        />
+      </main>
+    </div>
   </div>
 </template>
 
 <style scoped>
+.design-limit {
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 70px;
+  height: fit-content;
+  min-width: 109rem;
+  max-width: fit-content;
+  background-color: #ffffff73;
+  border-radius: var(--general-radius-size);
+}
+
 .todo-page {
   border-radius: var(--general-radius-size);
+  width: 100%;
+  height: 100%;
 }
 
 .navbar {
@@ -60,8 +80,8 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
 }
 
 .navbar__logo {
-  height: 52px;
-  width: 52px;
+  height: 58px;
+  width: 58px;
   -webkit-filter: drop-shadow(var(--simple-drop-shadow));
   filter: drop-shadow(var(--simple-drop-shadow));
   margin: 0px 0px 0px 18px;
@@ -119,11 +139,6 @@ main > *:nth-child(4) {
   border-radius: var(--box-radius-size);
 }
 
-.add-task-bar,
-.task-panel {
-  background-color: rgba(207, 22, 22, 0.315);
-}
-
 .add-task-bar {
   -ms-grid-row: 1;
   -ms-grid-row-span: 1;
@@ -132,16 +147,19 @@ main > *:nth-child(4) {
   grid-area: 1 / 1 / 2 / 2;
 }
 
+.task-panel,
+.task-details {
+  margin: 15px 0;
+}
+
 .task-panel {
   -ms-grid-row: 2;
   -ms-grid-row-span: 1;
   -ms-grid-column: 1;
   -ms-grid-column-span: 1;
   grid-area: 2 / 1 / 3 / 2;
-  margin-bottom: 45px;
-  margin-top: 15px;
-  min-height: 50vh;
-  max-height: 64vh;
+  background-color: rgba(207, 22, 22, 0.315);
+  height: 64vh;
   overflow-y: scroll;
   scrollbar-width: none;
 }
@@ -152,7 +170,61 @@ main > *:nth-child(4) {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
   grid-area: 2 / 2 / 3 / 3;
-  margin-bottom: 45px;
-  margin-top: 15px;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .navbar__title {
+    font-size: 1.8em;
+  }
+
+  .navbar__meta-infos {
+    font-size: 8px;
+    margin-left: 20px;
+  }
+
+  main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-row-gap: 10px;
+  }
+
+  .task-panel,
+  .task-details {
+    grid-area: auto;
+    min-height: 40vh;
+    max-height: none;
+    margin-bottom: 20px;
+  }
+}
+
+/* Responsive styles for extra small screens */
+@media (min-width: 576px) {
+  body {
+    width: 576px;
+  }
+
+  .design-limit {
+    margin: 12px 15px 0 12px;
+  }
+
+  .navbar__title {
+    font-size: 1.5em;
+  }
+
+  .navbar__meta-infos {
+    font-size: 6px;
+    margin-left: 10px;
+  }
+
+  main {
+    margin: 0 10px;
+    grid-column-gap: 10px;
+  }
+
+  .task-panel,
+  .task-details {
+    min-height: 30vh;
+  }
 }
 </style>

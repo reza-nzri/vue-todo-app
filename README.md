@@ -77,7 +77,8 @@ In development mode, the application will load a set of default tasks defined in
 1. [Solve Possible Problems](src/assets/README/01_solve_possibe_problems.md)
 2. [Daily Tasks](src/assets/README/02_daily_tasks.md)
 3. [CSS Class Names Conventions](src/assets/README/03_css_class_names_conventions.md)
-4. 
+4. [Async vs Await](src/assets/README/04_async_vs_await.md)
+5. 
 
 
 
@@ -215,4 +216,8 @@ git diff branch1..branch2 -- path/to/file
 
 
 
- 
+ # SASS
+ Install
+ ```bash
+npm install -D sass sass-loader@10
+ ```

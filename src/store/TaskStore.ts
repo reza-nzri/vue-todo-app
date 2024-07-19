@@ -14,24 +14,27 @@ interface Task {
 // Dummy Tasks
 let dummyTasks: Task[] = [];
 
-if (import.meta.env.VITE_APP_ENV === 'development') {
-  try {
-    const taskModule = await import('/public/dummyTasks.json');
-    dummyTasks = taskModule.default as Task[];
-    console.info('Dummy tasks loaded successfully.');
-  } catch (error) {
-    console.info('Failed to load dummy tasks:', error);
+async function loadDummyTasks() {
+  if (import.meta.env.VITE_APP_ENV === 'development') {
+    try {
+      const taskModule = await import('@/data/dummyTasks.json');
+      dummyTasks = taskModule.default as Task[];
+      console.info('Dummy tasks loaded successfully.');
+    } catch (error) {
+      console.info('Failed to load dummy tasks:', error);
+    }
+  } else {
+    console.warn('Development mode required to load dummy tasks.');
   }
-} else {
-  console.warn('Development mode required to load dummy tasks.');
 }
+await loadDummyTasks();
 
 export const useTaskStore = defineStore('task', {
   state: () => ({
     tasks: useLocalStorage<Task[]>('tasks', dummyTasks),
   }),
   actions: {
-    addTask() {
+    async addTask() {
       this.setCloseDisplay();
       const newTask: Task = {
         id: this.generateUniqueId(),
@@ -42,21 +45,21 @@ export const useTaskStore = defineStore('task', {
         completed: false,
         openDisplay: true,
       };
-      this.tasks.push(newTask);
+      await this.tasks.push(newTask);
     },
-    removeTask(taskId: string) {
+    async removeTask(taskId: string) {
       const index = this.tasks.findIndex((task) => task.id === taskId);
       if (index !== -1) {
         this.tasks.splice(index, 1);
       }
     },
-    updateTask(updatedTask: Task) {
+    async updateTask(updatedTask: Task) {
       const index = this.tasks.findIndex((task) => task.id === updatedTask.id);
       if (index !== -1) {
         this.tasks[index] = updatedTask;
       }
     },
-    toggleCompleted(task: Task) {
+    async toggleCompleted(task: Task) {
       const index = this.tasks.findIndex((t) => t.id === task.id);
       if (index !== -1) {
         this.tasks[index].completed = !this.tasks[index].completed;
@@ -65,42 +68,42 @@ export const useTaskStore = defineStore('task', {
     generateUniqueId(): string {
       return (this.tasks.length + 1).toString();
     },
-    updateDueDate(taskId: string, newDueDate: string) {
+    async updateDueDate(taskId: string, newDueDate: string) {
       const task = this.tasks.find((task) => task.id === taskId);
       if (task) {
         task.dueDateTime = newDueDate;
       }
     },
-    updateSubject(taskId: string, newSubject: string) {
+    async updateSubject(taskId: string, newSubject: string) {
       const task = this.tasks.find((task) => task.id === taskId);
       if (task) {
         task.subject = newSubject;
       }
     },
-    updateTaskDescription(taskId: string, newDescription: string) {
+    async updateTaskDescription(taskId: string, newDescription: string) {
       const task = this.tasks.find((task) => task.id === taskId);
       if (task) {
         task.description = newDescription;
       }
-      this.saveTasksToLocalStorage();
+      await this.saveTasksToLocalStorage();
     },
-    openTaskDetails(id: string) {
+    async openTaskDetails(id: string) {
       try {
         this.setCloseDisplay();
         this.setOpenDisplay(id);
-        this.saveTasksToLocalStorage();
+        await this.saveTasksToLocalStorage();
       } catch (error) {
         console.error('Failed to open task details:', error);
       }
     },
-    saveTasksToLocalStorage() {
+    async saveTasksToLocalStorage() {
       try {
         localStorage.setItem('tasks', JSON.stringify(this.tasks));
       } catch (error) {
         console.error('Failed to save tasks to localStorage:', error);
       }
     },
-    setCloseDisplay() {
+    async setCloseDisplay() {
       try {
         const openTasks = this.tasks.filter((task) => task.openDisplay === true);
 
@@ -115,7 +118,7 @@ export const useTaskStore = defineStore('task', {
         console.error('Error resetting openDisplay:', error);
       }
     },
-    setOpenDisplay(taskId: string) {
+    async setOpenDisplay(taskId: string) {
       try {
         this.tasks.forEach((task) => {
           task.openDisplay = task.id === taskId;
