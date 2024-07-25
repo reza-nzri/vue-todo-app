@@ -143,17 +143,14 @@ const updateSubject = (newSubject: string) => {
 .task-details__description {
   margin: 0px 25px 0px 25px;
   overflow-wrap: break-word;
-  -webkit-hyphens: manual;
-  -ms-hyphens: manual;
   hyphens: manual;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 .description__date-priority {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .timestamp-display {
@@ -163,21 +160,16 @@ const updateSubject = (newSubject: string) => {
 
 .date-priority__delete-icon {
   color: var(--well-read);
-  margin: 10px 20px 0px 36.7vw;
+  margin: 10px 20px 0px auto;
   height: 20px;
   cursor: pointer;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
+  display: flex;
+  align-items: center;
 }
 
 .date-priority__delete-icon:hover {
-  -webkit-animation: textAnim 5s 0 normal ease;
   animation: textAnim 5s 0 normal ease;
-  -webkit-transition: 0.13s;
   transition: 0.13s;
-  -webkit-transform: scale(112%);
-  -ms-transform: scale(112%);
   transform: scale(112%);
 }
 
@@ -187,13 +179,8 @@ const updateSubject = (newSubject: string) => {
 
 /* Priority Dropdown */
 .date-priority__priority-dropdown {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  margin-left: 0;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
+  align-items: center;
 }
 
 .priority-dropdown__text {
@@ -203,29 +190,16 @@ const updateSubject = (newSubject: string) => {
   color: white;
   font-size: 15px;
   text-align: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  margin-left: 0px;
 }
 
 .priority-dropdown__combobox {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   height: 40px;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   width: 100px;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
   cursor: pointer;
 }
@@ -233,8 +207,6 @@ const updateSubject = (newSubject: string) => {
 .combobox__arrow {
   font-size: 12px;
   font-weight: 700;
-  -webkit-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
   transform: rotate(90deg);
   color: white;
   margin-right: 20px;
@@ -247,8 +219,6 @@ const updateSubject = (newSubject: string) => {
   font-size: 15px;
   border: none;
   text-align: center;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   cursor: pointer;
   outline: none;
@@ -264,8 +234,39 @@ const updateSubject = (newSubject: string) => {
   line-height: 1.5;
   border-radius: 5px;
   border: 0.3px solid #cccccc2f;
-  -webkit-box-shadow: 1px 1px 3px #ff00002f;
   box-shadow: 1px 1px 3px #ff00002f;
   outline: none;
+  resize: vertical;
+}
+
+@media (max-width: 1500px) {
+  .task-details__description {
+    margin: 0px 12px;
+  }
+
+  .date-priority__delete-icon {
+    margin: 9px 15px 0px auto;
+    height: 14px;
+  }
+
+  .priority-dropdown__text {
+    min-width: 60px;
+    font-size: 12px;
+  }
+
+  .priority-dropdown__combobox {
+    width: 80px;
+  }
+
+  .combobox__arrow {
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 40px;
+  }
+
+  .combobox__priority-select {
+    min-width: 60px;
+    font-size: 12px;
+  }
 }
 </style>

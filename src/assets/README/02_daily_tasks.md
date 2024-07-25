@@ -29,14 +29,14 @@
 16. [x] sauberkeit des code
 17. [x] TaskStore in src verwenden
 18. [ ] Build problem solving
-19. [ ] Refactor Top-Level Await: use async functions everywhere
-    1.  [ ] move top-level await into an async function.    
+19. [x] Refactor Top-Level Await: use async functions everywhere
+    1.  [x] move top-level await into an async function.    
     2.  [x] tiefere Recherche über sync und await
 20. [ ] responsive design
     1.  [x] Use BEM convention and convert project to it 
     2.  [x] Adjust CSS with autoprefixer for all browsers
-21. [ ] CSS to SASS
-    1.  [ ] install sass recherche
+21. [x] CSS to SASS: faild!
+    1.  [x] install sass recherche
 22. [ ] check it in all browsers (chrome, firefox, safari)
 23. [ ] MongoDB in Docker
 24. [ ] bild prozessor: optimieren, buil for dev und prod und standard

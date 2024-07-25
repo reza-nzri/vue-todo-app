@@ -77,6 +77,7 @@ const borderColorPriorityStyle = computed(() => {
 
     <!-- TaskSubject -->
     <input
+      class="todolist-element__task-subject"
       type="text"
       v-if="task"
       id="sebject-txt"
@@ -86,18 +87,6 @@ const borderColorPriorityStyle = computed(() => {
       maxlength="50"
       required
       @update:subject="updateSubject"
-      style="
-        border: none;
-        outline: none;
-        font-size: 14px;
-        margin: 9px 0px 0px 38px;
-        -webkit-box-flex: 2;
-        -ms-flex-positive: 2;
-        flex-grow: 2;
-        height: 20px;
-        color: var(--font-color-gray);
-        font-family: var(--global-font);
-      "
     />
 
     <TimestampDisplay :whichStyle="'for-todo-list-element'" :task="task" />
@@ -110,8 +99,6 @@ const borderColorPriorityStyle = computed(() => {
 
 <style scoped>
 .todolist-element {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   background-color: white;
   border: 3px solid var(--well-read);
@@ -130,39 +117,64 @@ const borderColorPriorityStyle = computed(() => {
 }
 
 .drop-shadow {
-  -webkit-filter: drop-shadow(-2px 5px 7px #000000b3);
   filter: drop-shadow(-2px 5px 7px #0000003d);
 }
 
+.todolist-element__task-subject {
+  height: 20px;
+  font-size: 14px;
+  margin: 9px 0px 0px 38px;
+  flex-grow: 2;
+  border: none;
+  outline: none;
+  color: var(--font-color-gray);
+  font-family: var(--global-font);
+}
+
 .drop-shadow:hover {
-  -webkit-filter: drop-shadow(-2px -5pxpx 7px #000000b3);
   filter: drop-shadow(-2px 5px 10px #00000074);
   cursor: pointer;
-  -webkit-transform: scale(100.3%);
-  -ms-transform: scale(100.3%);
   transform: scale(100.3%);
-  -webkit-transition: 0.04s ease;
   transition: 0.04s ease;
 }
 
 .current-priority {
   min-width: 80px;
-  background-color: var(--well-read);
-  height: 40px;
-  color: white;
   font-size: 15px;
-  text-align: center;
-  -ms-flex-line-pack: center;
-  align-content: center;
   height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  background-color: var(--well-read);
+  color: white;
+  text-align: center;
+  align-content: center;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
+}
+
+@media (max-width: 888px) {
+  .todolist-element {
+    margin: 2px 0px 0px 0px;
+    height: 30px;
+  }
+
+  .checkbox-comp {
+    margin: 5px 0px 0px 10px;
+  }
+
+  .checkbox-checker-text {
+    margin: -5px 0px 0px 37px;
+  }
+
+  .todolist-element__task-subject {
+    height: 10px;
+    font-size: 14px;
+    margin: 9px 0px 0px 38px;
+    flex-grow: 2;
+  }
+
+  .current-priority {
+    font-size: 12px;
+    height: 100%;
+  }
 }
 </style>

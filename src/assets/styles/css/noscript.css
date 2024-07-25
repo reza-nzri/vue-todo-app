@@ -6,7 +6,7 @@
 
 body {
   font-family: 'PT Sans', sans-serif;
-  background-color: var(--background-black-rock);
+  background-color: #03012c;
 }
 
 #no-script {
@@ -26,9 +26,9 @@ body {
   text-align: center;
   font-size: 3rem;
   padding: 0.5em;
-  border: 0.2em double var(--background-black-rock);
+  border: 0.2em double #03012c;
   border-radius: 0.5em;
-  background-color: var(--background-drover);
+  background-color: #fceea1;
 }
 
 #no-script-img {

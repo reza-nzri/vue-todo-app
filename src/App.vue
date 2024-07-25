@@ -14,50 +14,58 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
 </script>
 
 <template>
-  <div class="design-limit">
-    <div class="todo-page">
-      <nav class="navbar">
-        <div class="navbar__info-box">
-          <img alt="ToDo List logo" class="navbar__logo" src="@/assets/images/logos/logo.webp" />
-          <h1 class="navbar__title">My ToDo's</h1>
-        </div>
+  <div class="fullscreen-container">
+    <div class="design-limit">
+      <div class="todo-page">
+        <nav class="navbar">
+          <div class="navbar__info-box">
+            <img alt="ToDo List logo" class="navbar__logo" src="@/assets/images/logos/logo.webp" />
+            <h1 class="navbar__title">My ToDo's</h1>
+          </div>
 
-        <h1 class="navbar__meta-infos">{{ appNameEnv }} v{{ appVersion }}</h1>
-      </nav>
+          <h1 class="navbar__meta-infos">{{ appNameEnv }} v{{ appVersion }}</h1>
+        </nav>
 
-      <main>
-        <TopBar class="add-task-bar" @add-task="taskStore.addTask()" />
+        <main>
+          <TopBar class="add-task-bar" @add-task="taskStore.addTask()" />
 
-        <div class="task-panel">
-          <TaskPanel :tasks="openTasks" title="Tasks" baseClass="open" />
-          <TaskPanel :tasks="doneTasks" title="Done" baseClass="close" />
-        </div>
+          <div class="task-panel">
+            <TaskPanel :tasks="openTasks" title="Tasks" baseClass="open" />
+            <TaskPanel :tasks="doneTasks" title="Done" baseClass="close" />
+          </div>
 
-        <TaskDetails
-          class="task-details"
-          v-if="openDisplayTask.length > 0"
-          :key="openDisplayTask[0].id"
-          :task="openDisplayTask[0]"
-          @update-task="taskStore.updateTask"
-        />
-      </main>
+          <TaskDetails
+            class="task-details"
+            v-if="openDisplayTask.length > 0"
+            :key="openDisplayTask[0].id"
+            :task="openDisplayTask[0]"
+            @update-task="taskStore.updateTask"
+          />
+        </main>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.design-limit {
+.fullscreen-container {
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
+  height: 100vh;
+  width: 100vw;
+
+  animation: fadeIn 5s ease-in-out;
+  -webkit-animation: fadeIn 1s ease-in-out;
+}
+
+.design-limit {
   margin: 70px;
+  width: 135rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: fit-content;
-  min-width: 109rem;
-  max-width: fit-content;
   background-color: #ffffff73;
   border-radius: var(--general-radius-size);
 }
@@ -73,18 +81,15 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
 }
 
 .navbar__info-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   padding: 5px 0px;
 }
 
 .navbar__logo {
+  margin: 8px 0px 0px 18px;
   height: 58px;
   width: 58px;
-  -webkit-filter: drop-shadow(var(--simple-drop-shadow));
   filter: drop-shadow(var(--simple-drop-shadow));
-  margin: 0px 0px 0px 18px;
 }
 
 .navbar__title {
@@ -95,42 +100,20 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
 }
 
 .navbar__meta-infos {
-  color: white;
+  margin: -15px 0px 0px 100px;
   font-size: 10px;
-  margin: 0px 0px 0px 93px;
-  -webkit-filter: drop-shadow(var(--hover-drop-shadow));
+  color: white;
   filter: drop-shadow(var(--hover-drop-shadow));
 }
 
 /* # main */
 main {
-  display: -ms-grid;
   display: grid;
-  margin: 0px 25px 0px 25px;
-  -ms-grid-columns: 1fr 25px 2fr;
+  margin: 0px 25px;
   grid-template-columns: 1fr 2fr;
-  -ms-grid-rows: 1fr 15px 10fr;
   grid-template-rows: 1fr 10fr;
   grid-column-gap: 25px;
   grid-row-gap: 15px;
-}
-main > *:nth-child(1) {
-  -ms-grid-row: 1;
-  grid-row: 1;
-  -ms-grid-column: 1;
-  grid-column: 1;
-}
-main > *:nth-child(2) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 3;
-}
-main > *:nth-child(3) {
-  -ms-grid-row: 3;
-  -ms-grid-column: 1;
-}
-main > *:nth-child(4) {
-  -ms-grid-row: 3;
-  -ms-grid-column: 3;
 }
 
 .add-task-bar,
@@ -140,10 +123,6 @@ main > *:nth-child(4) {
 }
 
 .add-task-bar {
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 1;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 1;
   grid-area: 1 / 1 / 2 / 2;
 }
 
@@ -153,10 +132,6 @@ main > *:nth-child(4) {
 }
 
 .task-panel {
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 1;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 1;
   grid-area: 2 / 1 / 3 / 2;
   background-color: rgba(207, 22, 22, 0.315);
   height: 64vh;
@@ -165,15 +140,35 @@ main > *:nth-child(4) {
 }
 
 .task-details {
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 1;
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
   grid-area: 2 / 2 / 3 / 3;
 }
 
-/* Responsive styles for smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 1500px) {
+  .design-limit {
+    margin: 10px;
+    width: 120rem;
+  }
+
+  main {
+    margin: 0px 12px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-column-gap: 12px;
+  }
+  .navbar__logo {
+    margin: 8px 0px 0px 6px;
+  }
+
+  .navbar__title {
+    margin: 7px 0px 0px 12px;
+  }
+
+  .navbar__meta-infos {
+    margin: -15px 0px 0px 79px;
+  }
+}
+
+@media (max-width: 888px) {
   .navbar__title {
     font-size: 1.8em;
   }
@@ -196,25 +191,33 @@ main > *:nth-child(4) {
     max-height: none;
     margin-bottom: 20px;
   }
-}
 
-/* Responsive styles for extra small screens */
-@media (min-width: 576px) {
-  body {
-    width: 576px;
+  .task-panel {
+    margin-top: 20px;
+    margin-bottom: 0;
+    min-height: 150px !important;
+    max-height: 150px !important;
   }
 
-  .design-limit {
-    margin: 12px 15px 0 12px;
-  }
-
-  .navbar__title {
-    font-size: 1.5em;
+  .task-details {
+    margin: 2px 0;
+    min-height: 30vh;
+    max-height: none;
   }
 
   .navbar__meta-infos {
-    font-size: 6px;
-    margin-left: 10px;
+    margin: -15px 0px 0px 80px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar__title {
+    font-size: 1.1em;
+    margin: 3px 0px 0px 10px;
+  }
+
+  .navbar__meta-infos {
+    margin: -13px 0px 0px 57px;
   }
 
   main {
@@ -225,6 +228,12 @@ main > *:nth-child(4) {
   .task-panel,
   .task-details {
     min-height: 30vh;
+  }
+
+  .navbar__logo {
+    margin: 0px 0px 0px 6px;
+    height: 40px;
+    width: 40px;
   }
 }
 </style>
