@@ -49,6 +49,13 @@ body {
 
 /* Background Gradient Animation */
 body {
+  background: -o-linear-gradient(
+    98deg,
+    var(--color-palette-1),
+    var(--color-palette-2),
+    var(--color-palette-3),
+    var(--color-palette-4)
+  );
   background: linear-gradient(
     352deg,
     var(--color-palette-1),
@@ -82,24 +89,5 @@ body {
   }
   100% {
     background-position: 76% 0%;
-  }
-}
-
-/* animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
   }
 }

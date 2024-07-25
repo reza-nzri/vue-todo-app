@@ -120,9 +120,9 @@ onMounted(() => {
         v-model="currentSortField"
         @change="toggleSortOrder"
       >
-        <option value="dueDateTime">📅 Date</option>
-        <option value="priority">🎯 Priority</option>
-        <option value="subject">🔠 Subject</option>
+        <option value="dueDateTime">Date</option>
+        <option value="priority">Priority</option>
+        <option value="subject">Subject</option>
       </select>
     </div>
   </div>
@@ -133,29 +133,49 @@ onMounted(() => {
   margin-top: 25px;
   min-height: 38px;
   max-height: 38px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   font-size: 13px;
   color: var(--font-color-gray);
   background-color: white !important;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
 .add-task-bar__left-section,
 .add-task-bar__right-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
 .move-animation:hover {
+  -webkit-animation: textAnim 5s 0 normal ease;
   animation: textAnim 5s 0 normal ease;
+  -webkit-transition: 0.16s;
+  -o-transition: 0.16s;
   transition: 0.16s;
+  -webkit-transform: scale(102%);
+  -ms-transform: scale(102%);
   transform: scale(102%);
 }
 
 .scale-animation:hover {
+  -webkit-animation: textAnim 5s 0 normal ease;
   animation: textAnim 5s 0 normal ease;
+  -webkit-transition: 0.16s;
+  -o-transition: 0.16s;
   transition: 0.16s;
+  -webkit-transform: scale(117%);
+  -ms-transform: scale(117%);
   transform: scale(117%);
 }
 
@@ -194,10 +214,17 @@ onMounted(() => {
   border-radius: 50%;
   width: 44px;
   height: 44px;
+  -webkit-transform: translateY(18px);
+  -ms-transform: translateY(18px);
   transform: translateY(18px);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   cursor: pointer;
 }
@@ -208,8 +235,13 @@ onMounted(() => {
 
 .add-task-bar__add-button:hover {
   background-color: var(--dark-congress-blue);
+  -webkit-animation: buttonAnim 1s 0 normal ease;
   animation: buttonAnim 1s 0 normal ease;
+  -webkit-transform: scale(105%) translateY(18px);
+  -ms-transform: scale(105%) translateY(18px);
   transform: scale(105%) translateY(18px);
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
   transition: 0.2s;
 }
 

@@ -49,6 +49,7 @@ const taskStore = useTaskStore();
 }
 
 .tasks__drop-shadow--title {
+  -webkit-filter: drop-shadow(var(--simple-drop-shadow));
   filter: drop-shadow(var(--simple-drop-shadow));
 }
 
@@ -62,14 +63,19 @@ const taskStore = useTaskStore();
   width: 17px;
   height: 17px;
   margin-right: 10px;
+  -webkit-filter: drop-shadow(var(--simple-drop-shadow));
   filter: drop-shadow(var(--simple-drop-shadow));
 }
 
 .task-panel__open-tasks--topic,
 .task-panel__close-tasks--topic {
-  display: flex;
-  align-items: center;
   margin-left: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   color: white;
 }
 

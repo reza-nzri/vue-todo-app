@@ -1,5 +1,4 @@
 # Vue Daily Tasks
-## Daily 2024.07.16
 1. [x] TimestampDisplay.vue problem solving
     - [x] date formatter from yyyy.mm.dd - hh:mm to yyyy-mm-ddThh:mm
     - [x] dynamic date display
@@ -28,20 +27,20 @@
 15. [x] delete function
 16. [x] sauberkeit des code
 17. [x] TaskStore in src verwenden
-18. [ ] Build problem solving
-19. [x] Refactor Top-Level Await: use async functions everywhere
+18. [x] Refactor Top-Level Await: use async functions everywhere
     1.  [x] move top-level await into an async function.    
     2.  [x] tiefere Recherche über sync und await
-20. [ ] responsive design
+19. [x] responsive design
     1.  [x] Use BEM convention and convert project to it 
     2.  [x] Adjust CSS with autoprefixer for all browsers
-21. [x] CSS to SASS: faild!
+20. [x] CSS to SASS: faild!
     1.  [x] install sass recherche
-22. [ ] check it in all browsers (chrome, firefox, safari)
+21. [x] check it in all browsers (chrome, firefox, safari)
+22. [ ] Build problem solving
 23. [ ] MongoDB in Docker
-24. [ ] bild prozessor: optimieren, buil for dev und prod und standard
-25. [ ] use env dev and prod
-26. [ ] More features etc. than if you are bored 😊
+24. [ ] use env dev and prod
+    1.  [ ] bild prozessor: optimieren, buil for dev und prod und standard
+25. [ ] More features etc. than if you are bored 😊
     1.  [x] doneTask als grau design anzeigen
     2.  [x] tasks drop and down for order
     3.  [ ] wie kann man die website mit npm serve in internet hosten?

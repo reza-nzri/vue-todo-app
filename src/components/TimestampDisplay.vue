@@ -63,14 +63,14 @@ const updateDueDate = (event: Event) => {
   margin: 13px 10px 0px 0px;
   color: var(--font-faded-color);
   margin: 11px 5px 0px 0px;
-  min-width: 120px;
+  min-width: 140px;
   width: 120px;
   font-size: 11px;
 }
 
 .for-task-details {
   margin: 10px 0px 0px 0px;
-  max-width: 150px;
+  max-width: 170px;
   color: var(--font-color-gray);
   font-size: 14px;
 }
@@ -78,7 +78,9 @@ const updateDueDate = (event: Event) => {
 @media (max-width: 888px) {
   .for-todo-list-element {
     margin: 8px 0px 0px 0px;
-    max-width: 150px;
+    min-width: 100px;
+    max-width: 100px;
+    font-size: 9px;
   }
 }
 </style>

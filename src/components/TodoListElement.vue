@@ -99,6 +99,8 @@ const borderColorPriorityStyle = computed(() => {
 
 <style scoped>
 .todolist-element {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   background-color: white;
   border: 3px solid var(--well-read);
@@ -117,6 +119,7 @@ const borderColorPriorityStyle = computed(() => {
 }
 
 .drop-shadow {
+  -webkit-filter: drop-shadow(-2px 5px 7px #0000003d);
   filter: drop-shadow(-2px 5px 7px #0000003d);
 }
 
@@ -124,6 +127,8 @@ const borderColorPriorityStyle = computed(() => {
   height: 20px;
   font-size: 14px;
   margin: 9px 0px 0px 38px;
+  -webkit-box-flex: 2;
+  -ms-flex-positive: 2;
   flex-grow: 2;
   border: none;
   outline: none;
@@ -132,9 +137,14 @@ const borderColorPriorityStyle = computed(() => {
 }
 
 .drop-shadow:hover {
+  -webkit-filter: drop-shadow(-2px 5px 10px #00000074);
   filter: drop-shadow(-2px 5px 10px #00000074);
   cursor: pointer;
+  -webkit-transform: scale(100.3%);
+  -ms-transform: scale(100.3%);
   transform: scale(100.3%);
+  -webkit-transition: 0.04s ease;
+  -o-transition: 0.04s ease;
   transition: 0.04s ease;
 }
 
@@ -145,9 +155,16 @@ const borderColorPriorityStyle = computed(() => {
   background-color: var(--well-read);
   color: white;
   text-align: center;
+  -ms-flex-line-pack: center;
   align-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -169,12 +186,15 @@ const borderColorPriorityStyle = computed(() => {
     height: 10px;
     font-size: 14px;
     margin: 9px 0px 0px 38px;
+    -webkit-box-flex: 2;
+    -ms-flex-positive: 2;
     flex-grow: 2;
   }
 
   .current-priority {
     font-size: 12px;
     height: 100%;
+    min-width: 60px;
   }
 }
 </style>
