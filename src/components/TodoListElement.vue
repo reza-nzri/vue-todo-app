@@ -99,15 +99,15 @@ const borderColorPriorityStyle = computed(() => {
 
 <style scoped>
 .todolist-element {
+  border: 3px solid var(--well-read);
+  margin: 5px 3px 0px 3px;
+  height: 40px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   background-color: white;
-  border: 3px solid var(--well-read);
   /* none */
   border-radius: var(--box-radius-size);
-  margin: 5px 0px 0px 0px;
-  height: 40px;
 }
 
 .checkbox-comp {
@@ -170,7 +170,7 @@ const borderColorPriorityStyle = computed(() => {
 
 @media (max-width: 888px) {
   .todolist-element {
-    margin: 2px 0px 0px 0px;
+    margin: 2px 3px 0px 3px;
     height: 30px;
   }
 
@@ -183,9 +183,9 @@ const borderColorPriorityStyle = computed(() => {
   }
 
   .todolist-element__task-subject {
-    height: 10px;
-    font-size: 14px;
-    margin: 9px 0px 0px 38px;
+    height: 16px;
+    font-size: 12px;
+    margin: 7px 0px 0px 38px;
     -webkit-box-flex: 2;
     -ms-flex-positive: 2;
     flex-grow: 2;
