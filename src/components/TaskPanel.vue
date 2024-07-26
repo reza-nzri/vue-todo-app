@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { useTaskStore } from '@/store/TaskStore';
 import TodoListElement from '@/components/TodoListElement.vue';
 
@@ -16,16 +17,29 @@ const props = defineProps<{
   tasks: Array<Task>;
   baseClass: string;
   title: string;
+  highlightTask: Task;
 }>();
 
 const taskStore = useTaskStore();
+
+// Track visibility of the panels
+const TasksVisible = ref(true);
+
+const togglePanel = (panel: string) => {
+  if (panel === 'doneTasks') {
+    TasksVisible.value = !TasksVisible.value;
+  }
+};
+
+const isHighlighted = (task: Task) => task === props.highlightTask;
 </script>
 
 <template>
   <div :class="`task-panel__${baseClass}--tasks`">
-    <div :class="`task-panel__${baseClass}-tasks--topic`">
+    <div :class="`task-panel__${baseClass}-tasks--topic`" @click="togglePanel('doneTasks')">
       <font-awesome-icon :icon="['fas', 'tasks']" class="task-panel__icon" />
       <h3 class="tasks__drop-shadow--title">{{ props.title }}</h3>
+      <p class="task-count">{{ props.tasks.length }}</p>
     </div>
 
     <hr class="task-panel__tasks-divider" />
@@ -35,10 +49,12 @@ const taskStore = useTaskStore();
       v-for="task in props.tasks"
       :key="task.id"
       :task="task"
+      :class="{ 'highlight-task': isHighlighted(task) }"
       @update-task="taskStore.updateTask"
       @delete-task="taskStore.removeTask"
       @toggle-completed="taskStore.toggleCompleted"
       @click="taskStore.openTaskDetails(task.id)"
+      v-show="TasksVisible"
     />
   </div>
 </template>
@@ -51,6 +67,17 @@ const taskStore = useTaskStore();
 .tasks__drop-shadow--title {
   -webkit-filter: drop-shadow(var(--simple-drop-shadow));
   filter: drop-shadow(var(--simple-drop-shadow));
+}
+
+.task-count {
+  width: 35px;
+  line-height: 22px;
+  border-radius: 25px;
+  font-size: 12px;
+  margin: 0 8px 0 auto;
+  text-align: center;
+  background-color: var(--well-read);
+  color: white;
 }
 
 .task-panel__tasks-divider {
@@ -77,6 +104,7 @@ const taskStore = useTaskStore();
   -ms-flex-align: center;
   align-items: center;
   color: white;
+  cursor: pointer;
 }
 
 /* Task Panel Open Tasks */
@@ -92,5 +120,11 @@ const taskStore = useTaskStore();
 /* Task Panel Close Tasks */
 .task-panel__close--tasks {
   margin-top: 10px;
+}
+
+/* Only for openDisplay Tasks */
+.highlight-task {
+  filter: drop-shadow(-2px 3px 4px #ff0000cf);
+  display: flex !important;
 }
 </style>
