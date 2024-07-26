@@ -364,5 +364,22 @@ const updateSubject = (newSubject: string) => {
     font-size: 11px;
     transform: translateX(3px);
   }
+
+  /* Delete icon */
+  .date-priority__delete-icon {
+    margin: 10px 8px 0px auto;
+    height: 14px;
+  }
+
+  /* close window */
+  .date-priority__close-window {
+    margin: 10px 8px 0px 0;
+    height: 16px;
+  }
+  .date-priority__close-window:hover {
+    -webkit-transform: scale(112%);
+    -ms-transform: scale(112%);
+    transform: scale(112%);
+  }
 }
 </style>
