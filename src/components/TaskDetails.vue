@@ -77,6 +77,13 @@ const updateSubject = (newSubject: string) => {
           @click="taskStore.removeTask(props.task.id)"
         />
 
+        <!-- Close Window -->
+        <font-awesome-icon
+          :icon="['fas', 'window-close']"
+          class="date-priority__close-window"
+          @click="taskStore.setCloseDisplay"
+        />
+
         <!-- Priority DropDown Menu -->
         <div class="date-priority__priority-dropdown">
           <p class="priority-dropdown__text">Priority</p>
@@ -167,6 +174,7 @@ const updateSubject = (newSubject: string) => {
   float: inline-start;
 }
 
+/* Delete icon */
 .date-priority__delete-icon {
   color: var(--well-read);
   margin: 10px 20px 0px auto;
@@ -179,8 +187,31 @@ const updateSubject = (newSubject: string) => {
   -ms-flex-align: center;
   align-items: center;
 }
-
 .date-priority__delete-icon:hover {
+  -webkit-animation: textAnim 5s 0 normal ease;
+  animation: textAnim 5s 0 normal ease;
+  -webkit-transition: 0.13s;
+  -o-transition: 0.13s;
+  transition: 0.13s;
+  -webkit-transform: scale(112%);
+  -ms-transform: scale(112%);
+  transform: scale(112%);
+}
+
+/* close window */
+.date-priority__close-window {
+  color: var(--well-read);
+  margin: 10px 20px 0px 0;
+  height: 20px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.date-priority__close-window:hover {
   -webkit-animation: textAnim 5s 0 normal ease;
   animation: textAnim 5s 0 normal ease;
   -webkit-transition: 0.13s;

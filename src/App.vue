@@ -30,8 +30,18 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
           <TopBar class="add-task-bar" @add-task="taskStore.addTask()" />
 
           <div class="task-panel">
-            <TaskPanel :tasks="openTasks" title="Tasks" baseClass="open" />
-            <TaskPanel :tasks="doneTasks" title="Done" baseClass="close" />
+            <TaskPanel
+              :tasks="openTasks"
+              title="Tasks"
+              baseClass="open"
+              :highlightTask="openDisplayTask[0]"
+            />
+            <TaskPanel
+              :tasks="doneTasks"
+              title="Done"
+              baseClass="close"
+              :highlightTask="openDisplayTask[0]"
+            />
           </div>
 
           <TaskDetails
@@ -49,6 +59,8 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
 
 <style scoped>
 .fullscreen-container {
+  height: 100vh;
+  width: 100vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -58,8 +70,6 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
 
   animation: fadeIn 5s ease-in-out;
   -webkit-animation: fadeIn 1s ease-in-out;
@@ -85,9 +95,9 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
 }
 
 .todo-page {
-  border-radius: var(--general-radius-size);
   width: 100%;
   height: 100%;
+  border-radius: var(--general-radius-size);
 }
 
 .navbar {
@@ -192,6 +202,7 @@ main > *:nth-child(4) {
   grid-area: 2 / 2 / 3 / 3;
 }
 
+/* Laptop L */
 @media (max-width: 1500px) {
   .design-limit {
     margin: 10px;
@@ -229,14 +240,22 @@ main > *:nth-child(4) {
   }
 }
 
+/* Laptop */
 @media (max-width: 888px) {
+  .todo-page {
+    width: 100%;
+    height: 97vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+  }
+
   .navbar__title {
     font-size: 1.8em;
   }
 
   .navbar__meta-infos {
     font-size: 8px;
-    margin-left: 20px;
+    margin: -25px 0 0 78px !important;
   }
 
   main {
@@ -255,21 +274,21 @@ main > *:nth-child(4) {
   .task-panel,
   .task-details {
     grid-area: auto;
-    min-height: 40vh;
-    max-height: none;
-    margin-bottom: 20px;
   }
 
   .task-panel {
     margin-top: 20px;
     margin-bottom: 0;
-    min-height: 150px !important;
-    max-height: 150px !important;
+    min-height: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: visible;
   }
 
   .task-details {
+    margin-bottom: 20px;
     margin: 2px 0;
-    min-height: 30vh;
+    min-height: 40vh;
     max-height: none;
   }
 
@@ -278,14 +297,29 @@ main > *:nth-child(4) {
   }
 }
 
+/* Tablet */
 @media (max-width: 576px) {
+  .design-limit {
+    margin: 20px 10px;
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .todo-page {
+    width: 100%;
+    height: 97vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+  }
+
   .navbar__title {
     font-size: 1.1em;
     margin: 3px 0px 0px 10px;
   }
 
   .navbar__meta-infos {
-    margin: -13px 0px 0px 57px;
+    margin: -13px 0px 0px 57px !important;
   }
 
   main {
@@ -293,15 +327,31 @@ main > *:nth-child(4) {
     grid-column-gap: 10px;
   }
 
-  .task-panel,
-  .task-details {
-    min-height: 30vh;
-  }
-
   .navbar__logo {
     margin: 0px 0px 0px 6px;
     height: 40px;
     width: 40px;
+  }
+
+  .task-panel,
+  .task-details {
+    grid-area: auto;
+  }
+
+  .task-panel {
+    margin-top: 20px;
+    margin-bottom: 0;
+    min-height: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: visible;
+  }
+
+  .task-details {
+    margin-bottom: 20px;
+    margin: 2px 0;
+    min-height: 30vh;
+    max-height: none;
   }
 }
 </style>
