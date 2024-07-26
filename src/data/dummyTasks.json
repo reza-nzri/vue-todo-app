@@ -24,6 +24,6 @@
     "dueDateTime": "2023-08-24T08:51",
     "priority": "low",
     "completed": false,
-    "openDisplay": true
+    "openDisplay": false
   }
 ]
