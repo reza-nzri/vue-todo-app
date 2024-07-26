@@ -6,8 +6,9 @@ import {
   faPlus,
   faCalendarDays,
   faTrash,
+  faWindowClose,
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faTasks, faSort, faPlus, faCalendarDays, faTrash);
+library.add(faTasks, faSort, faPlus, faCalendarDays, faTrash, faWindowClose);
 
 export default FontAwesomeIcon;
