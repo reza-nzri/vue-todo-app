@@ -19,7 +19,7 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
       <div class="todo-page">
         <nav class="navbar">
           <div class="navbar__info-box">
-            <img alt="ToDo List logo" class="navbar__logo" src="@/assets/images/logos/logo.webp" />
+            <img alt="ToDo List logo" class="navbar__logo" src="@/assets/images/logos/logo.svg" />
             <h1 class="navbar__title">My ToDo's</h1>
           </div>
 
@@ -112,9 +112,9 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
 }
 
 .navbar__logo {
-  margin: 8px 0px 0px 18px;
-  height: 58px;
-  width: 58px;
+  margin: 8px 0px 0px 23px;
+  height: 53px;
+  width: 53px;
   -webkit-filter: drop-shadow(var(--simple-drop-shadow));
   filter: drop-shadow(var(--simple-drop-shadow));
 }

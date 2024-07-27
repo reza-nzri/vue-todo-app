@@ -184,6 +184,7 @@ const borderColorPriorityStyle = computed(() => {
 
   .todolist-element__task-subject {
     height: 16px;
+    width: 25px !important;
     font-size: 12px;
     margin: 7px 0px 0px 38px;
     -webkit-box-flex: 2;
@@ -196,5 +197,8 @@ const borderColorPriorityStyle = computed(() => {
     height: 100%;
     min-width: 60px;
   }
+}
+
+@media (max-width: 576px) {
 }
 </style>

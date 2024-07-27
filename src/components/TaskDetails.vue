@@ -62,6 +62,25 @@ const updateSubject = (newSubject: string) => {
   localStorage.setItem(`task_${props.task.id}_subject`, newSubject);
   taskStore.updateSubject(props.task.id, newSubject);
 };
+
+// Delete Task Button
+const isHolding = ref(false);
+const holdTimeout = ref<number | null>(null);
+
+const startHold = () => {
+  isHolding.value = true;
+  holdTimeout.value = window.setTimeout(() => {
+    taskStore.removeTask(props.task.id);
+  }, 4500);
+};
+
+const cancelHold = () => {
+  isHolding.value = false;
+  if (holdTimeout.value !== null) {
+    clearTimeout(holdTimeout.value);
+    holdTimeout.value = null;
+  }
+};
 </script>
 
 <template>
@@ -71,11 +90,44 @@ const updateSubject = (newSubject: string) => {
         <TimestampDisplay :whichStyle="'for-task-details'" :task="task" class="timestamp-display" />
 
         <!-- Delete Task -->
-        <font-awesome-icon
-          icon="fa-solid fa-trash"
-          class="date-priority__delete-icon"
-          @click="taskStore.removeTask(props.task.id)"
-        />
+        <div class="description__delete-button">
+          <div id="delete-button__animation-wrapper">
+            <svg
+              id="delete-button__animation-container"
+              viewBox="0 0 100 100"
+              :class="{ visible: isHolding }"
+            >
+              <defs>
+                <filter id="shadow">
+                  <feDropShadow dx="0" dy="0" stdDeviation="1.5" flood-color="#fc6767" />
+                </filter>
+              </defs>
+              <circle
+                id="spinner"
+                :class="{ spinning: isHolding }"
+                style="
+                  fill: transparent;
+                  stroke: #dd2476;
+                  stroke-width: 7px;
+                  stroke-linecap: round;
+                  filter: url(#shadow);
+                "
+                cx="50"
+                cy="50"
+                r="45"
+              />
+            </svg>
+            <font-awesome-icon
+              icon="fa-solid fa-trash"
+              class="delete-button__delete-icon"
+              @mousedown="startHold"
+              @mouseup="cancelHold"
+              @mouseleave="cancelHold"
+              @touchstart="startHold"
+              @touchend="cancelHold"
+            />
+          </div>
+        </div>
 
         <!-- Close Window -->
         <font-awesome-icon
@@ -105,6 +157,7 @@ const updateSubject = (newSubject: string) => {
 
       <!-- TaskSubject -->
       <input
+        class="description__task-subject"
         type="text"
         v-if="task"
         id="sebject-txt"
@@ -114,17 +167,6 @@ const updateSubject = (newSubject: string) => {
         maxlength="50"
         required
         @update:subject="updateSubject"
-        style="
-          border: none;
-          outline: none;
-          margin: 15px 0px 0px 0px;
-          font-size: 22px;
-          color: var(--font-color-gray);
-          width: 20vw;
-          -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-          width: calc(100% - 38px);
-        "
       />
 
       <!-- Task Description -->
@@ -175,27 +217,62 @@ const updateSubject = (newSubject: string) => {
 }
 
 /* Delete icon */
-.date-priority__delete-icon {
-  color: var(--well-read);
-  margin: 10px 20px 0px auto;
-  height: 20px;
-  cursor: pointer;
+#delete-button__animation-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.description__delete-button {
+  margin: 10px 10px 0px auto;
+  display: flex;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
 }
-.date-priority__delete-icon:hover {
-  -webkit-animation: textAnim 5s 0 normal ease;
-  animation: textAnim 5s 0 normal ease;
-  -webkit-transition: 0.13s;
-  -o-transition: 0.13s;
-  transition: 0.13s;
-  -webkit-transform: scale(112%);
-  -ms-transform: scale(112%);
-  transform: scale(112%);
+.delete-button__delete-icon {
+  color: var(--well-read);
+  height: 18px;
+  cursor: pointer;
+  position: absolute;
+  z-index: 1000;
+}
+#delete-button__animation-container {
+  transform: scale(120%);
+  width: 30px;
+  height: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  z-index: 999;
+}
+#delete-button__animation-container.visible {
+  visibility: visible;
+}
+@keyframes animation {
+  0% {
+    stroke-dasharray: 1 98;
+    stroke-dashoffset: -105;
+  }
+  50% {
+    stroke-dasharray: 80 10;
+    stroke-dashoffset: -160;
+  }
+  100% {
+    stroke-dasharray: 1 98;
+    stroke-dashoffset: -300;
+  }
+}
+.spinning {
+  animation: animation 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.is-holding {
+  transform: scale(103%);
+  transition: transform 0.13s;
 }
 
 /* close window */
@@ -294,6 +371,18 @@ const updateSubject = (newSubject: string) => {
   outline: none;
 }
 
+.description__task-subject {
+  margin: 15px 0px 0px 0px;
+  width: calc(100% - 38px);
+  font-size: 22px;
+  width: 20vw;
+  border: none;
+  outline: none;
+  color: var(--font-color-gray);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 /* Task Description */
 .textarea-index {
   display: block;
@@ -366,9 +455,14 @@ const updateSubject = (newSubject: string) => {
   }
 
   /* Delete icon */
-  .date-priority__delete-icon {
-    margin: 10px 8px 0px auto;
+  #delete-button__animation-wrapper {
+    margin: 0px -10px 0px auto;
+  }
+  .delete-button__delete-icon {
     height: 14px;
+  }
+  #delete-button__animation-container {
+    transform: scale(85%);
   }
 
   /* close window */
