@@ -390,7 +390,7 @@ onMounted(() => {
   display: block;
   margin: 30px 0px 0px 0px;
   min-width: 100%;
-  min-height: 50px;
+  min-height: 8rem;
   max-height: 50vh;
   line-height: 1.5;
   border-radius: 5px;
