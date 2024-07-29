@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'PT Sans', sans-serif;
+  background-color: #03012c;
+}
+
+#no-script {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100vh;
+  color: black;
+  width: 100%;
+}
+
+#no-script-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 3rem;
+  padding: 0.5em;
+  border: 0.2em double #03012c;
+  border-radius: 0.5em;
+  background-color: #fceea1;
+}
+
+#no-script-img {
+  width: 100px;
+  border-radius: 15%;
+}
+
+#no-script-maintext {
+  font-size: 3rem;
+}
+
+#no-script-subtext {
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 758px) {
+  #no-script-maintext {
+    font-size: 1.3rem;
+  }
+
+  #no-script-subtext {
+    font-size: 0.8rem;
+  }
+
+  #no-script-img {
+    width: 60px;
+  }
+}
