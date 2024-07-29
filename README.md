@@ -17,7 +17,7 @@ An application that allows you to list your pending tasks, both on a personal le
 
 **Sorted by:** latest version on top
 
-### [v0.2.0] - 2024-06-00
+### [v1.0.0] - 2024-07-29
 
 #### Added
 
