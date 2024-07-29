@@ -15,9 +15,11 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
 
 // Task Details display as popup menu for smartphones
 onMounted(() => {
+  window.addEventListener('resize', updateIsMobile);
   document.addEventListener('keyup', handleKeyUp);
 });
 onUnmounted(() => {
+  window.removeEventListener('resize', updateIsMobile);
   document.removeEventListener('keyup', handleKeyUp);
 });
 
@@ -29,10 +31,17 @@ const handleKeyUp = (event: KeyboardEvent) => {
 
 const closeTaskWindow = ref(null);
 onClickOutside(closeTaskWindow, taskStore.setCloseDisplay);
+
+const isMobile = ref(window.innerWidth <= 888);
+const taskDetailsClass = computed(() => (isMobile.value ? 'smartphone-view' : 'task-details'));
+
+const updateIsMobile = () => {
+  isMobile.value = window.innerWidth <= 888;
+};
 </script>
 
 <template>
-  <div class="outside-element" v-if="openDisplayTask.length > 0"></div>
+  <div class="outside-element" v-if="openDisplayTask.length > 0 && isMobile"></div>
   <div class="fullscreen-container" ref="closeTaskWindow">
     <div class="design-limit">
       <div class="todo-page">
@@ -64,7 +73,7 @@ onClickOutside(closeTaskWindow, taskStore.setCloseDisplay);
           </div>
 
           <TaskDetails
-            class="smartphone-view"
+            :class="taskDetailsClass"
             v-if="openDisplayTask.length > 0"
             :key="openDisplayTask[0].id"
             :task="openDisplayTask[0]"
@@ -81,8 +90,8 @@ onClickOutside(closeTaskWindow, taskStore.setCloseDisplay);
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #6c6c6c77;
-  z-index: 1;
+  background-color: #41414190;
+  z-index: 3;
 }
 
 .fullscreen-container {
@@ -97,6 +106,7 @@ onClickOutside(closeTaskWindow, taskStore.setCloseDisplay);
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  z-index: 1;
 
   animation: fadeIn 5s ease-in-out;
   -webkit-animation: fadeIn 1s ease-in-out;
@@ -119,12 +129,14 @@ onClickOutside(closeTaskWindow, taskStore.setCloseDisplay);
   height: fit-content;
   background-color: #ffffff73;
   border-radius: var(--general-radius-size);
+  z-index: 3;
 }
 
 .todo-page {
   width: 100%;
   height: 100%;
   border-radius: var(--general-radius-size);
+  z-index: 4;
 }
 
 .navbar {
@@ -207,6 +219,7 @@ main > *:nth-child(4) {
 .task-panel,
 .task-details {
   margin: 15px 0;
+  z-index: 5;
 }
 
 .task-panel {
@@ -238,7 +251,7 @@ main > *:nth-child(4) {
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: var(--box-radius-size);
-  z-index: 1000;
+  z-index: 100;
   overflow-y: auto;
   transition: transform 0.3s ease;
 }
