@@ -236,7 +236,7 @@ main > *:nth-child(4) {
   }
 
   .navbar__meta-infos {
-    margin: -15px 0px 0px 79px;
+    margin: -15px 0px 0px 75px;
   }
 }
 
@@ -254,8 +254,8 @@ main > *:nth-child(4) {
   }
 
   .navbar__meta-infos {
+    margin: -25px 0 0 74px !important;
     font-size: 8px;
-    margin: -25px 0 0 78px !important;
   }
 
   main {

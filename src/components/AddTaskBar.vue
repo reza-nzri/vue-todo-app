@@ -120,9 +120,9 @@ onMounted(() => {
         v-model="currentSortField"
         @change="toggleSortOrder"
       >
-        <option value="dueDateTime">Date</option>
-        <option value="priority">Priority</option>
-        <option value="subject">Subject</option>
+        <option class="option1" value="dueDateTime">Date</option>
+        <option class="option2" value="priority">Priority</option>
+        <option class="option3" value="subject">Subject</option>
       </select>
     </div>
   </div>
@@ -205,6 +205,28 @@ onMounted(() => {
   cursor: pointer;
   color: var(--font-color-gray);
   padding: 4px;
+  width: 80px;
+  position: relative;
+}
+
+/* Order Dropdown menu */
+.right-section__sort-select:focus {
+  border-color: #ad128c;
+  box-shadow: 0 0 5px #08e1ed;
+  background-color: rgba(255, 0, 0, 0.08) !important;
+  width: 80px !important;
+}
+.right-section__sort-select:hover {
+  border-color: #da08c271;
+}
+.right-section__sort-select option {
+  background-color: #fff;
+  font-size: 14px;
+  width: 80px;
+}
+.right-section__sort-select option:checked {
+  background-color: rgba(255, 6, 6, 0.476);
+  color: #fff;
 }
 
 .add-task-bar__add-button {

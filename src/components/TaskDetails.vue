@@ -139,19 +139,19 @@ const cancelHold = () => {
         <!-- Priority DropDown Menu -->
         <div class="date-priority__priority-dropdown">
           <p class="priority-dropdown__text">Priority</p>
-          <div class="priority-dropdown__combobox" :style="backgroundColorPriorityStyle">
-            <select
-              class="combobox__priority-select"
-              v-model="currentPriority"
-              @change="taskStore.updatePriority(props.task.id, currentPriority)"
-              :style="backgroundColorPriorityStyle"
-            >
-              <option value="high" style="background-color: var(--well-read)">High</option>
-              <option value="medium" style="background-color: var(--marigold)">Medium</option>
-              <option value="low" style="background-color: var(--congress-blue)">Low</option>
-            </select>
-            <p class="combobox__arrow" :style="backgroundColorPriorityStyle">></p>
-          </div>
+          <!-- <div class="priority-dropdown__combobox" :style="backgroundColorPriorityStyle"> -->
+          <select
+            class="combobox__priority-select priority-dropdown__combobox"
+            v-model="currentPriority"
+            @change="taskStore.updatePriority(props.task.id, currentPriority)"
+            :style="backgroundColorPriorityStyle"
+          >
+            <option value="high" style="background-color: var(--well-read)">High</option>
+            <option value="medium" style="background-color: var(--marigold)">Medium</option>
+            <option value="low" style="background-color: var(--congress-blue)">Low</option>
+          </select>
+          <!-- <p class="combobox__arrow" :style="backgroundColorPriorityStyle">></p> -->
+          <!-- </div> -->
         </div>
       </div>
 
@@ -312,7 +312,6 @@ const cancelHold = () => {
   -ms-flex-align: center;
   align-items: center;
 }
-
 .priority-dropdown__text {
   min-width: 80px;
   height: 40px;
@@ -330,47 +329,36 @@ const cancelHold = () => {
   -ms-flex-align: center;
   align-items: center;
 }
-
 .priority-dropdown__combobox {
+  height: 40px;
+  width: 95px;
   display: -webkit-box; /* Legacy Safari support */
   display: -ms-flexbox; /* IE 10 support */
   display: flex; /* Modern browser support */
-  height: 40px;
-  width: 100px;
+
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
-  justify-content: space-between;
   cursor: pointer;
 }
-
-.combobox__arrow {
-  font-size: 12px;
-  font-weight: 700;
-  margin-right: 12px;
-  -webkit-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-  color: white;
-}
-
 .combobox__priority-select {
-  min-width: 40px;
+  width: 95px;
   height: 40px;
   font-size: 15px;
-  transform: translateX(18px);
   color: white;
   border: none;
   text-align: center;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   cursor: pointer;
   outline: none;
 }
+.combobox__priority-select option:checked {
+  background-color: rgba(255, 34, 218, 0);
+  color: #fff;
+}
 
+/* TaskSubject */
 .description__task-subject {
   margin: 15px 0px 0px 0px;
   width: calc(100% - 38px);
@@ -425,9 +413,8 @@ const cancelHold = () => {
   }
 
   .combobox__priority-select {
-    min-width: 60px;
+    width: 65px;
     font-size: 11px;
-    transform: translateX(6px);
   }
 }
 
@@ -449,9 +436,8 @@ const cancelHold = () => {
   }
 
   .combobox__priority-select {
-    min-width: 60px;
+    width: 70px;
     font-size: 11px;
-    transform: translateX(3px);
   }
 
   /* Delete icon */
