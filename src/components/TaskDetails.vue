@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, onMounted } from 'vue';
 import TimestampDisplay from '@/components/TimestampDisplay.vue';
 import { useTaskStore } from '@/store/TaskStore';
 
@@ -81,6 +81,18 @@ const cancelHold = () => {
     holdTimeout.value = null;
   }
 };
+
+// Design only for Safari (Detect Safari browser)
+const isSafari = ref(false);
+
+const detectSafari = () => {
+  const userAgent = window.navigator.userAgent.toLowerCase();
+  isSafari.value = /safari/.test(userAgent) && !/chrome/.test(userAgent);
+};
+
+onMounted(() => {
+  detectSafari();
+});
 </script>
 
 <template>
@@ -139,19 +151,17 @@ const cancelHold = () => {
         <!-- Priority DropDown Menu -->
         <div class="date-priority__priority-dropdown">
           <p class="priority-dropdown__text">Priority</p>
-          <!-- <div class="priority-dropdown__combobox" :style="backgroundColorPriorityStyle"> -->
           <select
-            class="combobox__priority-select priority-dropdown__combobox"
+            class="combobox__priority-select"
             v-model="currentPriority"
             @change="taskStore.updatePriority(props.task.id, currentPriority)"
             :style="backgroundColorPriorityStyle"
+            :class="{ 'safari-select': isSafari }"
           >
             <option value="high" style="background-color: var(--well-read)">High</option>
             <option value="medium" style="background-color: var(--marigold)">Medium</option>
             <option value="low" style="background-color: var(--congress-blue)">Low</option>
           </select>
-          <!-- <p class="combobox__arrow" :style="backgroundColorPriorityStyle">></p> -->
-          <!-- </div> -->
         </div>
       </div>
 
@@ -329,7 +339,16 @@ const cancelHold = () => {
   -ms-flex-align: center;
   align-items: center;
 }
-.priority-dropdown__combobox {
+.combobox__priority-select {
+  width: 95px;
+  height: 40px;
+  font-size: 15px;
+  color: white;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+
   height: 40px;
   width: 95px;
   display: -webkit-box; /* Legacy Safari support */
@@ -343,25 +362,20 @@ const cancelHold = () => {
   -ms-flex-pack: justify;
   cursor: pointer;
 }
-.combobox__priority-select {
-  width: 95px;
-  height: 40px;
-  font-size: 15px;
-  color: white;
-  border: none;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-}
 .combobox__priority-select option:checked {
   background-color: rgba(255, 34, 218, 0);
   color: #fff;
 }
+.safari-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
 
 /* TaskSubject */
 .description__task-subject {
+  width: fit-content !important;
   margin: 15px 0px 0px 0px;
-  width: calc(100% - 38px);
   font-size: 22px;
   width: 20vw;
   border: none;
@@ -402,7 +416,7 @@ const cancelHold = () => {
     font-size: 12px;
   }
 
-  .priority-dropdown__combobox {
+  .combobox__priority-select {
     width: 80px;
   }
 
@@ -425,7 +439,7 @@ const cancelHold = () => {
     font-size: 11px;
   }
 
-  .priority-dropdown__combobox {
+  .combobox__priority-select {
     width: 80px;
   }
 

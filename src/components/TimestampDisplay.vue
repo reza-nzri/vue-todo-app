@@ -78,8 +78,8 @@ const updateDueDate = (event: Event) => {
 @media (max-width: 888px) {
   .for-todo-list-element {
     margin: 8px 0px 0px 0px;
-    min-width: 100px;
-    max-width: 100px;
+    min-width: 118px;
+    max-width: 118px;
     font-size: 9px;
   }
 }
