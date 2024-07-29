@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { onClickOutside } from '@vueuse/core';
 import TopBar from '@/components/AddTaskBar.vue';
 import TaskPanel from '@/components/TaskPanel.vue';
 import TaskDetails from '@/components/TaskDetails.vue';
@@ -11,10 +12,28 @@ const appVersion = import.meta.env.VITE_APP_VERSION as string;
 const openTasks = computed(() => taskStore.openTasks);
 const doneTasks = computed(() => taskStore.doneTasks);
 const openDisplayTask = computed(() => taskStore.openDisplayTask);
+
+// Task Details display as popup menu for smartphones
+onMounted(() => {
+  document.addEventListener('keyup', handleKeyUp);
+});
+onUnmounted(() => {
+  document.removeEventListener('keyup', handleKeyUp);
+});
+
+const handleKeyUp = (event: KeyboardEvent) => {
+  if (event.key === 'Escape') {
+    taskStore.setCloseDisplay();
+  }
+};
+
+const closeTaskWindow = ref(null);
+onClickOutside(closeTaskWindow, taskStore.setCloseDisplay);
 </script>
 
 <template>
-  <div class="fullscreen-container">
+  <div class="outside-element" v-if="openDisplayTask.length > 0"></div>
+  <div class="fullscreen-container" ref="closeTaskWindow">
     <div class="design-limit">
       <div class="todo-page">
         <nav class="navbar">
@@ -45,7 +64,7 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
           </div>
 
           <TaskDetails
-            class="task-details"
+            class="smartphone-view"
             v-if="openDisplayTask.length > 0"
             :key="openDisplayTask[0].id"
             :task="openDisplayTask[0]"
@@ -58,6 +77,14 @@ const openDisplayTask = computed(() => taskStore.openDisplayTask);
 </template>
 
 <style scoped>
+.outside-element {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #6c6c6c77;
+  z-index: 1;
+}
+
 .fullscreen-container {
   height: 100vh;
   width: 100vw;
@@ -200,6 +227,20 @@ main > *:nth-child(4) {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
   grid-area: 2 / 2 / 3 / 3;
+}
+/* Popup styles */
+.smartphone-view {
+  position: fixed;
+  top: 10%;
+  left: 5%;
+  width: 90%;
+  height: 80%;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: var(--box-radius-size);
+  z-index: 1000;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
 }
 
 /* Laptop L */
@@ -352,6 +393,14 @@ main > *:nth-child(4) {
     margin: 2px 0;
     min-height: 30vh;
     max-height: none;
+  }
+  /* Adjustments for mobile view */
+  .smartphone-view {
+    top: 5%;
+    left: 2.5%;
+    width: 95%;
+    height: 90%;
+    display: block;
   }
 }
 </style>
