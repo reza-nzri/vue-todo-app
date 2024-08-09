@@ -4,26 +4,25 @@ import { createPinia } from 'pinia';
 import App from './App.vue';
 import FontAwesomeIcon from './plugins/font-awesome';
 import { useTaskStore } from './store/TaskStore';
+import { createRouter, createWebHistory } from 'vue-router';
 
 async function initializeApp() {
   const pinia = createPinia();
   const app = createApp(App);
-
-  // Erstelle eine Instanz des TaskStore
   const taskStore = useTaskStore(pinia);
+  const basePath = '/vue-todo-app/';
 
-  // Lade die Dummy-Daten
+  const router = createRouter({
+    history: createWebHistory(basePath),
+    routes: [],
+  });
+
   await taskStore.loadDummyTasks();
 
-  // Verwende Pinia
   app.use(pinia);
-
-  // Registriere die FontAwesomeIcon-Komponente
+  app.use(router);
   app.component('font-awesome-icon', FontAwesomeIcon);
-
-  // Mount die App
   app.mount('#app');
 }
 
-// Starte die Initialisierung
 initializeApp();

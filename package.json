@@ -30,7 +30,7 @@
     "prettier": "^3.3.2",
     "vite-plugin-tsconfig-paths": "^1.4.1",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.0.13"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.8.0",
