@@ -11,29 +11,24 @@ interface Task {
   openDisplay: boolean;
 }
 
-// Dummy Tasks
-let dummyTasks: Task[] = [];
-
-async function loadDummyTasks() {
-  if (import.meta.env.VITE_APP_ENV === 'development') {
-    try {
-      const taskModule = await import('@/data/dummyTasks.json');
-      dummyTasks = taskModule.default as Task[];
-      console.info('Dummy tasks loaded successfully.');
-    } catch (error) {
-      console.info('Failed to load dummy tasks:', error);
-    }
-  } else {
-    console.warn('Development mode required to load dummy tasks.');
-  }
-}
-await loadDummyTasks();
-
 export const useTaskStore = defineStore('task', {
   state: () => ({
-    tasks: useLocalStorage<Task[]>('tasks', dummyTasks),
+    tasks: useLocalStorage<Task[]>('tasks', []),
   }),
   actions: {
+    async loadDummyTasks() {
+      if (import.meta.env.VITE_APP_ENV === 'development') {
+        try {
+          const taskModule = await import('@/data/dummyTasks.json');
+          this.tasks = taskModule.default as Task[];
+          console.info('Dummy tasks loaded successfully.');
+        } catch (error) {
+          console.info('Failed to load dummy tasks:', error);
+        }
+      } else {
+        console.warn('Development mode required to load dummy tasks.');
+      }
+    },
     async addTask() {
       this.setCloseDisplay();
       const newTask: Task = {

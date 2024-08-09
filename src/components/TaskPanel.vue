@@ -17,7 +17,7 @@ const props = defineProps<{
   tasks: Array<Task>;
   baseClass: string;
   title: string;
-  highlightTask: Task;
+  highlightTask?: Task | null;
 }>();
 
 const taskStore = useTaskStore();

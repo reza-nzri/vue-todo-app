@@ -7,8 +7,16 @@ import VueDevTools from 'vite-plugin-vue-devtools';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/vue-todo-app/',
   build: {
-    target: ['esnext', 'chrome93', 'firefox92', 'safari13'],
+    target: 'esnext',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vue: ['vue'],
+        },
+      },
+    },
   },
   plugins: [vue(), vueJsx(), VueDevTools()],
   resolve: {
@@ -19,22 +27,6 @@ export default defineConfig({
   server: {
     watch: {
       usePolling: true,
-    },
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `
-          @import "./src/assets/styles/scss/_animations.scss"; 
-          @import "./src/assets/styles/scss/_variables.scss";
-          @import "./src/assets/styles/scss/_mixins.scss";
-          @import "./src/assets/styles/scss/_helpers.scss";
-          @import "./src/assets/styles/scss/_mediaqueries.scss";
-          @import "./src/assets/styles/scss/_fonts.scss";
-          @import "./src/assets/styles/scss/_global.scss";
-          @import "./src/assets/styles/scss/_main.scss";
-        `,
-      },
     },
   },
 });

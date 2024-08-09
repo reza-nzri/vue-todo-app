@@ -62,13 +62,13 @@ const updateIsMobile = () => {
               :tasks="openTasks"
               title="Tasks"
               baseClass="open"
-              :highlightTask="openDisplayTask[0]"
+              :highlightTask="openDisplayTask.length > 0 ? openDisplayTask[0] : null"
             />
             <TaskPanel
               :tasks="doneTasks"
               title="Done"
               baseClass="close"
-              :highlightTask="openDisplayTask[0]"
+              :highlightTask="openDisplayTask.length > 0 ? openDisplayTask[0] : null"
             />
           </div>
 
