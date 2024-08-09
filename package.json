@@ -1,6 +1,6 @@
 {
   "name": "vue-todo-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple and responsive Vue.js To-Do application for managing tasks efficiently.",
   "homepage": "https://reza-nzri.github.io/vue-todo-app/",
   "private": true,
