@@ -1,10 +1,14 @@
 {
   "name": "vue-todo-app",
   "version": "1.0.0",
+  "description": "A simple and responsive Vue.js To-Do application for managing tasks efficiently.",
+  "homepage": "https://reza-nzri.github.io/vue-todo-app/",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "node getVersion.js && vite",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "build": "run-p type-check \"build-only {@}\" -- && vue-cli-service build",
     "prebuild": "node getVersion.js",
     "prestart": "node getVersion.js",
@@ -46,6 +50,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.23.0",
     "file-loader": "^6.2.0",
+    "gh-pages": "^6.1.1",
     "jsdom": "^24.0.0",
     "npm-run-all2": "^6.1.2",
     "sass": "^1.77.8",
