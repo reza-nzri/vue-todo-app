@@ -14,20 +14,32 @@ An application that allows you to list your pending tasks, both on a personal le
 [![Prettier](https://img.shields.io/badge/prettier-F8BC45.svg?logo=prettier&labelColor=1A2B34)](https://prettier.io/)
 
 ## 🔖 Changelog | Tags versions `vue-todo-app`
-
 **Sorted by:** latest version on top
 
-### [v1.0.0] - 2024-07-29
-
+### [v1.0.1] - 2024-08-09
 #### Added
+Uses:
+- Fix path construction in getVersion.js for Windows compatibility
+- Update version in dev branch
+- Fix the build process
+- Change package.json for deploy
 
-Uses..
+
+### [v1.0.0] - 2024-07-29
+#### Added
+- Basic CRUD functionality for managing tasks.
+- Responsive design compatible with mobile and desktop.
+- Integration with Pinia for state management.
+- FontAwesome icons added for UI elements.
+- Dummy tasks loaded in development mode for testing purposes.
+
+
 
 ### [v0.1.0] - 2024-06-20
-
 #### Added
+- Initial release of `vue-todo-app`.
 
-Uses Initial Vue Project Creation
+
 
 ## 🚀 Commands
 ### Development Setup
