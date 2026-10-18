@@ -33,11 +33,15 @@ jobs:
         run: npm ci
 
       # .env is gitignored, so recreate it from the example and stamp the
-      # version from .pvnr (same thing the local prebuild hook does)
+      # version from .pvnr (same thing the local prebuild hook does).
+      # VITE_APP_ENV must be "production" here: in development the store
+      # calls loadDummyTasks() on every startup, which would wipe the
+      # visitor's own tasks on each page load of the deployed site.
       - name: Prepare environment file
         run: |
-          cp .env.example .env
+          sed 's/^VITE_APP_ENV=.*/VITE_APP_ENV=production/' .env.example > .env
           node getVersion.js
+          cat .env
 
       - name: Build
         run: npm run build-only
