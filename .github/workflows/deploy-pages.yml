@@ -46,10 +46,10 @@ jobs:
       - name: Build
         run: npm run build-only
 
+      # Pages must be enabled once in Settings > Pages with Source: GitHub Actions.
+      # The workflow token cannot create a Pages site on first deployment.
       - name: Configure Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
